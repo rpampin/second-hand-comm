@@ -1,6 +1,6 @@
 const GITHUB = {
   owner: "rpampin",
-  repo: "mi-repo-mercadito",
+  repo: "second-hand-comm",
   branch: "main",
   allowedLogin: "rpampin",
 };
