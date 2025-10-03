@@ -1,0 +1,12 @@
+{
+  "name": "mercadito-personal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "lite-server --baseDir=.",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

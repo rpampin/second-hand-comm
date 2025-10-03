@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pagina no encontrada - Mercadito Personal</title>
+  <meta http-equiv="refresh" content="0; url=/#/" />
+  <script>
+    const path = window.location.pathname.replace(/^\//, '');
+    const hash = path ? `#/redirect/${encodeURIComponent(path)}` : '#/';
+    window.location.replace(`/${hash}${window.location.search}${window.location.hash}`);
+  </script>
+</head>
+<body>
+  <p>Redirigiendo al inicio...</p>
+</body>
+</html>
