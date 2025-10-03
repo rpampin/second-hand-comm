@@ -37,6 +37,20 @@
   font-size: 1rem;
 }
 
+.token-input-wrapper .ghost-button {
+  margin-left: 8px;
+  color: #1f2933;
+  border-color: rgba(31, 41, 51, 0.45);
+  background: rgba(31, 41, 51, 0.05);
+}
+
+.token-input-wrapper .ghost-button:hover,
+.token-input-wrapper .ghost-button:focus-visible {
+  background: rgba(78, 93, 255, 0.16);
+  border-color: rgba(78, 93, 255, 0.55);
+  color: #1b1f3b;
+}
+
 .ghost-button {
   background: transparent;
   border: 1px solid rgba(15, 23, 42, 0.16);
@@ -476,3 +490,4 @@
     flex-direction: row;
   }
 }
+

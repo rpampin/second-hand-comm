@@ -208,7 +208,21 @@ async function loadProducts(showOverlay = false) {
     }
   } catch (error) {
     console.error("loadProducts error", error);
-    setStatus({ type: "error", text: error.message || "No se pudo leer data/products.json" }, { autoClear: false });
+    if (error && error.status === 404) {
+      state.products = [];
+      state.meta = {
+        currency: "ARS",
+        locale: "es-AR",
+        contact: null,
+      };
+      state.productsSha = null;
+      if (!state.form || state.form.mode !== "create") {
+        state.form = createEmptyForm();
+      }
+      setStatus({ type: "info", text: "products.json aun no existe. Se creara al guardar cambios." }, { duration: 4200 });
+    } else {
+      setStatus({ type: "error", text: error.message || "No se pudo leer data/products.json" }, { autoClear: false });
+    }
   } finally {
     state.loading = false;
     setOverlay(null);
@@ -1035,12 +1049,15 @@ async function mutateProducts(mutator, message) {
     };
     const content = JSON.stringify(payload, null, 2);
     try {
-      const response = await github.putFile(PRODUCTS_PATH, {
+      const payloadBody = {
         message,
         content: encodeBase64(content),
-        sha: state.productsSha,
         branch: GITHUB.branch,
-      });
+      };
+      if (state.productsSha) {
+        payloadBody.sha = state.productsSha;
+      }
+      const response = await github.putFile(PRODUCTS_PATH, payloadBody);
       state.products = nextProducts;
       state.meta = context.meta;
       state.productsSha = response.content.sha;
@@ -1447,3 +1464,5 @@ function createGithubClient() {
     },
   };
 }
+
+
