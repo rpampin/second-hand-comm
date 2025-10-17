@@ -1,18 +1,17 @@
 {
   "products": [
     {
-      "id": "50b52241-fb69-4755-9365-6b2bde5899c4",
-      "slug": "asd",
-      "title": "ASD",
-      "price": 999,
-      "status": "available",
+      "id": "8d47e5f6-cadd-43d6-9bdd-d6945d550c0f",
+      "slug": "trasdvcasdv",
+      "title": "trasdvcasdv",
+      "price": 211,
+      "status": "sold",
       "images": [
-        "data/images/asd/asd-1760623946812-0.webp",
-        "data/images/asd/asd-1760705847971-0.webp"
+        "data/images/trasdvcasdv/trasdvcasdv-1760726887383-0.webp"
       ],
-      "description": "**aasdf*asdf***",
-      "createdAt": "2025-10-16T14:11:43.258Z",
-      "updatedAt": "2025-10-17T12:57:27.896Z"
+      "description": "sdvasdvasdvasdvsdv\n**asdfasdf**",
+      "createdAt": "2025-10-17T18:48:07.365Z",
+      "updatedAt": "2025-10-17T18:49:24.415Z"
     }
   ],
   "meta": {
