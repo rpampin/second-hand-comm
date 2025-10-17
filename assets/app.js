@@ -204,11 +204,12 @@ function renderHome() {
 
 function renderProductCard(product) {
   const cover = product.images[0] ? encodeURI(product.images[0]) : PLACEHOLDER_IMAGE;
-  const labelStatus = product.status === "sold" ? "Vendido" : "Disponible";
+  const sold = product.status === "sold";
+  const labelStatus = sold ? "Vendido" : "Disponible";
   const excerpt = createExcerpt(product.description);
-  return `
-    <a class="product-card" role="listitem" href="#/product/${encodeURIComponent(product.slug)}" aria-label="Ver ${escapeAttribute(product.title)}">
-      ${product.status === "sold" ? '<span class="badge badge--sold">Vendido</span>' : ""}
+  const baseClass = `product-card${sold ? " is-sold" : ""}`;
+  const cardBody = `
+      ${sold ? '<span class="badge badge--sold">Vendido</span>' : ""}
       <img src="${cover}" alt="${escapeAttribute(`Imagen principal de ${product.title}`)}" loading="lazy" decoding="async" />
       <div class="card-body">
         <span class="product-price">${formatPrice(product.price)}</span>
@@ -216,6 +217,17 @@ function renderProductCard(product) {
         <p class="product-summary">${escapeHtml(excerpt)}</p>
         <span class="product-status" aria-hidden="true">${labelStatus}</span>
       </div>
+  `;
+  if (sold) {
+    return `
+      <div class="${baseClass}" role="listitem" aria-label="${escapeAttribute(`Producto vendido: ${product.title}`)}" aria-disabled="true">
+        ${cardBody}
+      </div>
+    `;
+  }
+  return `
+    <a class="${baseClass}" role="listitem" href="#/product/${encodeURIComponent(product.slug)}" aria-label="Ver ${escapeAttribute(product.title)}">
+      ${cardBody}
     </a>
   `;
 }
