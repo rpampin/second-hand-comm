@@ -249,8 +249,8 @@ body {
 }
 
 .product-card.is-sold {
+  position: relative;
   pointer-events: none;
-  opacity: 0.55;
   filter: grayscale(100%);
   cursor: not-allowed;
 }
@@ -261,21 +261,46 @@ body {
   box-shadow: var(--shadow-soft);
 }
 
+.product-card.is-sold::after {
+  content: "VENDIDO";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: rgba(15, 23, 42, 0.15);
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.product-card.is-sold::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(148, 163, 184, 0.45);
+  backdrop-filter: grayscale(1);
+  z-index: 1;
+}
+
 .product-card.is-sold .product-price,
 .product-card.is-sold .product-title,
 .product-card.is-sold .product-summary,
 .product-card.is-sold .product-status {
-  color: color-mix(in srgb, var(--color-text) 45%, #9ca3af);
+  color: color-mix(in srgb, var(--color-text) 35%, #94a3b8);
 }
 
 .product-card.is-sold .badge--sold {
-  background: rgba(15, 23, 42, 0.35);
-  color: rgba(255, 255, 255, 0.9);
+  background: rgba(15, 23, 42, 0.55);
+  color: rgba(255, 255, 255, 0.95);
+  z-index: 3;
 }
 
 .product-card.is-sold img {
   filter: grayscale(100%);
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
 .product-card img {
