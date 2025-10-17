@@ -25,6 +25,16 @@ function safeRandomId() {
 const PLACEHOLDER_IMAGE =
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='480' viewBox='0 0 640 480'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop offset='0' stop-color='%23e2e8f0'/><stop offset='1' stop-color='%23f8fafc'/></linearGradient></defs><rect width='640' height='480' fill='url(%23g)'/><text x='50%' y='52%' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='42' fill='%2394a3b8'>Foto</text></svg>";
 
+function buildCacheBustedUrl(resource) {
+  try {
+    const url = new URL(resource, window.location.href);
+    url.searchParams.set("_cb", Math.floor(Date.now() / 1000).toString(36));
+    return url.toString();
+  } catch (error) {
+    return resource;
+  }
+}
+
 const LIGHTBOX_MIN_SCALE = 0.15;
 const LIGHTBOX_MAX_SCALE = 4;
 const LIGHTBOX_SCALE_STEP = 0.2;
@@ -61,9 +71,9 @@ async function loadProducts(options = {}) {
     render();
   }
   try {
-    const response = await fetch("data/products.json", {
+    const response = await fetch(buildCacheBustedUrl("data/products.json"), {
       headers: { Accept: "application/json" },
-      cache: "reload",
+      cache: "no-store",
     });
     if (!response.ok) {
       const errorText = await response.text().catch(() => "");
