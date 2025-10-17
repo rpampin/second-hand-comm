@@ -8,7 +8,7 @@ Aplicacion estatica para gestionar y publicar el catalogo de productos usados de
 - `assets/app.js` - SPA ligera con ruteo por hash y detalle de producto.
 - `admin/index.html` - Panel de administracion (solo rpampin) con autenticacion via PAT.
 - `assets/admin.js` - Logica del panel: CRUD, subida de imagenes y commits via GitHub API.
-- `data/products.json` - Base de datos principal (centavos, Markdown, estado, timestamps).
+- `data/products.json` - Base de datos principal (precio entero, Markdown, estado, timestamps).
 - `data/images/<slug>/` - Carpeta sugerida para imagenes optimizadas por producto.
 - `404.html` - Fallback para GitHub Pages (redirige al hash router).
 
@@ -16,7 +16,7 @@ Aplicacion estatica para gestionar y publicar el catalogo de productos usados de
 
 1. **GITHUB constants**: actualiza el objeto `GITHUB` en `assets/admin.js` con `owner`, `repo`, `branch` reales y el `allowedLogin` autorizado.
 2. **GitHub Pages**: publica la rama configurada (por defecto `main`) desde la seccion *Pages* del repositorio. Usa la carpeta `/` como fuente.
-3. **Datos iniciales**: ajusta `data/products.json` a tus productos (manteniendo ASCII). Cada producto debe incluir `id`, `slug`, `price` en centavos, `status`, `images`, `description`, `createdAt`, `updatedAt`.
+3. **Datos iniciales**: ajusta `data/products.json` a tus productos (manteniendo ASCII). Cada producto debe incluir `id`, `slug`, `price` en pesos enteros, `status`, `images`, `description`, `createdAt`, `updatedAt`.
 
 ## Generar un token personal (PAT)
 
@@ -54,3 +54,8 @@ Aplicacion estatica para gestionar y publicar el catalogo de productos usados de
 - Cada commit generado sigue el prefijo `feat(admin)`, `fix(admin)` o `chore(admin)` para facilitar revisar el historial.
 
 Listo: con la pagina publicada y el token en la mano, podes administrar el mercadito completo sin backend.
+
+## Modo local
+- `npm run dev` levanta un API local (/__dev/api) que lee y escribe directo sobre `data/products.json` y `data/images/`.
+- El campo de token es opcional en local; los cambios quedan en tu copia local hasta que decidas commitearlos.
+- En produccion (GitHub Pages) el panel usa la API de GitHub y requiere el PAT con permisos contents read/write.

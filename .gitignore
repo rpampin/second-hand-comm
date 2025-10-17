@@ -29,3 +29,5 @@ Thumbs.db
 # Misc
 *.local
 *.log
+data/products.dev.json
+data/images/dev/

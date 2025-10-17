@@ -1,27 +1,23 @@
 {
   "products": [
     {
-      "id": "p_0001",
-      "slug": "camara-sony-a6000",
-      "title": "Camara Sony A6000 + 16-50mm",
-      "price": 180000,
+      "id": "50b52241-fb69-4755-9365-6b2bde5899c4",
+      "slug": "asd",
+      "title": "ASD",
+      "price": 999,
       "status": "available",
       "images": [
-        "data/images/camara-sony-a6000/1.webp",
-        "data/images/camara-sony-a6000/2.webp"
+        "data/images/asd/asd-1760623946812-0.webp",
+        "data/images/asd/asd-1760705847971-0.webp"
       ],
-      "description": "Camara en buen estado. Incluye bateria y correa. **Entrega en CABA.**",
-      "createdAt": "2025-01-01T12:00:00.000Z",
-      "updatedAt": "2025-01-01T12:00:00.000Z"
+      "description": "**aasdf*asdf***",
+      "createdAt": "2025-10-16T14:11:43.258Z",
+      "updatedAt": "2025-10-17T12:57:27.896Z"
     }
   ],
   "meta": {
     "currency": "ARS",
     "locale": "es-AR",
-    "contact": {
-      "type": "whatsapp",
-      "value": "+5491112345678",
-      "label": "Contactar por WhatsApp"
-    }
+    "contact": null
   }
 }

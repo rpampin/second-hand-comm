@@ -5,6 +5,7 @@
   margin: 0;
   padding: 32px 16px 48px;
   color: #1f2933;
+  color-scheme: light;
 }
 
 .auth-card {
@@ -53,18 +54,20 @@
 
 .ghost-button {
   background: transparent;
-  border: 1px solid rgba(15, 23, 42, 0.16);
+  color: #1b1f3b;
+  border: 1px solid rgba(17, 24, 39, 0.32);
   padding: 8px 14px;
   border-radius: 10px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: background 160ms ease, color 160ms ease, border 160ms ease;
 }
 
 .ghost-button:hover,
 .ghost-button:focus-visible {
-  background: rgba(78, 93, 255, 0.08);
-  border-color: rgba(78, 93, 255, 0.4);
+  background: rgba(78, 93, 255, 0.12);
+  border-color: rgba(78, 93, 255, 0.55);
+  color: #111827;
   outline: none;
 }
 
@@ -95,13 +98,13 @@
 
 .form-hint {
   font-size: 0.85rem;
-  color: #52606d;
+  color: #374151;
 }
 
 .auth-help ul {
   margin: 0;
   padding-left: 20px;
-  color: #52606d;
+  color: #374151;
 }
 
 .auth-help h2 {
@@ -150,7 +153,7 @@
 
 .user-login {
   margin: 4px 0 0;
-  color: #52606d;
+  color: #374151;
   font-size: 0.9rem;
 }
 
@@ -222,7 +225,7 @@
 }
 
 .product-list-sub {
-  color: #52606d;
+  color: #374151;
   font-size: 0.85rem;
 }
 
@@ -232,13 +235,16 @@
 }
 
 .ghost-button.danger {
-  border-color: rgba(209, 67, 67, 0.4);
-  color: #d14343;
+  color: #b91c1c;
+  border-color: rgba(185, 28, 28, 0.7);
+  background: rgba(185, 28, 28, 0.08);
 }
 
 .ghost-button.danger:hover,
 .ghost-button.danger:focus-visible {
-  background: rgba(209, 67, 67, 0.12);
+  background: rgba(185, 28, 28, 0.18);
+  border-color: rgba(185, 28, 28, 0.85);
+  color: #7f1d1d;
 }
 
 .product-list-empty {
@@ -246,7 +252,7 @@
   background: #ffffff;
   border-radius: 14px;
   text-align: center;
-  color: #52606d;
+  color: #374151;
   border: 1px dashed rgba(15, 23, 42, 0.16);
 }
 
@@ -265,7 +271,7 @@
 
 .form-helper {
   margin: 6px 0 0;
-  color: #52606d;
+  color: #374151;
   font-size: 0.9rem;
 }
 
@@ -288,6 +294,27 @@
   border: 1px solid rgba(15, 23, 42, 0.14);
   font-size: 1rem;
   background: #ffffff;
+}
+
+.markdown-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.markdown-toolbar .markdown-btn {
+  font-size: 0.85rem;
+  padding: 6px 12px;
+}
+
+.markdown-toolbar .markdown-btn span {
+  pointer-events: none;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #64748b;
 }
 
 .form-field textarea {
@@ -326,7 +353,7 @@
 
 .image-manager-header p {
   margin: 4px 0 0;
-  color: #52606d;
+  color: #374151;
   font-size: 0.85rem;
 }
 
@@ -387,7 +414,7 @@
 
 .image-meta {
   margin: 0;
-  color: #52606d;
+  color: #374151;
   font-size: 0.85rem;
 }
 
@@ -412,18 +439,18 @@
 }
 
 .status-banner[data-type="success"] {
-  background: rgba(47, 191, 113, 0.15);
-  color: #136b41;
+  background: #d1fae5;
+  color: #065f46;
 }
 
 .status-banner[data-type="error"] {
-  background: rgba(209, 67, 67, 0.15);
-  color: #7c1f1f;
+  background: #fee2e2;
+  color: #991b1b;
 }
 
 .status-banner[data-type="info"] {
-  background: rgba(78, 93, 255, 0.1);
-  color: #303f9f;
+  background: #dbeafe;
+  color: #1d4ed8;
 }
 
 .admin-overlay {
@@ -433,6 +460,11 @@
   display: grid;
   place-items: center;
 }
+
+.admin-overlay[hidden] {
+  display: none !important;
+}
+
 
 .admin-overlay-content {
   background: #ffffff;
@@ -490,4 +522,9 @@
     flex-direction: row;
   }
 }
+
+
+
+
+
 

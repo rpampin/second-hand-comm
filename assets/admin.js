@@ -9,7 +9,11 @@ const STORAGE_KEY = "mercadito_admin_token";
 const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
 const ACCEPTED_IMAGE_TYPES = ["image/png", "image/jpeg", "image/webp", "image/avif"];
 const PRODUCTS_PATH = "data/products.json";
+// Evita spinners infinitos devolviendo control si la red se cuelga.
+const REQUEST_TIMEOUT_MS = 15000;
 
+const LOCAL_MODE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const DEV_API_BASE = "/__dev/api";
 const textDecoder = new TextDecoder("utf-8");
 const textEncoder = new TextEncoder();
 const priceFormatters = new Map();
@@ -45,8 +49,9 @@ const refs = {
 
 let statusTimer = null;
 let dragImageIndex = null;
+let statusListenersBound = false;
 
-const github = createGithubClient();
+const api = LOCAL_MODE ? createLocalClient() : createGithubClient();
 
 init();
 
@@ -55,6 +60,7 @@ function init() {
   if (!state.form) {
     state.form = createEmptyForm();
   }
+  ensureStatusDismissListeners();
   render();
   if (state.token) {
     verifyToken(state.token);
@@ -113,6 +119,14 @@ function buildLoginView() {
   };
   refs.login.form.addEventListener("submit", handleLoginSubmit);
   refs.login.toggle.addEventListener("click", toggleTokenVisibility);
+  if (LOCAL_MODE && refs.login.input) {
+    refs.login.input.removeAttribute("required");
+    refs.login.input.placeholder = "Opcional en local";
+    const hint = document.getElementById("token-hint");
+    if (hint) {
+      hint.textContent = "Modo local: el token es opcional (se usa JSON local).";
+    }
+  }
 }
 
 function updateLoginView() {
@@ -152,13 +166,13 @@ async function handleLoginSubmit(event) {
 }
 async function verifyToken(token) {
   try {
-    github.setToken(token);
-    const user = await github.getUser();
+    api.setToken(token);
+    const user = await api.getUser();
     if (!user || user.login !== GITHUB.allowedLogin) {
       state.unauthorized = true;
       state.token = null;
       state.user = null;
-      github.setToken(null);
+      api.setToken(null);
       sessionStorage.removeItem(STORAGE_KEY);
       state.authError = "Acceso no autorizado para este token";
       setStatus({ type: "error", text: "Acceso no autorizado" }, { autoClear: false });
@@ -175,22 +189,24 @@ async function verifyToken(token) {
     state.authError = error.message || "No se pudo verificar el token";
     state.token = null;
     state.user = null;
-    github.setToken(null);
+    api.setToken(null);
     sessionStorage.removeItem(STORAGE_KEY);
   } finally {
+    console.log("[admin] verifyToken:finally", { local: LOCAL_MODE, authorized: Boolean(state.user) });
     state.verifying = false;
     render();
   }
 }
 
 async function loadProducts(showOverlay = false) {
+  console.log("[admin] loadProducts", { local: LOCAL_MODE, showOverlay, token: Boolean(state.token) });
   if (!state.token) return;
   state.loading = true;
   if (showOverlay) {
     setOverlay("Cargando catalogo...");
   }
   try {
-    const file = await github.getJsonFile(PRODUCTS_PATH, GITHUB.branch);
+    const file = await api.getJsonFile(PRODUCTS_PATH, GITHUB.branch);
     const decoded = decodeBase64(file.content || "");
     const parsed = decoded ? JSON.parse(decoded) : { products: [], meta: {} };
     state.products = sanitizeProducts(parsed.products || []);
@@ -209,6 +225,7 @@ async function loadProducts(showOverlay = false) {
   } catch (error) {
     console.error("loadProducts error", error);
     if (error && error.status === 404) {
+      console.warn("[admin] products.json missing locally", { local: LOCAL_MODE, error });
       state.products = [];
       state.meta = {
         currency: "ARS",
@@ -221,25 +238,27 @@ async function loadProducts(showOverlay = false) {
       }
       setStatus({ type: "info", text: "products.json aun no existe. Se creara al guardar cambios." }, { duration: 4200 });
     } else {
+      console.error("[admin] loadProducts failed", { local: LOCAL_MODE, error });
       setStatus({ type: "error", text: error.message || "No se pudo leer data/products.json" }, { autoClear: false });
     }
   } finally {
     state.loading = false;
+    console.log("[admin] loadProducts:finally", { local: LOCAL_MODE, products: state.products.length, sha: state.productsSha, saving: state.saving, overlayMessage: state.overlayMessage });
     setOverlay(null);
     render();
   }
 }
 
 function handleLogout() {
-  github.setToken(null);
+  api.setToken(null);
   sessionStorage.removeItem(STORAGE_KEY);
   state.token = null;
   state.user = null;
   state.products = [];
   state.productsSha = null;
-  state.status = null;
   state.overlayMessage = null;
   state.form = createEmptyForm();
+  dismissStatus();
   render();
 }
 
@@ -262,7 +281,7 @@ function buildDashboardView() {
       </header>
       <section class="status-banner" id="status-banner" role="status" hidden>
         <p id="status-text"></p>
-        <button type="button" class="ghost-button" id="status-close">Cerrar</button>
+        <button type="button" class="ghost-button" id="status-close" data-action="close-status">Cerrar</button>
       </section>
       <div class="admin-body">
         <aside class="admin-sidebar">
@@ -304,7 +323,11 @@ function buildDashboardView() {
     userLogin: document.getElementById("user-login"),
     userAvatar: document.getElementById("user-avatar"),
   };
-  refs.dashboard.statusClose.addEventListener("click", () => setStatus(null));
+  if (refs.dashboard.statusClose) {
+    refs.dashboard.statusClose.addEventListener("click", () => {
+      dismissStatus();
+    });
+  }
   refs.dashboard.newButton.addEventListener("click", () => {
     selectNewProduct();
     renderForm();
@@ -330,6 +353,23 @@ function updateDashboardView() {
   renderForm();
 }
 
+function ensureStatusDismissListeners() {
+  if (statusListenersBound) return;
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
+    const trigger = event.target.closest("[data-action=\"close-status\"]");
+    if (!trigger) return;
+    event.preventDefault();
+    dismissStatus();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    if (!state.status) return;
+    dismissStatus();
+  });
+  statusListenersBound = true;
+}
+
 function updateUserSummary() {
   if (!state.user || !refs.dashboard.userName) return;
   refs.dashboard.userName.textContent = state.user.name || state.user.login;
@@ -337,31 +377,44 @@ function updateUserSummary() {
   refs.dashboard.userAvatar.src = state.user.avatar_url || "https://avatars.githubusercontent.com/u/0?v=4";
 }
 
+function clearStatusTimer() {
+  if (statusTimer) {
+    window.clearTimeout(statusTimer);
+    statusTimer = null;
+  }
+}
+
+function dismissStatus() {
+  state.status = null;
+  clearStatusTimer();
+  if (refs.dashboard.statusBanner) {
+    refs.dashboard.statusBanner.hidden = true;
+    refs.dashboard.statusBanner.style.display = "none";
+    delete refs.dashboard.statusBanner.dataset.type;
+  }
+  if (refs.dashboard.statusText) {
+    refs.dashboard.statusText.textContent = "";
+  }
+}
+
 function setStatus(payload, options = {}) {
   if (!payload) {
-    state.status = null;
-    if (statusTimer) {
-      window.clearTimeout(statusTimer);
-      statusTimer = null;
-    }
-    renderStatusBanner();
+    clearStatusTimer();
+    dismissStatus();
     return;
   }
+  clearStatusTimer();
   const status = typeof payload === "string" ? { type: "info", text: payload } : payload;
   state.status = {
     type: status.type || "info",
     text: status.text || "",
   };
   renderStatusBanner();
-  if (statusTimer) {
-    window.clearTimeout(statusTimer);
-  }
   const autoClear = options.autoClear !== false;
   if (autoClear) {
-    const duration = options.duration || 4800;
+    const duration = Number.isFinite(options.duration) && options.duration > 0 ? options.duration : 4800;
     statusTimer = window.setTimeout(() => {
-      state.status = null;
-      renderStatusBanner();
+      dismissStatus();
     }, duration);
   }
 }
@@ -370,11 +423,21 @@ function renderStatusBanner() {
   if (!refs.dashboard.statusBanner) return;
   if (!state.status) {
     refs.dashboard.statusBanner.hidden = true;
+    refs.dashboard.statusBanner.style.display = "none";
+    delete refs.dashboard.statusBanner.dataset.type;
     return;
   }
   refs.dashboard.statusBanner.hidden = false;
+  refs.dashboard.statusBanner.style.display = "flex";
   refs.dashboard.statusBanner.dataset.type = state.status.type;
   refs.dashboard.statusText.textContent = state.status.text;
+  if (refs.dashboard.statusClose && !refs.dashboard.statusClose.dataset.bound) {
+    refs.dashboard.statusClose.dataset.bound = "true";
+    refs.dashboard.statusClose.addEventListener("click", (event) => {
+      event.preventDefault();
+      dismissStatus();
+    });
+  }
 }
 
 function setOverlay(message = null) {
@@ -432,21 +495,32 @@ function renderProductList() {
 }
 
 function handleProductListClick(event) {
-  const target = event.target;
-  if (!(target instanceof HTMLElement)) return;
-  const action = target.dataset.action;
-  const id = target.dataset.id;
-  if (!action || !id) return;
-  if (action === "select") {
-    selectProduct(id);
-    renderForm();
-    renderProductList();
-  } else if (action === "toggle") {
-    toggleProductStatus(id);
-  } else if (action === "delete") {
-    deleteProduct(id);
+  if (!(event.target instanceof HTMLElement)) return;
+  const actionElement = event.target.closest('[data-action]');
+  if (actionElement) {
+    const action = actionElement.dataset.action;
+    const id = actionElement.dataset.id;
+    if (!action || !id) return;
+    if (action === "select") {
+      selectProduct(id);
+      renderForm();
+      renderProductList();
+    } else if (action === "toggle") {
+      toggleProductStatus(id);
+    } else if (action === "delete") {
+      deleteProduct(id);
+    }
+    return;
   }
+  const item = event.target.closest('.product-list-item');
+  if (!item) return;
+  const id = item.dataset.id;
+  if (!id) return;
+  selectProduct(id);
+  renderForm();
+  renderProductList();
 }
+
 
 function selectNewProduct() {
   state.form = createEmptyForm();
@@ -489,7 +563,7 @@ function buildFormFromProduct(product) {
     values: {
       title: product.title || "",
       slug: product.slug || "",
-      price: String(product.price ?? 0),
+      price: formatPriceInputFromValue(product.price ?? 0),
       status: product.status === "sold" ? "sold" : "available",
       description: product.description || "",
       images: Array.isArray(product.images)
@@ -534,8 +608,8 @@ function renderForm() {
           ${errors.slug ? `<p class="field-error">${escapeHtml(errors.slug)}</p>` : ""}
         </label>
         <label class="form-field">
-          <span>Precio (centavos)</span>
-          <input id="field-price" name="price" type="number" min="0" step="50" value="${escapeAttribute(formState.values.price)}" />
+          <span>Precio</span>
+          <input id="field-price" name="price" type="number" min="0" step="1" inputmode="numeric" value="${escapeAttribute(formState.values.price)}" />
           ${errors.price ? `<p class="field-error">${escapeHtml(errors.price)}</p>` : ""}
         </label>
         <label class="form-field">
@@ -548,6 +622,13 @@ function renderForm() {
       </div>
       <div class="form-field">
         <label for="field-description">Descripcion (Markdown soportado)</label>
+        <div class="markdown-toolbar" role="group" aria-label="Formato descripcion">
+          <button type="button" class="ghost-button markdown-btn" data-md="bold" title="Negrita"><span>Negrita</span></button>
+          <button type="button" class="ghost-button markdown-btn" data-md="italic" title="Italica"><span>Cursiva</span></button>
+          <button type="button" class="ghost-button markdown-btn" data-md="list" title="Lista"><span>Lista</span></button>
+          <button type="button" class="ghost-button markdown-btn" data-md="link" title="Insertar enlace"><span>Link</span></button>
+          <button type="button" class="ghost-button markdown-btn" data-md="quote" title="Cita"><span>Cita</span></button>
+        </div>
         <textarea id="field-description" name="description" rows="8">${escapeHtml(formState.values.description)}</textarea>
         ${errors.description ? `<p class="field-error">${escapeHtml(errors.description)}</p>` : ""}
       </div>
@@ -591,6 +672,7 @@ function bindFormEvents(form) {
   const priceField = form.querySelector("#field-price");
   const statusField = form.querySelector("#field-status");
   const descriptionField = form.querySelector("#field-description");
+  const markdownToolbar = form.querySelector(".markdown-toolbar");
   const imageInput = form.querySelector("#image-input");
   const dropzone = form.querySelector("#image-dropzone");
   const resetButton = form.querySelector("#reset-form");
@@ -623,6 +705,12 @@ function bindFormEvents(form) {
       updateDescriptionPreview();
     }, 140)
   );
+  if (markdownToolbar && !markdownToolbar.dataset.bound) {
+    markdownToolbar.dataset.bound = "true";
+    markdownToolbar.addEventListener("click", (event) => {
+      handleMarkdownToolbarClick(event, descriptionField);
+    });
+  }
   dropzone.addEventListener("click", () => imageInput.click());
   dropzone.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
@@ -675,6 +763,7 @@ async function handleFormSubmit(event) {
     if (state.form.mode === "create") {
       await createProduct();
     } else {
+      console.log("[admin] handleFormSubmit:update", { local: LOCAL_MODE, productId: state.form.productId });
       await updateProduct();
     }
   } catch (error) {
@@ -699,8 +788,9 @@ function validateForm(formState) {
       errors.slug = "Ya existe un producto con ese slug";
     }
   }
-  const priceValue = Number.parseInt(formState.values.price, 10);
-  if (Number.isNaN(priceValue) || priceValue < 0) {
+  const priceRaw = formState.values.price;
+  const priceValue = Number(priceRaw);
+  if (priceRaw === "" || !Number.isFinite(priceValue) || !Number.isInteger(priceValue) || priceValue < 0) {
     errors.price = "Precio invalido";
   }
   if (!formState.values.description.trim()) {
@@ -714,6 +804,100 @@ function updateDescriptionPreview() {
   if (!preview) return;
   preview.innerHTML = markdownToHtml(state.form.values.description || "");
 }
+function handleMarkdownToolbarClick(event, field) {
+  if (!field) return;
+  if (!(event.target instanceof HTMLElement)) return;
+  const button = event.target.closest('[data-md]');
+  if (!button) return;
+  event.preventDefault();
+  const command = button.dataset.md;
+  if (!command) return;
+  applyMarkdownCommand(field, command);
+}
+
+function formatPriceInputFromValue(value) {
+  if (!Number.isFinite(value)) {
+    return "";
+  }
+  return String(Math.trunc(value));
+}
+
+function applyMarkdownCommand(field, command) {
+  const value = field.value;
+  const start = field.selectionStart ?? 0;
+  const end = field.selectionEnd ?? start;
+  const selected = value.slice(start, end);
+  const before = value.slice(0, start);
+  const after = value.slice(end);
+  let nextValue = value;
+  let newStart = start;
+  let newEnd = end;
+  const separator = value.includes('\r\n') ? '\r\n' : '\n';
+
+  const applyWrap = (prefix, suffix, placeholder) => {
+    const text = selected || placeholder;
+    nextValue = before + prefix + text + suffix + after;
+    newStart = before.length + prefix.length;
+    newEnd = newStart + text.length;
+  };
+
+  const applyBlock = (formatter) => {
+    let blockStart = start;
+    let blockEnd = end;
+    let block = selected;
+    if (!block) {
+      blockStart = value.lastIndexOf(separator, start - 1);
+      blockStart = blockStart === -1 ? 0 : blockStart + separator.length;
+      blockEnd = value.indexOf(separator, end);
+      blockEnd = blockEnd === -1 ? value.length : blockEnd;
+      block = value.slice(blockStart, blockEnd);
+    }
+    const lines = block.split(/\r?\n/);
+    const formatted = lines.map(formatter).join(separator);
+    nextValue = value.slice(0, blockStart) + formatted + value.slice(blockEnd);
+    newStart = blockStart;
+    newEnd = blockStart + formatted.length;
+  };
+
+  switch (command) {
+    case 'bold':
+      applyWrap('**', '**', 'texto');
+      break;
+    case 'italic':
+      applyWrap('*', '*', 'texto');
+      break;
+    case 'quote':
+      applyBlock((line) => {
+        const clean = line.replace(/^>\s?/, '');
+        return clean ? '> ' + clean : '> ';
+      });
+      break;
+    case 'list':
+      applyBlock((line) => {
+        const clean = line.replace(/^[-*]?\s*/, '');
+        return clean ? '- ' + clean : '- ';
+      });
+      break;
+    case 'link': {
+      const text = selected || 'enlace';
+      const defaultUrl = text.startsWith('http') ? text : 'https://';
+      const url = window.prompt('Ingresa la URL', defaultUrl);
+      if (!url) return;
+      nextValue = before + '[' + text + '](' + url + ')' + after;
+      newStart = before.length + 1;
+      newEnd = newStart + text.length;
+      break;
+    }
+    default:
+      return;
+  }
+
+  field.focus();
+  field.value = nextValue;
+  field.setSelectionRange(newStart, newEnd);
+  field.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
 function renderImageList() {
   const list = document.getElementById("image-list");
   if (!list) return;
@@ -748,7 +932,6 @@ function renderImageList() {
   list.innerHTML = items;
   bindImageListEvents(list);
 }
-
 function bindImageListEvents(list) {
   list.querySelectorAll("[data-image-action]").forEach((button) => {
     button.addEventListener("click", handleImageAction);
@@ -959,7 +1142,8 @@ async function buildProductPayload() {
   const now = new Date().toISOString();
   const baseSlug = slugify(formState.values.slug || formState.values.title || "");
   const slug = ensureUniqueSlug(baseSlug || "producto", formState.mode === "edit" ? formState.productId : null);
-  const priceValue = Number.parseInt(formState.values.price, 10) || 0;
+  const parsedPrice = Number.parseInt(formState.values.price, 10);
+  const priceValue = Number.isNaN(parsedPrice) ? 0 : parsedPrice;
   const product = formState.mode === "edit" && formState.original
     ? {
         ...formState.original,
@@ -1002,7 +1186,7 @@ async function uploadNewImages(slug, queue) {
     const processed = await processImage(item.file);
     const fileName = `${slug}-${Date.now()}-${index}.${processed.extension}`;
     const path = `data/images/${slug}/${fileName}`;
-    await github.putFile(path, {
+    await api.putFile(path, {
       message: `feat(admin): upload image ${slug}/${fileName}`,
       content: processed.base64,
       branch: GITHUB.branch,
@@ -1015,10 +1199,10 @@ async function uploadNewImages(slug, queue) {
 async function deleteProductImages(product) {
   const basePath = `data/images/${product.slug}`;
   try {
-    const files = await github.listDirectory(basePath);
+    const files = await api.listDirectory(basePath);
     for (const file of files) {
       if (file.type === "file") {
-        await github.deleteFile(file.path, {
+        await api.deleteFile(file.path, {
           message: `chore(admin): delete image ${file.path}`,
           sha: file.sha,
           branch: GITHUB.branch,
@@ -1057,7 +1241,7 @@ async function mutateProducts(mutator, message) {
       if (state.productsSha) {
         payloadBody.sha = state.productsSha;
       }
-      const response = await github.putFile(PRODUCTS_PATH, payloadBody);
+      const response = await api.putFile(PRODUCTS_PATH, payloadBody);
       state.products = nextProducts;
       state.meta = context.meta;
       state.productsSha = response.content.sha;
@@ -1080,6 +1264,7 @@ async function withSaving(message, task) {
   try {
     return await task();
   } finally {
+    console.log("[admin] withSaving:end", { message });
     state.saving = false;
     setOverlay(null);
   }
@@ -1089,11 +1274,12 @@ function sanitizeProducts(list) {
     ? list
         .map((item) => {
           if (!item || typeof item !== "object") return null;
+          const rawPrice = Number(item.price);
           return {
             id: String(item.id || generateId()),
             slug: slugify(item.slug || item.title || ""),
             title: String(item.title || "Producto sin titulo"),
-            price: Number.isFinite(Number(item.price)) ? Number(item.price) : 0,
+            price: Number.isFinite(rawPrice) ? Math.max(0, Math.round(rawPrice)) : 0,
             status: item.status === "sold" ? "sold" : "available",
             images: Array.isArray(item.images) ? item.images.map((src) => String(src)) : [],
             description: typeof item.description === "string" ? item.description : "",
@@ -1128,11 +1314,12 @@ function ensureUniqueSlug(slug, excludeId) {
   return `${sanitized}-${suffix}`;
 }
 
-function formatPrice(valueInCents) {
-  const amount = Number(valueInCents || 0) / 100;
+function formatPrice(value) {
+  const amountNumber = Number(value);
+  const amount = Number.isFinite(amountNumber) ? amountNumber : 0;
   const currency = state.meta.currency || "ARS";
   const locale = state.meta.locale || "es-AR";
-  const key = `${locale}-${currency}`;
+  const key = `${locale}-${currency}-int`;
   if (!priceFormatters.has(key)) {
     priceFormatters.set(
       key,
@@ -1140,7 +1327,7 @@ function formatPrice(valueInCents) {
         style: "currency",
         currency,
         minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
+        maximumFractionDigits: 0,
       })
     );
   }
@@ -1368,6 +1555,103 @@ async function blobToBase64(blob) {
   return btoa(binary);
 }
 
+// Envuelve fetch para abortar peticiones colgadas y reportarlas como error controlado.
+function fetchWithTimeout(resource, options = {}, timeout = REQUEST_TIMEOUT_MS) {
+  const { timeoutMessage, ...restOptions } = options || {};
+  const supportsAbort = typeof AbortController !== "undefined" && !restOptions.signal && timeout > 0;
+  const controller = supportsAbort ? new AbortController() : null;
+  let timerId = null;
+  if (controller) {
+    timerId = window.setTimeout(() => controller.abort(), timeout);
+  }
+  const finalOptions = controller ? { ...restOptions, signal: controller.signal } : restOptions;
+  return fetch(resource, finalOptions)
+    .catch((error) => {
+      if (controller && error && error.name === "AbortError") {
+        const timeoutError = new Error(timeoutMessage || `La solicitud tardo mas de ${Math.ceil(timeout / 1000)} segundos`);
+        timeoutError.status = 408;
+        throw timeoutError;
+      }
+      throw error;
+    })
+    .finally(() => {
+      if (timerId) {
+        window.clearTimeout(timerId);
+      }
+    });
+}
+
+function createLocalClient() {
+  let token = null;
+
+  async function devFetch(path, init = {}) {
+    const headers = {
+      "Content-Type": "application/json",
+      ...(init.headers || {}),
+    };
+    const options = {
+      cache: "no-store",
+      ...init,
+      headers,
+    };
+    const response = await fetchWithTimeout(`${DEV_API_BASE}${path}`, {
+      ...options,
+      timeoutMessage: "No se pudo conectar con el API local (tiempo de espera agotado)",
+    });
+    if (!response.ok) {
+      let message = `Error ${response.status}`;
+      try {
+        const data = await response.json();
+        if (data && data.message) {
+          message = data.message;
+        }
+      } catch (error) {
+        const text = await response.text();
+        if (text) message = text;
+      }
+      const err = new Error(message);
+      err.status = response.status;
+      throw err;
+    }
+    return response;
+  }
+
+  return {
+
+    setToken(value) {
+      token = value;
+    },
+    async getUser() {
+      return {
+        login: GITHUB.allowedLogin,
+        name: `${GITHUB.allowedLogin} (local)`,
+        avatar_url: "https://avatars.githubusercontent.com/u/0?v=4",
+      };
+    },
+    async getJsonFile(targetPath) {
+      const response = await devFetch(`/contents?path=${encodeURIComponent(targetPath)}`);
+      return response.json();
+    },
+    async putFile(targetPath, payload) {
+      const response = await devFetch("/contents", {
+        method: "PUT",
+        body: JSON.stringify({ path: targetPath, content: payload.content || "" }),
+      });
+      return response.json();
+    },
+    async deleteFile(targetPath) {
+      await devFetch("/contents", {
+        method: "DELETE",
+        body: JSON.stringify({ path: targetPath }),
+      });
+      return { ok: true };
+    },
+    async listDirectory(targetPath) {
+      const response = await devFetch(`/list?path=${encodeURIComponent(targetPath)}`);
+      return response.json();
+    },
+  };
+}
 function createGithubClient() {
   const BASE = "https://api.github.com";
   let token = null;
@@ -1389,10 +1673,11 @@ function createGithubClient() {
       Authorization: `Bearer ${token}`,
       ...options.headers,
     };
-    const response = await fetch(`${BASE}${path}`, {
+    const response = await fetchWithTimeout(`${BASE}${path}`, {
       method: options.method || "GET",
       headers,
       body: options.body,
+      timeoutMessage: "GitHub tardo demasiado en responder. Intenta nuevamente.",
     });
     if (!response.ok) {
       let message = `Error ${response.status}`;
@@ -1464,5 +1749,9 @@ function createGithubClient() {
     },
   };
 }
+
+
+
+
 
 
