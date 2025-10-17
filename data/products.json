@@ -1,20 +1,5 @@
 {
-  "products": [
-    {
-      "id": "50b52241-fb69-4755-9365-6b2bde5899c4",
-      "slug": "asd",
-      "title": "ASD",
-      "price": 999,
-      "status": "available",
-      "images": [
-        "data/images/asd/asd-1760623946812-0.webp",
-        "data/images/asd/asd-1760705847971-0.webp"
-      ],
-      "description": "**aasdf*asdf***",
-      "createdAt": "2025-10-16T14:11:43.258Z",
-      "updatedAt": "2025-10-17T12:57:27.896Z"
-    }
-  ],
+  "products": [],
   "meta": {
     "currency": "ARS",
     "locale": "es-AR",
