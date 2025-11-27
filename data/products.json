@@ -1,5 +1,20 @@
 {
-  "products": [],
+  "products": [
+    {
+      "id": "3c46188f-e921-43d4-bd03-503d290be0ea",
+      "slug": "sillon",
+      "title": "Sillon",
+      "price": 100000,
+      "status": "available",
+      "description": "Sillon 2 cuerpos",
+      "createdAt": "2025-11-27T19:54:34.639Z",
+      "updatedAt": "2025-11-27T19:54:34.639Z",
+      "images": [
+        "data/images/sillon/sillon-1764273274773-0.webp",
+        "data/images/sillon/sillon-1764273276098-1.webp"
+      ]
+    }
+  ],
   "meta": {
     "currency": "ARS",
     "locale": "es-AR",
