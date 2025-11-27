@@ -13,6 +13,20 @@
         "data/images/sillon/sillon-1764273274773-0.webp",
         "data/images/sillon/sillon-1764273276098-1.webp"
       ]
+    },
+    {
+      "id": "32bfd135-49f7-4002-bf4d-33a605475cee",
+      "slug": "estereo",
+      "title": "Estereo",
+      "price": 50000,
+      "status": "available",
+      "description": "Estereo Sony",
+      "createdAt": "2025-11-27T19:55:45.829Z",
+      "updatedAt": "2025-11-27T19:55:45.829Z",
+      "images": [
+        "data/images/estereo/estereo-1764273345959-0.webp",
+        "data/images/estereo/estereo-1764273347234-1.webp"
+      ]
     }
   ],
   "meta": {
