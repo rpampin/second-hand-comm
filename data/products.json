@@ -336,6 +336,21 @@
         "data/images/mesas-ratonas/mesas-ratonas-1764441875298-0.webp",
         "data/images/mesas-ratonas/mesas-ratonas-1764441876592-1.webp"
       ]
+    },
+    {
+      "id": "581ada92-d05f-4e24-8619-cbe11bf1758c",
+      "slug": "mesa-plegable-8060",
+      "title": "Mesa plegable 80×60",
+      "price": 40000,
+      "status": "available",
+      "description": "<p><p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>Mesa plegable de 80 x 60 x 76 cm (LxHxA). Es de melamina con base de caño. Se pliega en segundos y la guardás donde sea.</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T18:48:56.760Z",
+      "updatedAt": "2025-11-29T18:48:56.760Z",
+      "images": [
+        "data/images/mesa-plegable-8060/mesa-plegable-8060-1764442136805-0.webp",
+        "data/images/mesa-plegable-8060/mesa-plegable-8060-1764442138009-1.webp"
+      ]
     }
   ],
   "meta": {
