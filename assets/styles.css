@@ -557,6 +557,7 @@ input[type="submit"] {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .button--whatsapp {
@@ -564,6 +565,11 @@ input[type="submit"] {
   color: #0b2b16;
   border: 1px solid #1eb854;
   box-shadow: 0 10px 22px rgba(37, 211, 102, 0.25);
+  flex: 1 1 220px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .button--whatsapp:hover,

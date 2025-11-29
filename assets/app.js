@@ -388,7 +388,7 @@ function renderContactButton(product) {
 function renderWhatsappButton(product) {
   const phone = "+5491154981367";
   const href = `https://wa.me/${phone}`;
-  return `<a class="button button--whatsapp" href="${escapeAttribute(href)}" target="_blank" rel="noopener">Contacto</a>`;
+  return `<a class="button button--whatsapp" href="${escapeAttribute(href)}" target="_blank" rel="noopener">${whatsappIcon()}Contacto</a>`;
 }
 
 function buildContactLink(product, contact) {
@@ -1235,6 +1235,14 @@ function backIcon() {
   return `
     <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M15.7 5.3a1 1 0 0 1 0 1.4L10.4 12l5.3 5.3a1 1 0 0 1-1.4 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.4 0z" fill="currentColor" />
+    </svg>
+  `;
+}
+
+function whatsappIcon() {
+  return `
+    <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.672.15-.198.297-.77.967-.944 1.166-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.149-.173.198-.297.298-.496.099-.198.05-.372-.025-.521-.075-.148-.672-1.612-.92-2.207-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.718 2.006-1.412.248-.694.248-1.289.173-1.412-.074-.124-.272-.198-.57-.347m-5.421 5.433h-.004a8.7 8.7 0 0 1-4.4-1.2l-.315-.187-3.266.855.871-3.184-.204-.327a8.71 8.71 0 0 1-1.321-4.6c.001-4.8 3.915-8.709 8.717-8.709 2.329 0 4.515.909 6.162 2.556a8.594 8.594 0 0 1 2.554 6.125c-.003 4.8-3.916 8.709-8.714 8.709m7.436-16.144A10.64 10.64 0 0 0 12.05 2a10.7 10.7 0 0 0-9.292 15.933L1.05 22l4.186-1.097A10.67 10.67 0 0 0 12.05 22c5.902 0 10.711-4.805 10.714-10.707a10.63 10.63 0 0 0-3.177-7.622"></path>
     </svg>
   `;
 }
