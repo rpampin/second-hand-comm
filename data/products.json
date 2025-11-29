@@ -342,7 +342,7 @@
       "slug": "mesa-plegable-8060",
       "title": "Mesa plegable 80×60",
       "price": 40000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/mesa-plegable-8060/mesa-plegable-8060-1764442136805-0.webp",
         "data/images/mesa-plegable-8060/mesa-plegable-8060-1764442138009-1.webp"
@@ -350,7 +350,7 @@
       "description": "<div>\n\n<p>Mesa plegable de 80 x 60 x 76 cm (LxHxA). Es de melamina con base de caño. Se pliega en segundos y la guardás donde sea.</p>\n\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T18:48:56.760Z",
-      "updatedAt": "2025-11-29T18:48:56.760Z"
+      "updatedAt": "2025-11-29T21:11:17.592Z"
     },
     {
       "id": "fa4b4a5b-b3f7-4331-b682-2ba099bdcbf6",
