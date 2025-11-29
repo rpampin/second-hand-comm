@@ -368,6 +368,21 @@
         "data/images/microondas-sanyo-emgx2015/microondas-sanyo-emgx2015-1764442352946-2.webp",
         "data/images/microondas-sanyo-emgx2015/microondas-sanyo-emgx2015-1764442354081-3.webp"
       ]
+    },
+    {
+      "id": "960be909-99f2-416e-b3dd-1076bb020881",
+      "slug": "despensero-organizador",
+      "title": "Despensero Organizador",
+      "price": 80000,
+      "status": "available",
+      "description": "<p><p>Despensero organizador de 4 estantes. Medida 60 x 30 x 140 (LxHxA) en perfectas condiciones.&nbsp;</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T18:56:48.482Z",
+      "updatedAt": "2025-11-29T18:56:48.482Z",
+      "images": [
+        "data/images/despensero-organizador/despensero-organizador-1764442608599-0.webp",
+        "data/images/despensero-organizador/despensero-organizador-1764442609986-1.webp"
+      ]
     }
   ],
   "meta": {
