@@ -41,13 +41,13 @@
       "price": 20000,
       "status": "available",
       "images": [
-        "data/images/bordeadora-philco/bordeadora-philco-1764432138159-0.webp",
-        "data/images/bordeadora-philco/bordeadora-philco-1764432139529-1.webp"
+        "data/images/bordeadora-philco/bordeadora-philco-1764432139529-1.webp",
+        "data/images/bordeadora-philco/bordeadora-philco-1764432138159-0.webp"
       ],
-      "description": "<div><p>Bordeadora Eléctrica Philco 500 w MJPBO126P con poco uso.</p></div>",
+      "description": "<div><p>Bordeadora Eléctrica Philco 500 w MJPBO126P con poco uso.</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T16:02:18.082Z",
-      "updatedAt": "2025-11-29T16:02:18.082Z"
+      "updatedAt": "2025-11-29T21:23:08.765Z"
     },
     {
       "id": "3a47effb-4ba0-4526-bcad-573102a205ca",
