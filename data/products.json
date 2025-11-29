@@ -187,6 +187,21 @@
         "data/images/calefactor-eskabe-titanio-2000-kcal/calefactor-eskabe-titanio-2000-kcal-1764438414470-1.webp",
         "data/images/calefactor-eskabe-titanio-2000-kcal/calefactor-eskabe-titanio-2000-kcal-1764438415781-2.webp"
       ]
+    },
+    {
+      "id": "38ae2e10-b119-4dd1-923e-73041538ed91",
+      "slug": "vitroconvector-peabody-2000w",
+      "title": "Vitroconvector Peabody 2000w",
+      "price": 50000,
+      "status": "available",
+      "description": "<p><p>Vitroconvector Peabody PE-VC20 de 2000W, color negro con detalles en rojo. Está usado pero en perfecto estado, funcionando actualmente, así que podés verlo encendido sin problema.</p>\n<p>Calienta rápido, es silencioso y tiene diseño plano, ideal para usar apoyado en el piso o colgado en la pared. Consume poco para la potencia que tiene y mantiene bien la temperatura.</p>\n<p>Perfecto para dormitorios, living o cualquier ambiente chico/mediano.</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T17:50:26.082Z",
+      "updatedAt": "2025-11-29T17:50:26.082Z",
+      "images": [
+        "data/images/vitroconvector-peabody-2000w/vitroconvector-peabody-2000w-1764438626158-0.webp",
+        "data/images/vitroconvector-peabody-2000w/vitroconvector-peabody-2000w-1764438627416-1.webp"
+      ]
     }
   ],
   "meta": {
