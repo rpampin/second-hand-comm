@@ -412,6 +412,21 @@
         "data/images/organizador-de-bano/organizador-de-bano-1764443233507-0.webp",
         "data/images/organizador-de-bano/organizador-de-bano-1764443235121-1.webp"
       ]
+    },
+    {
+      "id": "bcfbe152-bcec-40c3-a0b7-233d7f2ea589",
+      "slug": "la-planchetta-2-hornallas",
+      "title": "La Planchetta 2 Hornallas",
+      "price": 20000,
+      "status": "available",
+      "description": "<p><p>La Planchetta para 2 hornallas, con su espátula. Está usada pero en buen estado.</p>\n<p>Características:</p>\n<ul>\n<li>\n<p>Medidas: 48 × 27,3 cm</p>\n</li>\n<li>\n<p>Alto: 2,3 cm</p>\n</li>\n<li>\n<p>Espesor: 2,5 mm</p>\n</li>\n<li>\n<p>Material: Hierro, apta para hornallas a gas, cocina eléctrica, parrilla o fuego directo</p>\n</li>\n<li>\n<p>Superficie que desarrolla antiadherente natural con el uso</p>\n</li>\n</ul></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T19:11:41.621Z",
+      "updatedAt": "2025-11-29T19:11:41.621Z",
+      "images": [
+        "data/images/la-planchetta-2-hornallas/la-planchetta-2-hornallas-1764443501745-0.webp",
+        "data/images/la-planchetta-2-hornallas/la-planchetta-2-hornallas-1764443503221-1.webp"
+      ]
     }
   ],
   "meta": {
