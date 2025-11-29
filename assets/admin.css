@@ -296,29 +296,9 @@
   background: #ffffff;
 }
 
-.markdown-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.markdown-toolbar .markdown-btn {
-  font-size: 0.85rem;
-  padding: 6px 12px;
-}
-
-.markdown-toolbar .markdown-btn span {
-  pointer-events: none;
-}
-
 .form-field input::placeholder,
 .form-field textarea::placeholder {
   color: #64748b;
-}
-
-.form-field textarea {
-  resize: vertical;
 }
 
 .markdown-preview {
@@ -340,6 +320,18 @@
 .markdown-preview-body ul,
 .markdown-preview-body ol {
   padding-left: 20px;
+}
+
+.markdown-preview-body table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.markdown-preview-body th,
+.markdown-preview-body td {
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  padding: 8px 10px;
+  text-align: left;
 }
 
 .image-manager {

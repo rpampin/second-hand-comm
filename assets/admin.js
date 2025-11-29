@@ -9,16 +9,69 @@ const STORAGE_KEY = "mercadito_admin_token";
 const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
 const ACCEPTED_IMAGE_TYPES = ["image/png", "image/jpeg", "image/webp", "image/avif"];
 const PRODUCTS_PATH = "data/products.json";
+const LOCAL_PRODUCTS_PATH = "data/products.local.json";
+const LOCAL_TOKEN = "__local__";
 // Evita spinners infinitos devolviendo control si la red se cuelga.
 const REQUEST_TIMEOUT_MS = 15000;
 
 const LOCAL_MODE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const ACTIVE_PRODUCTS_PATH = LOCAL_MODE ? LOCAL_PRODUCTS_PATH : PRODUCTS_PATH;
+const LOCAL_USER = {
+  login: GITHUB.allowedLogin,
+  name: `${GITHUB.allowedLogin} (local)`,
+  avatar_url: "https://avatars.githubusercontent.com/u/0?v=4",
+};
 const DEV_API_BASE = "/__dev/api";
 const textDecoder = new TextDecoder("utf-8");
 const textEncoder = new TextEncoder();
 const priceFormatters = new Map();
 const PLACEHOLDER_IMAGE =
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='240' viewBox='0 0 320 240'><rect width='320' height='240' fill='#e2e8f0'/><text x='50%' y='52%' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' fill='#94a3b8'>Vista</text></svg>";
+const TINYMCE_API_KEY = "fawd92qhl6l0vgyenrfghj3mw8j7z5dxq72k14xsjfmsypvg";
+const RICH_TEXT_BASE = "https://cdn.jsdelivr.net/npm/@tinymce/tinymce-dist@6.8.1";
+const RICH_TEXT_SOURCES = [
+  {
+    src: `https://cdn.tiny.cloud/1/${TINYMCE_API_KEY}/tinymce/6/tinymce.min.js`,
+    base: `https://cdn.tiny.cloud/1/${TINYMCE_API_KEY}/tinymce/6`,
+  },
+  { src: `${RICH_TEXT_BASE}/tinymce.min.js`, base: RICH_TEXT_BASE },
+  {
+    src: "https://unpkg.com/@tinymce/tinymce-dist@6.8.1/tinymce.min.js",
+    base: "https://unpkg.com/@tinymce/tinymce-dist@6.8.1",
+  },
+];
+const RICH_TEXT_SELECTOR = "#field-description";
+const ALLOWED_RICH_TAGS = new Set([
+  "p",
+  "br",
+  "strong",
+  "em",
+  "u",
+  "ul",
+  "ol",
+  "li",
+  "a",
+  "code",
+  "pre",
+  "blockquote",
+  "h2",
+  "h3",
+  "h4",
+  "table",
+  "thead",
+  "tbody",
+  "tr",
+  "td",
+  "th",
+  "caption",
+]);
+let richtextLoader = null;
+let richtextBaseUrl = RICH_TEXT_BASE;
+const DEFAULT_META = {
+  currency: "ARS",
+  locale: "es-AR",
+  contact: null,
+};
 
 const state = {
   token: null,
@@ -28,15 +81,11 @@ const state = {
   unauthorized: false,
   user: null,
   products: [],
-  meta: {
-    currency: "ARS",
-    locale: "es-AR",
-    contact: null,
-  },
+  meta: { ...DEFAULT_META },
   productsSha: null,
   status: null,
   search: "",
-  form: createEmptyForm(),
+  form: createEmptyForm(DEFAULT_META.currency),
   authError: null,
   overlayMessage: null,
 };
@@ -56,15 +105,31 @@ const api = LOCAL_MODE ? createLocalClient() : createGithubClient();
 init();
 
 function init() {
-  state.token = sessionStorage.getItem(STORAGE_KEY) || null;
   if (!state.form) {
-    state.form = createEmptyForm();
+    state.form = createEmptyForm(state.meta.currency);
   }
   ensureStatusDismissListeners();
+  if (LOCAL_MODE) {
+    startLocalSession();
+    return;
+  }
+  state.token = sessionStorage.getItem(STORAGE_KEY) || null;
   render();
   if (state.token) {
     verifyToken(state.token);
   }
+}
+
+function startLocalSession() {
+  api.setToken(null);
+  sessionStorage.removeItem(STORAGE_KEY);
+  state.token = LOCAL_TOKEN;
+  state.user = LOCAL_USER;
+  state.unauthorized = false;
+  state.authError = null;
+  state.overlayMessage = null;
+  render();
+  loadProducts(true);
 }
 
 function render() {
@@ -199,33 +264,39 @@ async function verifyToken(token) {
 }
 
 async function loadProducts(showOverlay = false) {
-  console.log("[admin] loadProducts", { local: LOCAL_MODE, showOverlay, token: Boolean(state.token) });
-  if (!state.token) return;
+  console.log("[admin] loadProducts", {
+    local: LOCAL_MODE,
+    showOverlay,
+    token: Boolean(state.token),
+    path: ACTIVE_PRODUCTS_PATH,
+  });
+  if (!state.token && !LOCAL_MODE) return;
   state.loading = true;
   if (showOverlay) {
     setOverlay("Cargando catalogo...");
   }
   try {
-    const file = await api.getJsonFile(PRODUCTS_PATH, GITHUB.branch);
+    const file = await api.getJsonFile(ACTIVE_PRODUCTS_PATH, GITHUB.branch);
     const decoded = decodeBase64(file.content || "");
     const parsed = decoded ? JSON.parse(decoded) : { products: [], meta: {} };
-    state.products = sanitizeProducts(parsed.products || []);
+    const fallbackCurrency = parsed.meta?.currency || state.meta.currency || "ARS";
+    state.products = sanitizeProducts(parsed.products || [], fallbackCurrency);
     state.meta = {
-      currency: parsed.meta?.currency || state.meta.currency,
+      currency: parsed.meta?.currency || fallbackCurrency,
       locale: parsed.meta?.locale || state.meta.locale,
       contact: parsed.meta?.contact || null,
     };
-    state.productsSha = file.sha;
+    state.productsSha = file.sha || null;
     if (state.form.mode === "edit") {
       const current = state.products.find((product) => product.id === state.form.productId);
-      state.form = current ? buildFormFromProduct(current) : createEmptyForm();
+      state.form = current ? buildFormFromProduct(current) : createEmptyForm(state.meta.currency);
     } else if (!state.form || state.form.mode !== "create") {
-      state.form = createEmptyForm();
+      state.form = createEmptyForm(state.meta.currency);
     }
   } catch (error) {
     console.error("loadProducts error", error);
     if (error && error.status === 404) {
-      console.warn("[admin] products.json missing locally", { local: LOCAL_MODE, error });
+      console.warn("[admin] products file missing locally", { local: LOCAL_MODE, path: ACTIVE_PRODUCTS_PATH, error });
       state.products = [];
       state.meta = {
         currency: "ARS",
@@ -234,9 +305,12 @@ async function loadProducts(showOverlay = false) {
       };
       state.productsSha = null;
       if (!state.form || state.form.mode !== "create") {
-        state.form = createEmptyForm();
+        state.form = createEmptyForm(state.meta.currency);
       }
-      setStatus({ type: "info", text: "products.json aun no existe. Se creara al guardar cambios." }, { duration: 4200 });
+      setStatus(
+        { type: "info", text: `${ACTIVE_PRODUCTS_PATH} aun no existe. Se creara al guardar cambios.` },
+        { duration: 4200 }
+      );
     } else {
       console.error("[admin] loadProducts failed", { local: LOCAL_MODE, error });
       setStatus({ type: "error", text: error.message || "No se pudo leer data/products.json" }, { autoClear: false });
@@ -257,8 +331,12 @@ function handleLogout() {
   state.products = [];
   state.productsSha = null;
   state.overlayMessage = null;
-  state.form = createEmptyForm();
+  state.form = createEmptyForm(state.meta.currency);
   dismissStatus();
+  if (LOCAL_MODE) {
+    startLocalSession();
+    return;
+  }
   render();
 }
 
@@ -275,6 +353,7 @@ function buildDashboardView() {
           </div>
         </div>
         <div class="admin-header-actions">
+          <button type="button" class="ghost-button" id="export-button">Exportar</button>
           <button type="button" class="ghost-button" id="refresh-button">Refrescar</button>
           <button type="button" class="ghost-button" id="logout-button">Cerrar sesion</button>
         </div>
@@ -314,6 +393,7 @@ function buildDashboardView() {
     productList: document.getElementById("product-list"),
     searchInput: document.getElementById("sidebar-search-input"),
     newButton: document.getElementById("new-product"),
+    exportButton: document.getElementById("export-button"),
     refreshButton: document.getElementById("refresh-button"),
     logoutButton: document.getElementById("logout-button"),
     overlay: document.getElementById("admin-overlay"),
@@ -333,6 +413,9 @@ function buildDashboardView() {
     renderForm();
     renderProductList();
   });
+  if (refs.dashboard.exportButton) {
+    refs.dashboard.exportButton.addEventListener("click", handleExportGrid);
+  }
   refs.dashboard.refreshButton.addEventListener("click", () => loadProducts(true));
   refs.dashboard.logoutButton.addEventListener("click", handleLogout);
   refs.dashboard.searchInput.addEventListener(
@@ -454,6 +537,262 @@ function renderOverlay() {
     refs.dashboard.overlayText.textContent = text;
   }
 }
+
+function handleExportGrid() {
+  const items = state.products.filter((product) => product.status !== "sold");
+  if (!items.length) {
+    setStatus({ type: "info", text: "No hay productos disponibles para exportar" }, { duration: 3200 });
+    return;
+  }
+  exportProductsAsImage(items).catch((error) => {
+    console.error("handleExportGrid error", error);
+    setStatus({ type: "error", text: error.message || "No se pudo exportar" }, { autoClear: false });
+  });
+}
+
+async function exportProductsAsImage(products) {
+  setOverlay("Generando imagen...");
+  try {
+    const available = products.slice();
+    const columns = Math.min(4, Math.max(1, available.length));
+    const padding = 32;
+    const gap = 16;
+    const cardWidth = 280;
+    const imageHeight = Math.round(cardWidth * 0.75);
+    const cardHeight = imageHeight + 90;
+    const headerHeight = 56;
+    const rows = Math.ceil(available.length / columns);
+    const gridTop = padding + headerHeight + 12;
+    const width = padding * 2 + columns * cardWidth + gap * (columns - 1);
+    const height = gridTop + rows * cardHeight + gap * (rows - 1) + padding;
+
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      throw new Error("No se pudo crear el canvas");
+    }
+
+    // Background
+    ctx.fillStyle = "#f7f9fc";
+    ctx.fillRect(0, 0, width, height);
+
+    // Header
+    ctx.fillStyle = "#0f172a";
+    ctx.font = "700 22px 'Inter', Arial, sans-serif";
+    ctx.fillText("Catalogo disponible", padding, padding + 24);
+    ctx.font = "400 14px 'Inter', Arial, sans-serif";
+    ctx.fillStyle = "#475569";
+    ctx.fillText(`Exportado: ${new Date().toLocaleString()}`, padding, padding + 44);
+
+    // Preload images
+    const images = await Promise.all(
+      available.map((product) => {
+        const cover = product.images?.[0] ? encodeURI(product.images[0]) : PLACEHOLDER_IMAGE;
+        return loadImageWithFallback(cover);
+      })
+    );
+
+    ctx.textBaseline = "top";
+    for (let index = 0; index < available.length; index += 1) {
+      const product = available[index];
+      const image = images[index];
+      const row = Math.floor(index / columns);
+      const col = index % columns;
+      const cardX = padding + col * (cardWidth + gap);
+      const cardY = gridTop + row * (cardHeight + gap);
+      drawProductCard(ctx, {
+        x: cardX,
+        y: cardY,
+        width: cardWidth,
+        height: cardHeight,
+        image,
+        imageHeight,
+        product,
+      });
+    }
+
+    const blob = await canvasToBlobPromise(canvas, "image/png");
+    const filename = `mercadito-export-${new Date().toISOString().slice(0, 10)}.png`;
+    downloadBlob(blob, filename);
+    setStatus({ type: "success", text: `Exportado ${products.length} producto(s)` }, { duration: 3200 });
+  } finally {
+    setOverlay(null);
+  }
+}
+
+function drawProductCard(ctx, { x, y, width, height, image, imageHeight, product }) {
+  const radius = 14;
+  const innerPadding = 12;
+  ctx.save();
+  // Card background with subtle shadow
+  ctx.shadowColor = "rgba(15, 23, 42, 0.12)";
+  ctx.shadowBlur = 12;
+  ctx.shadowOffsetY = 6;
+  drawRoundedRect(ctx, x, y, width, height, radius, "#ffffff");
+  ctx.restore();
+
+  // Image
+  const imageX = x + innerPadding;
+  const imageY = y + innerPadding;
+  const imageWidth = width - innerPadding * 2;
+  drawRoundedImage(ctx, image, imageX, imageY, imageWidth, imageHeight, 12);
+
+  // Title
+  const titleY = imageY + imageHeight + 12;
+  ctx.fillStyle = "#0f172a";
+  ctx.font = "600 16px 'Inter', Arial, sans-serif";
+  const maxTitleWidth = width - innerPadding * 2;
+  const title = truncateText(ctx, product.title || "Producto", maxTitleWidth);
+  ctx.fillText(title, x + innerPadding, titleY);
+
+  // Price + currency
+  const currency = product.currency === "USD" ? "USD" : "ARS";
+  const priceText = formatPrice(product.price, currency);
+  ctx.font = "700 18px 'Inter', Arial, sans-serif";
+  ctx.fillStyle = "#0f172a";
+  const priceY = titleY + 22;
+  ctx.fillText(priceText, x + innerPadding, priceY);
+  const priceWidth = ctx.measureText(priceText).width;
+  const currencyLabel = currency;
+  const badgeX = x + innerPadding + priceWidth + 10;
+  const badgeY = priceY - 2;
+  const badgePaddingX = 8;
+  const badgePaddingY = 4;
+  ctx.font = "600 12px 'Inter', Arial, sans-serif";
+  const badgeWidth = ctx.measureText(currencyLabel).width + badgePaddingX * 2;
+  const badgeHeight = 18 + badgePaddingY * 2;
+  ctx.fillStyle = "#e2e8f0";
+  drawRoundedRect(ctx, badgeX, badgeY, badgeWidth, badgeHeight, 9, "#e2e8f0");
+  ctx.fillStyle = "#475569";
+  ctx.fillText(currencyLabel, badgeX + badgePaddingX, badgeY + badgePaddingY / 2 + 1);
+}
+
+function drawRoundedRect(ctx, x, y, width, height, radius, fillStyle) {
+  ctx.beginPath();
+  const r = Math.min(radius, width / 2, height / 2);
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + width - r, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+  ctx.lineTo(x + width, y + height - r);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+  ctx.lineTo(x + r, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+  if (fillStyle) {
+    ctx.fillStyle = fillStyle;
+    ctx.fill();
+  } else {
+    ctx.stroke();
+  }
+}
+
+function drawRoundedImage(ctx, image, x, y, width, height, radius) {
+  ctx.save();
+  drawRoundedRect(ctx, x, y, width, height, radius);
+  ctx.clip();
+  ctx.fillStyle = "#e2e8f0";
+  ctx.fillRect(x, y, width, height);
+  if (image) {
+    const { drawWidth, drawHeight, offsetX, offsetY } = getCoverSize(image, width, height);
+    ctx.drawImage(image, x + offsetX, y + offsetY, drawWidth, drawHeight);
+  }
+  ctx.restore();
+}
+
+function getCoverSize(image, targetWidth, targetHeight) {
+  const imageRatio = image.width / image.height;
+  const targetRatio = targetWidth / targetHeight;
+  let drawWidth = targetWidth;
+  let drawHeight = targetHeight;
+  if (imageRatio > targetRatio) {
+    drawHeight = targetHeight;
+    drawWidth = targetHeight * imageRatio;
+  } else {
+    drawWidth = targetWidth;
+    drawHeight = targetWidth / imageRatio;
+  }
+  const offsetX = (targetWidth - drawWidth) / 2;
+  const offsetY = (targetHeight - drawHeight) / 2;
+  return { drawWidth, drawHeight, offsetX, offsetY };
+}
+
+function truncateText(ctx, text, maxWidth) {
+  if (!text) return "";
+  const ellipsis = "…";
+  const fullWidth = ctx.measureText(text).width;
+  if (fullWidth <= maxWidth) return text;
+  let result = "";
+  for (const char of text) {
+    const next = result + char;
+    const width = ctx.measureText(next + ellipsis).width;
+    if (width > maxWidth) {
+      return result + ellipsis;
+    }
+    result = next;
+  }
+  return result;
+}
+
+async function loadImageWithFallback(src) {
+  const primary = await loadImageSafe(src);
+  if (primary) return primary;
+  if (src !== PLACEHOLDER_IMAGE) {
+    const fallback = await loadImageSafe(PLACEHOLDER_IMAGE);
+    if (fallback) return fallback;
+  }
+  return null;
+}
+
+function loadImageSafe(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = src;
+  });
+}
+
+function canvasToBlobPromise(canvas, mimeType = "image/png") {
+  return new Promise((resolve, reject) => {
+    if (canvas.toBlob) {
+      canvas.toBlob((blob) => {
+        if (blob) {
+          resolve(blob);
+        } else {
+          reject(new Error("No se pudo generar la imagen"));
+        }
+      }, mimeType, 0.92);
+      return;
+    }
+    try {
+      const dataUrl = canvas.toDataURL(mimeType);
+      const bytes = atob(dataUrl.split(",")[1]);
+      const buffer = new Uint8Array(bytes.length);
+      for (let i = 0; i < bytes.length; i += 1) {
+        buffer[i] = bytes.charCodeAt(i);
+      }
+      resolve(new Blob([buffer], { type: mimeType }));
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
 function renderProductList() {
   if (!refs.dashboard.productList) return;
   const list = refs.dashboard.productList;
@@ -464,7 +803,7 @@ function renderProductList() {
   const search = state.search;
   const items = search
     ? state.products.filter((product) =>
-        normalizeText(`${product.title} ${product.description || ""}`).includes(normalizeText(search))
+        normalizeText(`${product.title} ${extractPlainText(product.description || "")}`).includes(normalizeText(search))
       )
     : state.products.slice();
   if (items.length === 0) {
@@ -477,11 +816,12 @@ function renderProductList() {
       const isSelected = selectedId === product.id;
       const statusLabel = product.status === "sold" ? "Vendido" : "Disponible";
       const toggleLabel = product.status === "sold" ? "Marcar disponible" : "Marcar vendido";
+      const currency = product.currency === "USD" ? "USD" : "ARS";
       return `
         <li class="product-list-item ${isSelected ? "is-active" : ""}" data-id="${product.id}">
           <button type="button" class="product-list-select" data-action="select" data-id="${product.id}">
             <span class="product-list-title">${escapeHtml(product.title)}</span>
-            <span class="product-list-sub">${formatPrice(product.price)} | ${statusLabel}</span>
+            <span class="product-list-sub">${formatPrice(product.price, currency)} ${currency} | ${statusLabel}</span>
           </button>
           <div class="product-list-actions">
             <button type="button" class="ghost-button" data-action="toggle" data-id="${product.id}">${toggleLabel}</button>
@@ -523,7 +863,7 @@ function handleProductListClick(event) {
 
 
 function selectNewProduct() {
-  state.form = createEmptyForm();
+  state.form = createEmptyForm(state.meta.currency);
   dragImageIndex = null;
 }
 
@@ -537,7 +877,8 @@ function selectProduct(productId) {
   dragImageIndex = null;
 }
 
-function createEmptyForm() {
+function createEmptyForm(defaultCurrency = DEFAULT_META.currency) {
+  const currency = defaultCurrency === "USD" ? "USD" : DEFAULT_META.currency;
   return {
     mode: "create",
     productId: null,
@@ -547,6 +888,7 @@ function createEmptyForm() {
       slug: "",
       price: "",
       status: "available",
+      currency,
       description: "",
       images: [],
     },
@@ -565,6 +907,7 @@ function buildFormFromProduct(product) {
       slug: product.slug || "",
       price: formatPriceInputFromValue(product.price ?? 0),
       status: product.status === "sold" ? "sold" : "available",
+      currency: product.currency === "USD" ? "USD" : "ARS",
       description: product.description || "",
       images: Array.isArray(product.images)
         ? product.images.map((path, index) => ({
@@ -581,7 +924,7 @@ function buildFormFromProduct(product) {
 
 function renderForm() {
   if (!refs.dashboard.formContainer) return;
-  const formState = state.form || createEmptyForm();
+  const formState = state.form || createEmptyForm(state.meta.currency);
   const errors = formState.errors || {};
   const product = formState.original;
   refs.dashboard.formContainer.innerHTML = `
@@ -613,6 +956,14 @@ function renderForm() {
           ${errors.price ? `<p class="field-error">${escapeHtml(errors.price)}</p>` : ""}
         </label>
         <label class="form-field">
+          <span>Moneda</span>
+          <select id="field-currency" name="currency">
+            <option value="ARS" ${formState.values.currency === "USD" ? "" : "selected"}>ARS (Peso argentino)</option>
+            <option value="USD" ${formState.values.currency === "USD" ? "selected" : ""}>USD (Dolar estadounidense)</option>
+          </select>
+          ${errors.currency ? `<p class="field-error">${escapeHtml(errors.currency)}</p>` : ""}
+        </label>
+        <label class="form-field">
           <span>Estado</span>
           <select id="field-status" name="status">
             <option value="available" ${formState.values.status === "available" ? "selected" : ""}>Disponible</option>
@@ -621,19 +972,15 @@ function renderForm() {
         </label>
       </div>
       <div class="form-field">
-        <label for="field-description">Descripcion (Markdown soportado)</label>
-        <div class="markdown-toolbar" role="group" aria-label="Formato descripcion">
-          <button type="button" class="ghost-button markdown-btn" data-md="bold" title="Negrita"><span>Negrita</span></button>
-          <button type="button" class="ghost-button markdown-btn" data-md="italic" title="Italica"><span>Cursiva</span></button>
-          <button type="button" class="ghost-button markdown-btn" data-md="list" title="Lista"><span>Lista</span></button>
-          <button type="button" class="ghost-button markdown-btn" data-md="link" title="Insertar enlace"><span>Link</span></button>
-          <button type="button" class="ghost-button markdown-btn" data-md="quote" title="Cita"><span>Cita</span></button>
-        </div>
-        <textarea id="field-description" name="description" rows="8">${escapeHtml(formState.values.description)}</textarea>
+        <label for="field-description">Descripcion</label>
+        <textarea id="field-description" name="description" rows="10">${escapeHtml(
+    extractPlainText(formState.values.description || "")
+  )}</textarea>
+        <p class="form-helper">Editor enriquecido con tablas, listas y enlaces. La vista previa se actualiza en vivo.</p>
         ${errors.description ? `<p class="field-error">${escapeHtml(errors.description)}</p>` : ""}
       </div>
       <section class="markdown-preview" aria-label="Previsualizacion">
-        <h3>Preview Markdown</h3>
+        <h3>Preview</h3>
         <div id="description-preview" class="markdown-preview-body"></div>
       </section>
       <section class="image-manager" aria-label="Imagenes">
@@ -663,6 +1010,7 @@ function renderForm() {
   bindFormEvents(form);
   updateDescriptionPreview();
   renderImageList();
+  initRichtextEditor(formState.values.description || "");
 }
 
 function bindFormEvents(form) {
@@ -671,8 +1019,8 @@ function bindFormEvents(form) {
   const slugField = form.querySelector("#field-slug");
   const priceField = form.querySelector("#field-price");
   const statusField = form.querySelector("#field-status");
+  const currencyField = form.querySelector("#field-currency");
   const descriptionField = form.querySelector("#field-description");
-  const markdownToolbar = form.querySelector(".markdown-toolbar");
   const imageInput = form.querySelector("#image-input");
   const dropzone = form.querySelector("#image-dropzone");
   const resetButton = form.querySelector("#reset-form");
@@ -695,22 +1043,19 @@ function bindFormEvents(form) {
   priceField.addEventListener("input", (event) => {
     formState.values.price = event.target.value;
   });
+  currencyField.addEventListener("change", (event) => {
+    formState.values.currency = event.target.value === "USD" ? "USD" : "ARS";
+  });
   statusField.addEventListener("change", (event) => {
     formState.values.status = event.target.value === "sold" ? "sold" : "available";
   });
   descriptionField.addEventListener(
     "input",
     debounce((event) => {
-      formState.values.description = event.target.value;
+      state.form.values.description = sanitizeRichText(event.target.value);
       updateDescriptionPreview();
-    }, 140)
+    }, 120)
   );
-  if (markdownToolbar && !markdownToolbar.dataset.bound) {
-    markdownToolbar.dataset.bound = "true";
-    markdownToolbar.addEventListener("click", (event) => {
-      handleMarkdownToolbarClick(event, descriptionField);
-    });
-  }
   dropzone.addEventListener("click", () => imageInput.click());
   dropzone.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === " ") {
@@ -751,6 +1096,7 @@ function bindFormEvents(form) {
 
 async function handleFormSubmit(event) {
   event.preventDefault();
+  syncDescriptionFromEditor();
   const validation = validateForm(state.form);
   if (!validation.valid) {
     state.form.errors = validation.errors;
@@ -793,7 +1139,11 @@ function validateForm(formState) {
   if (priceRaw === "" || !Number.isFinite(priceValue) || !Number.isInteger(priceValue) || priceValue < 0) {
     errors.price = "Precio invalido";
   }
-  if (!formState.values.description.trim()) {
+  if (formState.values.currency !== "USD" && formState.values.currency !== "ARS") {
+    errors.currency = "Selecciona la moneda";
+  }
+  const descriptionText = extractPlainText(state.form.values.description || "");
+  if (!descriptionText) {
     errors.description = "Agrega una descripcion";
   }
   return { valid: Object.keys(errors).length === 0, errors };
@@ -802,17 +1152,115 @@ function validateForm(formState) {
 function updateDescriptionPreview() {
   const preview = document.getElementById("description-preview");
   if (!preview) return;
-  preview.innerHTML = markdownToHtml(state.form.values.description || "");
+  preview.innerHTML = renderRichText(state.form.values.description || "");
 }
-function handleMarkdownToolbarClick(event, field) {
-  if (!field) return;
-  if (!(event.target instanceof HTMLElement)) return;
-  const button = event.target.closest('[data-md]');
-  if (!button) return;
-  event.preventDefault();
-  const command = button.dataset.md;
-  if (!command) return;
-  applyMarkdownCommand(field, command);
+
+function loadRichtextScript() {
+  if (window.tinymce) return Promise.resolve();
+  if (richtextLoader) return richtextLoader;
+  richtextLoader = (async () => {
+    let lastError = null;
+    for (const source of RICH_TEXT_SOURCES) {
+      try {
+        await loadScript(source.src);
+        richtextBaseUrl = source.base;
+        return;
+      } catch (error) {
+        lastError = error;
+        console.warn("[admin] tinymce load failed, trying next source", { src: source.src, error });
+      }
+    }
+    throw lastError || new Error("No se pudo cargar el editor enriquecido");
+  })();
+  richtextLoader.catch(() => {
+    richtextLoader = null;
+  });
+  return richtextLoader;
+}
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.referrerPolicy = "origin";
+    script.loading = "eager";
+    script.onload = () => resolve();
+    script.onerror = () => {
+      script.remove();
+      reject(new Error(`No se pudo cargar el script ${src}`));
+    };
+    document.head.appendChild(script);
+  });
+}
+
+function destroyRichtextEditor() {
+  if (!window.tinymce) return;
+  const existing = window.tinymce.get("field-description");
+  if (existing) {
+    existing.destroy();
+  }
+}
+
+async function initRichtextEditor(initialValue = "") {
+  destroyRichtextEditor();
+  try {
+    await loadRichtextScript();
+    const trimmed = (initialValue || "").trim();
+    const safeInitial =
+      trimmed.length === 0
+        ? ""
+        : sanitizeRichText(/<[a-z][\s\S]*>/i.test(trimmed) ? trimmed : markdownToHtml(trimmed));
+    window.tinymce.init({
+      selector: RICH_TEXT_SELECTOR,
+      base_url: richtextBaseUrl,
+      suffix: ".min",
+      menubar: false,
+      plugins: "lists link table paste",
+      toolbar: "undo redo | bold italic underline | bullist numlist | blockquote table | link removeformat",
+      branding: false,
+      height: 320,
+      statusbar: false,
+      convert_urls: false,
+      default_link_target: "_blank",
+      link_default_target: "_blank",
+      paste_as_text: false,
+      paste_data_images: false,
+      content_style:
+        "body { font-family: Inter, Arial, sans-serif; line-height: 1.6; } table { border-collapse: collapse; width: 100%; } th, td { border: 1px solid #cbd5e1; padding: 6px 8px; text-align: left; }",
+      setup(editor) {
+        const handleChange = debounce(() => {
+          const html = editor.getContent({ format: "html" }).trim();
+          state.form.values.description = sanitizeRichText(html);
+          updateDescriptionPreview();
+        }, 120);
+        editor.on("init", () => {
+          editor.setContent(safeInitial);
+          handleChange();
+        });
+        editor.on("change", handleChange);
+        editor.on("keyup", handleChange);
+        editor.on("SetContent", handleChange);
+        editor.on("input", handleChange);
+        editor.on("NodeChange", handleChange);
+      },
+    });
+  } catch (error) {
+    console.error("[admin] initRichtextEditor error", error);
+    setStatus({ type: "error", text: error.message || "No se pudo iniciar el editor de texto" }, { duration: 4200 });
+    updateDescriptionPreview();
+  }
+}
+
+function syncDescriptionFromEditor() {
+  if (!window.tinymce) return;
+  const editor = window.tinymce.get("field-description");
+  if (!editor) {
+    updateDescriptionPreview();
+    return;
+  }
+  const html = editor.getContent({ format: "html" }).trim();
+  state.form.values.description = sanitizeRichText(html);
+  updateDescriptionPreview();
 }
 
 function formatPriceInputFromValue(value) {
@@ -822,80 +1270,83 @@ function formatPriceInputFromValue(value) {
   return String(Math.trunc(value));
 }
 
-function applyMarkdownCommand(field, command) {
-  const value = field.value;
-  const start = field.selectionStart ?? 0;
-  const end = field.selectionEnd ?? start;
-  const selected = value.slice(start, end);
-  const before = value.slice(0, start);
-  const after = value.slice(end);
-  let nextValue = value;
-  let newStart = start;
-  let newEnd = end;
-  const separator = value.includes('\r\n') ? '\r\n' : '\n';
+function renderRichText(value = "") {
+  if (!value) return "<p>Sin descripcion</p>";
+  const trimmed = value.trim();
+  const hasHtml = /<[a-z][\s\S]*>/i.test(trimmed);
+  const html = hasHtml ? trimmed : markdownToHtml(trimmed);
+  const clean = sanitizeRichText(html);
+  return clean || "<p>Sin descripcion</p>";
+}
 
-  const applyWrap = (prefix, suffix, placeholder) => {
-    const text = selected || placeholder;
-    nextValue = before + prefix + text + suffix + after;
-    newStart = before.length + prefix.length;
-    newEnd = newStart + text.length;
-  };
+function sanitizeRichText(input = "") {
+  const value = input || "";
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(`<div>${value}</div>`, "text/html");
+  const root = doc.body;
+  cleanRichNode(root);
+  return root.innerHTML.trim();
+}
 
-  const applyBlock = (formatter) => {
-    let blockStart = start;
-    let blockEnd = end;
-    let block = selected;
-    if (!block) {
-      blockStart = value.lastIndexOf(separator, start - 1);
-      blockStart = blockStart === -1 ? 0 : blockStart + separator.length;
-      blockEnd = value.indexOf(separator, end);
-      blockEnd = blockEnd === -1 ? value.length : blockEnd;
-      block = value.slice(blockStart, blockEnd);
+function cleanRichNode(node) {
+  const children = Array.from(node.childNodes);
+  for (const child of children) {
+    if (child.nodeType === Node.TEXT_NODE) {
+      continue;
     }
-    const lines = block.split(/\r?\n/);
-    const formatted = lines.map(formatter).join(separator);
-    nextValue = value.slice(0, blockStart) + formatted + value.slice(blockEnd);
-    newStart = blockStart;
-    newEnd = blockStart + formatted.length;
-  };
-
-  switch (command) {
-    case 'bold':
-      applyWrap('**', '**', 'texto');
-      break;
-    case 'italic':
-      applyWrap('*', '*', 'texto');
-      break;
-    case 'quote':
-      applyBlock((line) => {
-        const clean = line.replace(/^>\s?/, '');
-        return clean ? '> ' + clean : '> ';
-      });
-      break;
-    case 'list':
-      applyBlock((line) => {
-        const clean = line.replace(/^[-*]?\s*/, '');
-        return clean ? '- ' + clean : '- ';
-      });
-      break;
-    case 'link': {
-      const text = selected || 'enlace';
-      const defaultUrl = text.startsWith('http') ? text : 'https://';
-      const url = window.prompt('Ingresa la URL', defaultUrl);
-      if (!url) return;
-      nextValue = before + '[' + text + '](' + url + ')' + after;
-      newStart = before.length + 1;
-      newEnd = newStart + text.length;
-      break;
+    if (child.nodeType !== Node.ELEMENT_NODE) {
+      child.remove();
+      continue;
     }
-    default:
-      return;
+    let element = child;
+    const tag = element.tagName.toLowerCase();
+    if (tag === "div") {
+      const replacement = node.ownerDocument.createElement("p");
+      while (element.firstChild) {
+        replacement.appendChild(element.firstChild);
+      }
+      element.replaceWith(replacement);
+      element = replacement;
+    }
+    if (!ALLOWED_RICH_TAGS.has(element.tagName.toLowerCase())) {
+      if (tag === "script" || tag === "style") {
+        element.remove();
+        continue;
+      }
+      const fragment = node.ownerDocument.createDocumentFragment();
+      while (element.firstChild) {
+        fragment.appendChild(element.firstChild);
+      }
+      element.replaceWith(fragment);
+      continue;
+    }
+    if (element.tagName.toLowerCase() === "a") {
+      const href = element.getAttribute("href") || "";
+      if (!isSafeUrl(href)) {
+        const span = node.ownerDocument.createElement("span");
+        span.textContent = element.textContent || "";
+        element.replaceWith(span);
+        continue;
+      }
+      Array.from(element.attributes).forEach((attr) => {
+        if (attr.name !== "href") {
+          element.removeAttribute(attr.name);
+        }
+      });
+      element.setAttribute("target", "_blank");
+      element.setAttribute("rel", "noopener");
+    } else {
+      Array.from(element.attributes).forEach((attr) => element.removeAttribute(attr.name));
+    }
+    cleanRichNode(element);
   }
+}
 
-  field.focus();
-  field.value = nextValue;
-  field.setSelectionRange(newStart, newEnd);
-  field.dispatchEvent(new Event('input', { bubbles: true }));
+function extractPlainText(html = "") {
+  if (!html) return "";
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = renderRichText(html);
+  return wrapper.textContent ? wrapper.textContent.trim() : "";
 }
 
 function renderImageList() {
@@ -1144,6 +1595,7 @@ async function buildProductPayload() {
   const slug = ensureUniqueSlug(baseSlug || "producto", formState.mode === "edit" ? formState.productId : null);
   const parsedPrice = Number.parseInt(formState.values.price, 10);
   const priceValue = Number.isNaN(parsedPrice) ? 0 : parsedPrice;
+  const currency = formState.values.currency === "USD" ? "USD" : "ARS";
   const product = formState.mode === "edit" && formState.original
     ? {
         ...formState.original,
@@ -1152,6 +1604,7 @@ async function buildProductPayload() {
         price: priceValue,
         status: formState.values.status === "sold" ? "sold" : "available",
         description: formState.values.description || "",
+        currency,
         updatedAt: now,
       }
     : {
@@ -1161,6 +1614,7 @@ async function buildProductPayload() {
         price: priceValue,
         status: formState.values.status === "sold" ? "sold" : "available",
         description: formState.values.description || "",
+        currency,
         createdAt: now,
         updatedAt: now,
         images: [],
@@ -1241,10 +1695,10 @@ async function mutateProducts(mutator, message) {
       if (state.productsSha) {
         payloadBody.sha = state.productsSha;
       }
-      const response = await api.putFile(PRODUCTS_PATH, payloadBody);
+      const response = await api.putFile(ACTIVE_PRODUCTS_PATH, payloadBody);
       state.products = nextProducts;
       state.meta = context.meta;
-      state.productsSha = response.content.sha;
+      state.productsSha = response?.content?.sha || null;
       return response;
     } catch (error) {
       if (error.status === 409 && attempt < 3) {
@@ -1269,7 +1723,7 @@ async function withSaving(message, task) {
     setOverlay(null);
   }
 }
-function sanitizeProducts(list) {
+function sanitizeProducts(list, defaultCurrency = "ARS") {
   return Array.isArray(list)
     ? list
         .map((item) => {
@@ -1283,6 +1737,7 @@ function sanitizeProducts(list) {
             status: item.status === "sold" ? "sold" : "available",
             images: Array.isArray(item.images) ? item.images.map((src) => String(src)) : [],
             description: typeof item.description === "string" ? item.description : "",
+            currency: item.currency === "USD" ? "USD" : defaultCurrency,
             createdAt: item.createdAt || null,
             updatedAt: item.updatedAt || item.createdAt || null,
           };
@@ -1314,10 +1769,10 @@ function ensureUniqueSlug(slug, excludeId) {
   return `${sanitized}-${suffix}`;
 }
 
-function formatPrice(value) {
+function formatPrice(value, currencyOverride) {
   const amountNumber = Number(value);
   const amount = Number.isFinite(amountNumber) ? amountNumber : 0;
-  const currency = state.meta.currency || "ARS";
+  const currency = currencyOverride || state.meta.currency || "ARS";
   const locale = state.meta.locale || "es-AR";
   const key = `${locale}-${currency}-int`;
   if (!priceFormatters.has(key)) {
@@ -1622,11 +2077,7 @@ function createLocalClient() {
       token = value;
     },
     async getUser() {
-      return {
-        login: GITHUB.allowedLogin,
-        name: `${GITHUB.allowedLogin} (local)`,
-        avatar_url: "https://avatars.githubusercontent.com/u/0?v=4",
-      };
+      return { ...LOCAL_USER };
     },
     async getJsonFile(targetPath) {
       const response = await devFetch(`/contents?path=${encodeURIComponent(targetPath)}`);

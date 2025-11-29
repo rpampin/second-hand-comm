@@ -30,4 +30,5 @@ Thumbs.db
 *.local
 *.log
 data/products.dev.json
+data/products.local.json
 data/images/dev/

@@ -9,6 +9,10 @@ const state = {
   error: null,
 };
 
+const PRODUCTS_PATH = "data/products.json";
+const LOCAL_PRODUCTS_PATH = "data/products.local.json";
+const LOCAL_MODE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+const ACTIVE_PRODUCTS_PATH = LOCAL_MODE ? LOCAL_PRODUCTS_PATH : PRODUCTS_PATH;
 const main = document.getElementById("app");
 const priceFormatters = new Map();
 const fallbackId = () => `p_${Date.now()}_${Math.random().toString(16).slice(2)}`;
@@ -24,6 +28,30 @@ function safeRandomId() {
 }
 const PLACEHOLDER_IMAGE =
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='480' viewBox='0 0 640 480'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='1'><stop offset='0' stop-color='%23e2e8f0'/><stop offset='1' stop-color='%23f8fafc'/></linearGradient></defs><rect width='640' height='480' fill='url(%23g)'/><text x='50%' y='52%' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='42' fill='%2394a3b8'>Foto</text></svg>";
+const ALLOWED_RICH_TAGS = new Set([
+  "p",
+  "br",
+  "strong",
+  "em",
+  "u",
+  "ul",
+  "ol",
+  "li",
+  "a",
+  "code",
+  "pre",
+  "blockquote",
+  "h2",
+  "h3",
+  "h4",
+  "table",
+  "thead",
+  "tbody",
+  "tr",
+  "td",
+  "th",
+  "caption",
+]);
 
 function buildCacheBustedUrl(resource) {
   try {
@@ -71,22 +99,15 @@ async function loadProducts(options = {}) {
     render();
   }
   try {
-    const response = await fetch(buildCacheBustedUrl("data/products.json"), {
-      headers: { Accept: "application/json" },
-      cache: "no-store",
-    });
-    if (!response.ok) {
-      const errorText = await response.text().catch(() => "");
-      throw new Error(`No se pudo cargar el catalogo (${response.status}). ${errorText}`.trim());
-    }
-    const payload = await response.json();
+    const payload = await readProductsPayload();
     const products = Array.isArray(payload.products) ? payload.products : [];
     state.meta = {
       currency: payload?.meta?.currency || "ARS",
       locale: payload?.meta?.locale || "es-AR",
       contact: payload?.meta?.contact || null,
     };
-    state.products = sanitizeProducts(products).sort((a, b) => {
+    const defaultCurrency = state.meta.currency || "ARS";
+    state.products = sanitizeProducts(products, defaultCurrency).sort((a, b) => {
       const priorityA = a.status === "sold" ? 1 : 0;
       const priorityB = b.status === "sold" ? 1 : 0;
       if (priorityA !== priorityB) {
@@ -106,6 +127,32 @@ async function loadProducts(options = {}) {
   }
 }
 
+async function readProductsPayload() {
+  try {
+    return await fetchProductsFile(ACTIVE_PRODUCTS_PATH);
+  } catch (error) {
+    if (LOCAL_MODE && error.status === 404 && ACTIVE_PRODUCTS_PATH !== PRODUCTS_PATH) {
+      console.warn("[app] local products file missing; falling back to tracked data", error);
+      return fetchProductsFile(PRODUCTS_PATH);
+    }
+    throw error;
+  }
+}
+
+async function fetchProductsFile(path) {
+  const response = await fetch(buildCacheBustedUrl(path), {
+    headers: { Accept: "application/json" },
+    cache: "no-store",
+  });
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    const error = new Error(`No se pudo cargar ${path} (${response.status}). ${errorText}`.trim());
+    error.status = response.status;
+    throw error;
+  }
+  return response.json();
+}
+
 let revalidateTimer = null;
 function revalidateProducts() {
   if (state.loading) return;
@@ -117,7 +164,7 @@ function revalidateProducts() {
   }, 300);
 }
 
-function sanitizeProducts(list) {
+function sanitizeProducts(list, defaultCurrency = "ARS") {
   return Array.isArray(list)
     ? list
         .map((item) => {
@@ -131,6 +178,7 @@ function sanitizeProducts(list) {
             status: item.status === "sold" ? "sold" : "available",
             images: Array.isArray(item.images) && item.images.length > 0 ? item.images.map((src) => String(src)) : [],
             description: typeof item.description === "string" ? item.description : "",
+            currency: item.currency === "USD" ? "USD" : defaultCurrency,
             createdAt: item.createdAt || null,
             updatedAt: item.updatedAt || item.createdAt || null,
           };
@@ -187,13 +235,11 @@ function renderError(error) {
 
 function renderHome() {
   const items = state.products;
-  document.title = "Mercadito Personal";
+  document.title = "Venta por mudanza";
   main.innerHTML = `
     <section class="catalog" aria-labelledby="catalog-title">
       <header class="catalog-hero">
-        <h1 id="catalog-title">Mercadito Personal</h1>
-        <p class="catalog-subtitle">Seleccion de productos usados por rpampin.</p>
-        <p class="catalog-meta">${items.length === 1 ? "1 producto publicado" : `${items.length} productos publicados`}</p>
+        <h1 id="catalog-title">Venta por mudanza</h1>
       </header>
       ${items.length > 0 ? `<div class="catalog-grid" role="list">${items.map(renderProductCard).join("")}</div>` : renderEmptyState()}
     </section>
@@ -212,7 +258,7 @@ function renderProductCard(product) {
       ${sold ? '<span class="badge badge--sold">Vendido</span>' : ""}
       <img src="${cover}" alt="${escapeAttribute(`Imagen principal de ${product.title}`)}" loading="lazy" decoding="async" />
       <div class="card-body">
-        <span class="product-price">${formatPrice(product.price)}</span>
+        <span class="product-price">${renderPriceWithCurrency(product.price, product.currency)}</span>
         <h2 class="product-title">${escapeHtml(product.title)}</h2>
         <p class="product-summary">${escapeHtml(excerpt)}</p>
         <span class="product-status" aria-hidden="true">${labelStatus}</span>
@@ -246,7 +292,7 @@ function renderProduct(slug) {
     renderNotFound();
     return;
   }
-  document.title = `${product.title} - Mercadito Personal`;
+  document.title = `${product.title} - Venta por mudanza`;
   const cover = product.images[0] ? encodeURI(product.images[0]) : PLACEHOLDER_IMAGE;
   const thumbnails = product.images;
   const created = formatDate(product.createdAt);
@@ -281,10 +327,10 @@ function renderProduct(slug) {
             ${updated ? `<span>Actualizado: ${updated}</span>` : ""}
           </div>
         </header>
-        <p class="product-detail__price">${formatPrice(product.price)}</p>
+        <p class="product-detail__price">${renderPriceWithCurrency(product.price, product.currency)}</p>
         ${renderContactButton(product)}
         <section class="product-detail__description" aria-label="Descripcion">
-          ${markdownToHtml(product.description)}
+          ${renderRichText(product.description)}
         </section>
       </div>
     </article>
@@ -850,7 +896,7 @@ function updateLightboxControls(overlay) {
 }
 
 function renderNotFound() {
-  document.title = "Producto no encontrado - Mercadito Personal";
+  document.title = "Producto no encontrado - Venta por mudanza";
   main.innerHTML = `
     <section class="empty-state" role="alert">
       <p>No encontramos ese producto. Puede que haya sido movido o eliminado.</p>
@@ -876,15 +922,16 @@ function handleRedirect(path = "") {
 }
 
 function createExcerpt(text, length = 120) {
-  const clean = text.replace(/\s+/g, " ").trim();
+  const plain = extractPlainText(text);
+  const clean = plain.replace(/\s+/g, " ").trim();
   if (clean.length <= length) return clean;
   return `${clean.slice(0, length).trim()}...`;
 }
 
-function formatPrice(value) {
+function formatPrice(value, currencyOverride) {
   const numeric = Number(value);
   const amount = Number.isFinite(numeric) ? numeric : 0;
-  const currency = state.meta.currency || "ARS";
+  const currency = currencyOverride || state.meta.currency || "ARS";
   const locale = state.meta.locale || "es-AR";
   const key = `${locale}|${currency}|int`;
   if (!priceFormatters.has(key)) {
@@ -899,6 +946,11 @@ function formatPrice(value) {
     );
   }
   return priceFormatters.get(key).format(amount);
+}
+
+function renderPriceWithCurrency(value, currencyInput) {
+  const currency = currencyInput === "USD" ? "USD" : state.meta.currency === "USD" ? "USD" : "ARS";
+  return `<span class="price-amount">${formatPrice(value, currency)}</span><span class="price-currency">${currency}</span>`;
 }
 
 function formatDate(input) {
@@ -1008,6 +1060,85 @@ function markdownToHtml(markdown = "") {
     html += currentList === "ul" ? "</ul>" : "</ol>";
   }
   return html || `<p>${formatInline("Descripcion no disponible")}</p>`;
+}
+
+function renderRichText(value = "") {
+  if (!value) return "<p>Sin descripcion</p>";
+  const trimmed = value.trim();
+  const hasHtml = /<[a-z][\s\S]*>/i.test(trimmed);
+  const html = hasHtml ? trimmed : markdownToHtml(trimmed);
+  const clean = sanitizeRichText(html);
+  return clean || "<p>Sin descripcion</p>";
+}
+
+function sanitizeRichText(input = "") {
+  const value = input || "";
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(`<div>${value}</div>`, "text/html");
+  const root = doc.body;
+  cleanRichNode(root);
+  return root.innerHTML.trim();
+}
+
+function cleanRichNode(node) {
+  const children = Array.from(node.childNodes);
+  for (const child of children) {
+    if (child.nodeType === Node.TEXT_NODE) {
+      continue;
+    }
+    if (child.nodeType !== Node.ELEMENT_NODE) {
+      child.remove();
+      continue;
+    }
+    let element = child;
+    const tag = element.tagName.toLowerCase();
+    if (tag === "div") {
+      const replacement = node.ownerDocument.createElement("p");
+      while (element.firstChild) {
+        replacement.appendChild(element.firstChild);
+      }
+      element.replaceWith(replacement);
+      element = replacement;
+    }
+    if (!ALLOWED_RICH_TAGS.has(element.tagName.toLowerCase())) {
+      if (tag === "script" || tag === "style") {
+        element.remove();
+        continue;
+      }
+      const fragment = node.ownerDocument.createDocumentFragment();
+      while (element.firstChild) {
+        fragment.appendChild(element.firstChild);
+      }
+      element.replaceWith(fragment);
+      continue;
+    }
+    if (element.tagName.toLowerCase() === "a") {
+      const href = element.getAttribute("href") || "";
+      if (!isSafeUrl(href)) {
+        const span = node.ownerDocument.createElement("span");
+        span.textContent = element.textContent || "";
+        element.replaceWith(span);
+        continue;
+      }
+      Array.from(element.attributes).forEach((attr) => {
+        if (attr.name !== "href") {
+          element.removeAttribute(attr.name);
+        }
+      });
+      element.setAttribute("target", "_blank");
+      element.setAttribute("rel", "noopener");
+    } else {
+      Array.from(element.attributes).forEach((attr) => element.removeAttribute(attr.name));
+    }
+    cleanRichNode(element);
+  }
+}
+
+function extractPlainText(html = "") {
+  if (!html) return "";
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = renderRichText(html);
+  return wrapper.textContent ? wrapper.textContent.trim() : "";
 }
 
 function formatInline(text = "") {

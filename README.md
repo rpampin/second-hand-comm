@@ -30,7 +30,7 @@ Aplicacion estatica para gestionar y publicar el catalogo de productos usados de
 
 - Pega el PAT y espera la verificacion (`GET /user`). Solo `rpampin` puede operar; cualquier otro login queda bloqueado.
 - Lista lateral con productos: permite editar, marcar vendido/disponible o eliminar (con doble confirmacion y opcion de borrar imagenes).
-- Formulario con Markdown preview, reordenamiento por drag & drop y subida de multiples imagenes. Las imagenes se optimizan a WebP/JPEG antes de subirlas a `data/images/<slug>/` usando commits individuales.
+- Formulario con editor WYSIWYG (TinyMCE via CDN: listas, links, tablas), reordenamiento por drag & drop y subida de multiples imagenes. Las imagenes se optimizan a WebP/JPEG antes de subirlas a `data/images/<slug>/` usando commits individuales.
 - Guardado resistente a conflictos: si el `sha` de `products.json` cambia, el panel relee el archivo y reintenta la mutacion.
 
 ## Notas de seguridad
@@ -56,6 +56,6 @@ Aplicacion estatica para gestionar y publicar el catalogo de productos usados de
 Listo: con la pagina publicada y el token en la mano, podes administrar el mercadito completo sin backend.
 
 ## Modo local
-- `npm run dev` levanta un API local (/__dev/api) que lee y escribe directo sobre `data/products.json` y `data/images/`.
-- El campo de token es opcional en local; los cambios quedan en tu copia local hasta que decidas commitearlos.
+- `npm run dev` levanta un API local (/__dev/api) que lee y escribe en `data/products.local.json` (se crea copiando `data/products.json` si no existe) y en `data/images/`.
+- El panel arranca sin token en local y guarda todo en `data/products.local.json`, ignorado por git para no interferir con la version publicada.
 - En produccion (GitHub Pages) el panel usa la API de GitHub y requiere el PAT con permisos contents read/write.

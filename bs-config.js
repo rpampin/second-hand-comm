@@ -5,7 +5,9 @@ const crypto = require("crypto");
 
 const ROOT = __dirname;
 const PRODUCTS_PATH = "data/products.json";
+const LOCAL_PRODUCTS_PATH = "data/products.local.json";
 const PRODUCTS_FILE = path.join(ROOT, PRODUCTS_PATH);
+const LOCAL_PRODUCTS_FILE = path.join(ROOT, LOCAL_PRODUCTS_PATH);
 const DEFAULT_PRODUCTS_CONTENT = JSON.stringify(
   {
     products: [],
@@ -18,25 +20,35 @@ const DEFAULT_PRODUCTS_CONTENT = JSON.stringify(
   null,
   2
 );
+const PRODUCT_PATHS = [
+  { path: PRODUCTS_PATH, file: PRODUCTS_FILE, seed: null },
+  { path: LOCAL_PRODUCTS_PATH, file: LOCAL_PRODUCTS_FILE, seed: PRODUCTS_FILE },
+];
 
-function ensureProductsFile() {
-  if (!fs.existsSync(PRODUCTS_FILE)) {
-    fs.mkdirSync(path.dirname(PRODUCTS_FILE), { recursive: true });
-    fs.writeFileSync(PRODUCTS_FILE, DEFAULT_PRODUCTS_CONTENT, "utf8");
+function ensureProductsFile(targetFile, seedFrom = null) {
+  if (!fs.existsSync(targetFile)) {
+    fs.mkdirSync(path.dirname(targetFile), { recursive: true });
+    if (seedFrom && fs.existsSync(seedFrom)) {
+      fs.copyFileSync(seedFrom, targetFile);
+    } else {
+      fs.writeFileSync(targetFile, DEFAULT_PRODUCTS_CONTENT, "utf8");
+    }
   }
 }
+
+PRODUCT_PATHS.forEach((entry) => ensureProductsFile(entry.file, entry.seed));
 
 function safeResolve(requestPath) {
   if (!requestPath) return null;
   const normalized = requestPath.replace(/^\/+/, "");
-  const productsResolved = path.resolve(ROOT, PRODUCTS_PATH);
   const targetPath = path.resolve(ROOT, normalized);
   if (!targetPath.startsWith(ROOT)) {
     return null;
   }
-  if (targetPath === productsResolved) {
-    ensureProductsFile();
-    return PRODUCTS_FILE;
+  const matchedProductPath = PRODUCT_PATHS.find((entry) => path.resolve(ROOT, entry.path) === targetPath);
+  if (matchedProductPath) {
+    ensureProductsFile(matchedProductPath.file, matchedProductPath.seed);
+    return matchedProductPath.file;
   }
   if (normalized.startsWith("data/images/")) {
     const suffix = normalized.slice("data/images/".length);
