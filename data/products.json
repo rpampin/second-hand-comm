@@ -231,6 +231,23 @@
       "images": [
         "data/images/hamaca-gota/hamaca-gota-1764439072856-0.webp"
       ]
+    },
+    {
+      "id": "c8a21075-3716-47cf-afa6-28587db4bc24",
+      "slug": "heladera-whirlpool-wrm39x1",
+      "title": "Heladera Whirlpool WRM39X1",
+      "price": 250000,
+      "status": "available",
+      "description": "<p><p>Heladera Whirlpool WRM39X1 con freezer no frost, usada y funcionando bien. Tiene detalles estéticos normales del uso, pero lo importante es que se le hizo instalación de motor y tuberías nuevas, así que está andando firme.</p>\n<p>No tiene los anaqueles de la puerta ni el cajón inferior de verduras, porque se rompieron y no se reemplazaron. El resto está completo y operativo.</p>\n<p>Alto: <strong>175.8 cm</strong></p>\n<p>Ancho: <strong>61.9 cm</strong></p>\n<p>Profundidad: <strong>69.0 cm</strong></p>\n<p><strong>Capacidad:</strong> aprox. 80 L freezer + 272 L refrigerador<strong>.</strong></p>\n<h3><strong>Características extraídas de la etiqueta:</strong></h3>\n<ul>\n<li>\n<p><strong>Eficiencia energética:</strong> A</p>\n</li>\n<li>\n<p><strong>Consumo:</strong> 389 kWh/año</p>\n</li>\n<li>\n<p><strong>Capacidad freezer:</strong> 80 L</p>\n</li>\n<li>\n<p><strong>Capacidad refrigerador:</strong> 272 L</p>\n</li>\n<li>\n<p><strong>Descongelamiento:</strong> Automático</p>\n</li>\n<li>\n<p><strong>Autonomía sin energía:</strong> 10 hs</p>\n</li>\n<li>\n<p><strong>Capacidad de congelamiento:</strong> 4 kg/24hs</p>\n</li>\n<li>\n<p><strong>Clase climática:</strong> T</p>\n</li>\n<li>\n<p><strong>Nivel de ruido:</strong> 49 dB</p>\n</li>\n</ul></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T18:07:27.042Z",
+      "updatedAt": "2025-11-29T18:07:27.042Z",
+      "images": [
+        "data/images/heladera-whirlpool-wrm39x1/heladera-whirlpool-wrm39x1-1764439647111-0.webp",
+        "data/images/heladera-whirlpool-wrm39x1/heladera-whirlpool-wrm39x1-1764439648446-1.webp",
+        "data/images/heladera-whirlpool-wrm39x1/heladera-whirlpool-wrm39x1-1764439649998-2.webp",
+        "data/images/heladera-whirlpool-wrm39x1/heladera-whirlpool-wrm39x1-1764439651365-3.webp"
+      ]
     }
   ],
   "meta": {
