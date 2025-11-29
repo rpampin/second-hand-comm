@@ -1,17 +1,32 @@
 {
   "products": [
     {
-      "id": "8d47e5f6-cadd-43d6-9bdd-d6945d550c0f",
-      "slug": "trasdvcasdv",
-      "title": "trasdvcasdv",
-      "price": 211,
-      "status": "sold",
+      "id": "3c46188f-e921-43d4-bd03-503d290be0ea",
+      "slug": "sillon",
+      "title": "Sillon",
+      "price": 100000,
+      "status": "available",
+      "description": "Sillon 2 cuerpos",
+      "createdAt": "2025-11-27T19:54:34.639Z",
+      "updatedAt": "2025-11-27T19:54:34.639Z",
       "images": [
-        "data/images/trasdvcasdv/trasdvcasdv-1760726887383-0.webp"
-      ],
-      "description": "sdvasdvasdvasdvsdv\n**asdfasdf**",
-      "createdAt": "2025-10-17T18:48:07.365Z",
-      "updatedAt": "2025-10-17T19:01:14.743Z"
+        "data/images/sillon/sillon-1764273274773-0.webp",
+        "data/images/sillon/sillon-1764273276098-1.webp"
+      ]
+    },
+    {
+      "id": "32bfd135-49f7-4002-bf4d-33a605475cee",
+      "slug": "estereo",
+      "title": "Estereo",
+      "price": 50000,
+      "status": "available",
+      "description": "Estereo Sony",
+      "createdAt": "2025-11-27T19:55:45.829Z",
+      "updatedAt": "2025-11-27T19:55:45.829Z",
+      "images": [
+        "data/images/estereo/estereo-1764273345959-0.webp",
+        "data/images/estereo/estereo-1764273347234-1.webp"
+      ]
     }
   ],
   "meta": {
