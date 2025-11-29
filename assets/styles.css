@@ -553,6 +553,12 @@ input[type="submit"] {
   flex-wrap: wrap;
 }
 
+.product-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .price-currency {
   display: inline-flex;
   align-items: center;

@@ -344,7 +344,10 @@ function renderProduct(slug) {
           </div>
         </header>
         <p class="product-detail__price">${renderPriceWithCurrency(product.price, product.currency)}</p>
-        ${renderContactButton(product)}
+        <div class="product-actions">
+          ${renderWhatsappButton(product)}
+          ${renderContactButton(product)}
+        </div>
         <section class="product-detail__description" aria-label="Descripcion">
           ${renderRichText(product.description)}
         </section>
@@ -380,6 +383,13 @@ function renderContactButton(product) {
       ${escapeHtml(link.label)}
     </a>
   `;
+}
+
+function renderWhatsappButton(product) {
+  const phone = "+5491154981367";
+  const message = encodeURIComponent(`Hola, estoy interesado en ${product.title}. Sigue disponible?`);
+  const href = `https://wa.me/${phone.replace(/[^+\\d]/g, "")}?text=${message}`;
+  return `<a class="button" href="${escapeAttribute(href)}" target="_blank" rel="noopener">WhatsApp</a>`;
 }
 
 function buildContactLink(product, contact) {
