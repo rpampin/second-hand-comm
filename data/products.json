@@ -321,6 +321,21 @@
       "images": [
         "data/images/mesa-auxiliar-de-algarrobo/mesa-auxiliar-de-algarrobo-1764441263117-0.webp"
       ]
+    },
+    {
+      "id": "b0c9d059-bc7a-47b9-8445-94e8618b26a4",
+      "slug": "mesas-ratonas",
+      "title": "Mesas ratonas",
+      "price": 30000,
+      "status": "available",
+      "description": "<p><p>Mesa amarilla 44x50 diametro</p>\n<p>Mesa negra 46x45 diametro</p>\n<p>El valor es por el par.</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T18:44:35.235Z",
+      "updatedAt": "2025-11-29T18:44:35.235Z",
+      "images": [
+        "data/images/mesas-ratonas/mesas-ratonas-1764441875298-0.webp",
+        "data/images/mesas-ratonas/mesas-ratonas-1764441876592-1.webp"
+      ]
     }
   ],
   "meta": {
