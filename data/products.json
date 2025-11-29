@@ -503,6 +503,20 @@
       "images": [
         "data/images/microfono-hyperx-solocast/microfono-hyperx-solocast-1764445348710-0.webp"
       ]
+    },
+    {
+      "id": "23d5244a-b68e-4180-a83e-c6484b296f24",
+      "slug": "samsung-qn50qn90b",
+      "title": "Samsung QN50QN90B",
+      "price": 800,
+      "status": "available",
+      "description": "<p><p>Samsung QN50QN90B, televisor Neo QLED 4K de 50 pulgadas, en perfecto estado y con control remoto original. Funciona todo impecable, tanto imagen como sonido y conectividad.</p>\n<p>Características técnicas:</p>\n<ul>\n<li>\n<p>Panel Neo QLED con retroiluminación Mini LED (mejor contraste y negros más profundos).</p>\n</li>\n<li>\n<p>Resolución 4K UHD (3840 × 2160).</p>\n</li>\n<li>\n<p>Tasa de refresco de hasta 144 Hz, ideal para deportes y gaming.</p>\n</li>\n<li>\n<p>Procesador Neo Quantum 4K con optimización automática de imagen.</p>\n</li>\n<li>\n<p>Compatible con HDR10 y HDR10+.</p>\n</li>\n<li>\n<p>Conectividad: HDMI 2.1, USB, Wi-Fi, Bluetooth.</p>\n</li>\n<li>\n<p>Smart TV con sistema Tizen y acceso a apps de streaming.</p>\n</li>\n<li>\n<p>Diseño fino, bordes delgados.</p>\n</li>\n</ul>\n<p>Un televisor de gama alta, con excelente brillo, colores vivos y muy buena fluidez de imagen. Está en perfecto estado y listo para usar.</p></p>",
+      "currency": "USD",
+      "createdAt": "2025-11-29T19:54:13.046Z",
+      "updatedAt": "2025-11-29T19:54:13.046Z",
+      "images": [
+        "data/images/samsung-qn50qn90b/samsung-qn50qn90b-1764446053082-0.webp"
+      ]
     }
   ],
   "meta": {
