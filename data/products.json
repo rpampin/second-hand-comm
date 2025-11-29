@@ -1,5 +1,25 @@
 {
-  "products": [],
+  "products": [
+    {
+      "id": "ad3f7311-5fb7-4a65-a194-6a20223a99e2",
+      "slug": "zotac-gaming-geforce-rtx-3080-trinity10gb",
+      "title": "ZOTAC GAMING GeForce RTX 3080 Trinity10GB",
+      "price": 400,
+      "status": "available",
+      "description": "<p><p>Se encuentra en perfectas condiciones usado unicamente para Gaming con undervolt.</p></p>",
+      "currency": "USD",
+      "createdAt": "2025-11-29T15:34:37.004Z",
+      "updatedAt": "2025-11-29T15:34:37.004Z",
+      "images": [
+        "data/images/zotac-gaming-geforce-rtx-3080-trinity10gb/zotac-gaming-geforce-rtx-3080-trinity10gb-1764430477152-0.webp",
+        "data/images/zotac-gaming-geforce-rtx-3080-trinity10gb/zotac-gaming-geforce-rtx-3080-trinity10gb-1764430478571-1.webp",
+        "data/images/zotac-gaming-geforce-rtx-3080-trinity10gb/zotac-gaming-geforce-rtx-3080-trinity10gb-1764430479736-2.webp",
+        "data/images/zotac-gaming-geforce-rtx-3080-trinity10gb/zotac-gaming-geforce-rtx-3080-trinity10gb-1764430481189-3.webp",
+        "data/images/zotac-gaming-geforce-rtx-3080-trinity10gb/zotac-gaming-geforce-rtx-3080-trinity10gb-1764430482290-4.webp",
+        "data/images/zotac-gaming-geforce-rtx-3080-trinity10gb/zotac-gaming-geforce-rtx-3080-trinity10gb-1764430483375-5.webp"
+      ]
+    }
+  ],
   "meta": {
     "currency": "ARS",
     "locale": "es-AR",
