@@ -1209,9 +1209,10 @@ async function initRichtextEditor(initialValue = "") {
       selector: RICH_TEXT_SELECTOR,
       base_url: richtextBaseUrl,
       suffix: ".min",
-      menubar: false,
-      plugins: "lists link table paste",
-      toolbar: "undo redo | bold italic underline | bullist numlist | blockquote table | link removeformat",
+      menubar: "edit view insert format",
+      plugins: "lists link table paste advlist autolink",
+      toolbar:
+        "undo redo | blocks fontfamily fontsize lineheight | bold italic underline forecolor backcolor | bullist numlist | alignleft aligncenter alignright alignjustify | blockquote table | link removeformat",
       branding: false,
       height: 320,
       statusbar: false,
