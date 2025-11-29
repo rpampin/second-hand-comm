@@ -457,6 +457,20 @@
         "data/images/moulinex-ultracompact-sm154180/moulinex-ultracompact-sm154180-1764444099175-0.webp",
         "data/images/moulinex-ultracompact-sm154180/moulinex-ultracompact-sm154180-1764444100448-1.webp"
       ]
+    },
+    {
+      "id": "919a0bfd-6a11-4315-a387-82e1321aa596",
+      "slug": "shockmount-arana",
+      "title": "Shockmount Araña",
+      "price": 10000,
+      "status": "available",
+      "description": "<p><p>Shockmount Araña + Brazo articulado con morza</p>\n<p>Especifiaciones</p>\n<ul>\n<li>Suspensión elástica para amortiguar movimientos y roces</li>\n<li>Garantiza una excelente reducción de ruido</li>\n<li>Diámetro mínimo 4 cm</li>\n<li>Diámetro máximo 4.9 cm</li>\n</ul></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T19:24:16.495Z",
+      "updatedAt": "2025-11-29T19:24:16.495Z",
+      "images": [
+        "data/images/shockmount-arana/shockmount-arana-1764444256634-0.webp"
+      ]
     }
   ],
   "meta": {
