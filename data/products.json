@@ -111,6 +111,21 @@
       "images": [
         "data/images/cortina-roller-zebra-duo/cortina-roller-zebra-duo-1764434940863-0.webp"
       ]
+    },
+    {
+      "id": "b29db4a0-e9f8-40a4-9ece-0319a357d07a",
+      "slug": "3-muebles-cubo",
+      "title": "3 Muebles cubo",
+      "price": 60000,
+      "status": "available",
+      "description": "<p><p>3 Muebles cubo en buen estado</p>\n<p>Son 2 de 90 x 30 x 60 (LxHxA). Otro de 90 x 30 x 90.</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T17:28:13.241Z",
+      "updatedAt": "2025-11-29T17:28:13.241Z",
+      "images": [
+        "data/images/3-muebles-cubo/3-muebles-cubo-1764437293302-0.webp",
+        "data/images/3-muebles-cubo/3-muebles-cubo-1764437294697-1.webp"
+      ]
     }
   ],
   "meta": {
