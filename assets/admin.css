@@ -161,6 +161,8 @@
   display: grid;
   grid-template-columns: 320px 1fr;
   min-height: 640px;
+  flex: 1;
+  min-height: 0;
 }
 
 .admin-sidebar {
@@ -170,6 +172,7 @@
   flex-direction: column;
   gap: 18px;
   padding: 24px 20px;
+  min-height: 0;
 }
 
 .admin-toolbar {
@@ -188,9 +191,12 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
   overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 
 .product-list-item {

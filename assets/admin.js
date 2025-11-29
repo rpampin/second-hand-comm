@@ -549,72 +549,85 @@ async function exportProductsAsImage(products) {
   setOverlay("Generando imagen...");
   try {
     const available = products.slice();
-    const columns = Math.min(4, Math.max(1, available.length));
-    const padding = 32;
-    const gap = 16;
-    const cardWidth = 280;
-    const imageHeight = Math.round(cardWidth * 0.75);
-    const cardHeight = imageHeight + 90;
-    const headerHeight = 56;
-    const rows = Math.ceil(available.length / columns);
-    const gridTop = padding + headerHeight + 12;
-    const width = padding * 2 + columns * cardWidth + gap * (columns - 1);
-    const height = gridTop + rows * cardHeight + gap * (rows - 1) + padding;
-
-    const canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) {
-      throw new Error("No se pudo crear el canvas");
+    const pageSize = 9;
+    const pages = Math.max(1, Math.ceil(available.length / pageSize));
+    const downloads = [];
+    for (let page = 0; page < pages; page += 1) {
+      const slice = available.slice(page * pageSize, page * pageSize + pageSize);
+      const blob = await buildExportPage(slice);
+      const suffix = pages > 1 ? `-${page + 1}` : "";
+      const filename = `mercadito-export-${new Date().toISOString().slice(0, 10)}${suffix}.png`;
+      downloads.push({ blob, filename });
     }
-
-    // Background
-    ctx.fillStyle = "#f7f9fc";
-    ctx.fillRect(0, 0, width, height);
-
-    // Header
-    ctx.fillStyle = "#0f172a";
-    ctx.font = "700 22px 'Inter', Arial, sans-serif";
-    ctx.fillText("Catalogo disponible", padding, padding + 24);
-    ctx.font = "400 14px 'Inter', Arial, sans-serif";
-    ctx.fillStyle = "#475569";
-    ctx.fillText(`Exportado: ${new Date().toLocaleString()}`, padding, padding + 44);
-
-    // Preload images
-    const images = await Promise.all(
-      available.map((product) => {
-        const cover = product.images?.[0] ? encodeURI(product.images[0]) : PLACEHOLDER_IMAGE;
-        return loadImageWithFallback(cover);
-      })
+    downloads.forEach((file) => downloadBlob(file.blob, file.filename));
+    setStatus(
+      { type: "success", text: `Exportado ${available.length} producto(s) en ${downloads.length} imagen(es)` },
+      { duration: 3600 }
     );
-
-    ctx.textBaseline = "top";
-    for (let index = 0; index < available.length; index += 1) {
-      const product = available[index];
-      const image = images[index];
-      const row = Math.floor(index / columns);
-      const col = index % columns;
-      const cardX = padding + col * (cardWidth + gap);
-      const cardY = gridTop + row * (cardHeight + gap);
-      drawProductCard(ctx, {
-        x: cardX,
-        y: cardY,
-        width: cardWidth,
-        height: cardHeight,
-        image,
-        imageHeight,
-        product,
-      });
-    }
-
-    const blob = await canvasToBlobPromise(canvas, "image/png");
-    const filename = `mercadito-export-${new Date().toISOString().slice(0, 10)}.png`;
-    downloadBlob(blob, filename);
-    setStatus({ type: "success", text: `Exportado ${products.length} producto(s)` }, { duration: 3200 });
   } finally {
     setOverlay(null);
   }
+}
+
+async function buildExportPage(products) {
+  const columns = 3;
+  const padding = 32;
+  const gap = 16;
+  const cardWidth = 280;
+  const imageHeight = Math.round(cardWidth * 0.75);
+  const cardHeight = imageHeight + 90;
+  const headerHeight = 70;
+  const rows = Math.max(1, Math.min(3, Math.ceil(products.length / columns)));
+  const gridTop = padding + headerHeight + 8;
+  const width = padding * 2 + columns * cardWidth + gap * (columns - 1);
+  const height = gridTop + rows * cardHeight + gap * (rows - 1) + padding;
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("No se pudo crear el canvas");
+
+  // Background
+  ctx.fillStyle = "#f7f9fc";
+  ctx.fillRect(0, 0, width, height);
+
+  // Header
+  ctx.fillStyle = "#0f172a";
+  ctx.font = "700 22px 'Inter', Arial, sans-serif";
+  ctx.fillText("Venta de Garage", padding, padding + 18);
+  ctx.font = "400 15px 'Inter', Arial, sans-serif";
+  ctx.fillStyle = "#475569";
+  ctx.fillText("Se retira por Banfield, punto de encuentro, o envios", padding, padding + 40);
+
+  // Preload images
+  const images = await Promise.all(
+    products.map((product) => {
+      const cover = buildAssetUrl(product.images?.[0] || "");
+      return loadImageWithFallback(encodeURI(cover));
+    })
+  );
+
+  ctx.textBaseline = "top";
+  for (let index = 0; index < products.length; index += 1) {
+    const product = products[index];
+    const image = images[index];
+    const row = Math.floor(index / columns);
+    const col = index % columns;
+    const cardX = padding + col * (cardWidth + gap);
+    const cardY = gridTop + row * (cardHeight + gap);
+    drawProductCard(ctx, {
+      x: cardX,
+      y: cardY,
+      width: cardWidth,
+      height: cardHeight,
+      image,
+      imageHeight,
+      product,
+    });
+  }
+
+  return canvasToBlobPromise(canvas, "image/png");
 }
 
 function drawProductCard(ctx, { x, y, width, height, image, imageHeight, product }) {
