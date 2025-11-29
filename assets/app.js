@@ -232,7 +232,10 @@ function renderHome() {
   main.innerHTML = `
     <section class="catalog" aria-labelledby="catalog-title">
       <header class="catalog-hero">
-        <h1 id="catalog-title">Venta por mudanza</h1>
+        <div class="catalog-heading">
+          <h1 id="catalog-title">Venta por mudanza</h1>
+          <p class="catalog-subtitle">Se retira por Banfield, punto de encuentro o envios</p>
+        </div>
         <div class="sort-bar" role="group" aria-label="Ordenar productos">
           <label for="sort-select">Ordenar</label>
           <div class="sort-select">

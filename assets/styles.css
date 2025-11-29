@@ -633,28 +633,35 @@ input[type="submit"] {
     padding: 24px 20px 48px;
   }
 }
-\.catalog-hero {
+.catalog-hero {
   margin-bottom: 24px;
   display: grid;
-  gap: 12px;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
   align-items: center;
 }
 
-\.catalog-hero h1 {
+.catalog-hero h1 {
   margin: 0;
   font-size: 2rem;
+}
+
+.catalog-heading {
+  display: grid;
+  gap: 6px;
 }
 
 .sort-bar {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: color-mix(in srgb, var(--color-surface-strong) 80%, transparent);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 8px 12px;
-  box-shadow: var(--shadow-soft);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 10px 14px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
   width: fit-content;
+  justify-self: end;
 }
 
 .sort-bar label {
@@ -674,19 +681,21 @@ input[type="submit"] {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: #ffffff;
-  border: 1px solid var(--color-border);
-  border-radius: 10px;
-  padding: 10px 36px 10px 12px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  padding: 10px 40px 10px 14px;
   font-size: 0.95rem;
-  color: var(--color-text);
-  box-shadow: var(--shadow-soft);
+  color: #0f172a;
   cursor: pointer;
+  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
 }
 
 .sort-select select:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
+  box-shadow: 0 10px 24px rgba(78, 93, 255, 0.18);
+  transform: translateY(-1px);
 }
 
 .sort-caret {
@@ -695,6 +704,18 @@ input[type="submit"] {
   pointer-events: none;
   color: var(--color-text-muted);
   font-size: 0.8rem;
+}
+
+@media (max-width: 720px) {
+  .catalog-hero {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .sort-bar {
+    width: 100%;
+    justify-self: stretch;
+  }
 }
 
 .catalog-subtitle {
