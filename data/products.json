@@ -397,6 +397,21 @@
       "images": [
         "data/images/cocina-electrica-liliana/cocina-electrica-liliana-1764442985713-0.webp"
       ]
+    },
+    {
+      "id": "2f52d132-1a85-4744-a266-981e76e5c125",
+      "slug": "organizador-de-bano",
+      "title": "Organizador De Baño",
+      "price": 20000,
+      "status": "available",
+      "description": "<p><p>Organizador de baño estante rack sobre inodoro 3 niveles. En muy buen estado.</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T19:07:13.356Z",
+      "updatedAt": "2025-11-29T19:07:13.356Z",
+      "images": [
+        "data/images/organizador-de-bano/organizador-de-bano-1764443233507-0.webp",
+        "data/images/organizador-de-bano/organizador-de-bano-1764443235121-1.webp"
+      ]
     }
   ],
   "meta": {
