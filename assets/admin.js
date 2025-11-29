@@ -1211,8 +1211,11 @@ async function initRichtextEditor(initialValue = "") {
       suffix: ".min",
       menubar: "edit view insert format",
       plugins: "lists link table paste advlist autolink",
-      toolbar:
-        "undo redo | blocks fontfamily fontsize lineheight | bold italic underline forecolor backcolor | bullist numlist | alignleft aligncenter alignright alignjustify | blockquote table | link removeformat",
+      toolbar_mode: "wrap",
+      toolbar: [
+        "undo redo | blocks fontfamily fontsize lineheight | bold italic underline | forecolor backcolor",
+        "bullist numlist outdent indent | alignleft aligncenter alignright alignjustify | blockquote table | link removeformat",
+      ],
       branding: false,
       height: 320,
       statusbar: false,
@@ -1356,7 +1359,8 @@ function renderImageList() {
   const items = images
     .map((item, index) => {
       const label = item.source === "existing" ? item.path : item.file?.name || "Pendiente";
-      const preview = item.source === "existing" ? item.path : item.previewUrl || PLACEHOLDER_IMAGE;
+      const preview =
+        item.source === "existing" ? buildAssetUrl(item.path) : item.previewUrl || PLACEHOLDER_IMAGE;
       const info = item.source === "existing" ? "Repositorio" : "Nuevo";
       return `
         <li class="image-item" data-index="${index}" draggable="true">
@@ -1899,6 +1903,13 @@ function isSafeUrl(url = "") {
     value.startsWith("tel:") ||
     value.startsWith("/#/")
   );
+}
+
+function buildAssetUrl(path) {
+  if (!path) return PLACEHOLDER_IMAGE;
+  if (/^https?:\/\//i.test(path) || path.startsWith("//")) return path;
+  if (path.startsWith("/")) return path;
+  return `/${path.replace(/^\/+/, "")}`;
 }
 
 function debounce(fn, delay = 200) {
