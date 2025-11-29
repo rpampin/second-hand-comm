@@ -97,6 +97,20 @@
         "data/images/casita-rotoys-2048-soleada/casita-rotoys-2048-soleada-1764434641156-1.webp",
         "data/images/casita-rotoys-2048-soleada/casita-rotoys-2048-soleada-1764434642287-2.webp"
       ]
+    },
+    {
+      "id": "c092f382-d070-4406-8922-0b912e1c8d35",
+      "slug": "cortina-roller-zebra-duo",
+      "title": "Cortina roller zebra duo",
+      "price": 80000,
+      "status": "available",
+      "description": "<p><p>Cortina roller zebra duo blanca, medida <strong>1,20 x 2 m</strong>. Está usada pero muy bien cuidada, funciona perfecto y viene con todos los soportes para instalarla en dos minutos.<br>La tela es screen 5%, deja pasar luz sin perder privacidad y se limpia fácil. Ideal para cualquier ambiente.</p>\n<p>Lista para colgar y usar.</p>\n<p>El precio es por el par. $50.000 por unidad.</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T16:49:00.736Z",
+      "updatedAt": "2025-11-29T16:49:00.736Z",
+      "images": [
+        "data/images/cortina-roller-zebra-duo/cortina-roller-zebra-duo-1764434940863-0.webp"
+      ]
     }
   ],
   "meta": {
