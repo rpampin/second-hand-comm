@@ -551,7 +551,9 @@ function handleExportGrid() {
 async function exportProductsAsImage(products) {
   setOverlay("Generando imagen...");
   try {
-    const available = products.slice();
+    const available = products
+      .slice()
+      .sort((a, b) => a.title.localeCompare(b.title, "es", { sensitivity: "base" }));
     const pageSize = 9;
     const pages = Math.max(1, Math.ceil(available.length / pageSize));
     const downloads = [];

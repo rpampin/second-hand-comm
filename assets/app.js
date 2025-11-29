@@ -7,6 +7,7 @@ const state = {
   },
   loading: true,
   error: null,
+  sort: "alpha",
 };
 
 const PRODUCTS_PATH = "data/products.json";
@@ -107,16 +108,8 @@ async function loadProducts(options = {}) {
       contact: payload?.meta?.contact || null,
     };
     const defaultCurrency = state.meta.currency || "ARS";
-    state.products = sanitizeProducts(products, defaultCurrency).sort((a, b) => {
-      const priorityA = a.status === "sold" ? 1 : 0;
-      const priorityB = b.status === "sold" ? 1 : 0;
-      if (priorityA !== priorityB) {
-        return priorityA - priorityB;
-      }
-      const dateA = new Date(a.updatedAt || a.createdAt || 0).getTime();
-      const dateB = new Date(b.updatedAt || b.createdAt || 0).getTime();
-      return dateB - dateA;
-    });
+    state.products = sanitizeProducts(products, defaultCurrency);
+    sortProducts();
     state.error = null;
   } catch (error) {
     console.error("Error al cargar productos", error);
@@ -240,10 +233,30 @@ function renderHome() {
     <section class="catalog" aria-labelledby="catalog-title">
       <header class="catalog-hero">
         <h1 id="catalog-title">Venta por mudanza</h1>
+        <div class="sort-bar" role="group" aria-label="Ordenar productos">
+          <label for="sort-select">Ordenar</label>
+          <div class="sort-select">
+            <select id="sort-select" name="sort">
+              <option value="alpha" ${state.sort === "alpha" ? "selected" : ""}>A-Z</option>
+              <option value="price-asc" ${state.sort === "price-asc" ? "selected" : ""}>Precio ascendente</option>
+              <option value="price-desc" ${state.sort === "price-desc" ? "selected" : ""}>Precio descendente</option>
+            </select>
+            <span class="sort-caret">▼</span>
+          </div>
+        </div>
       </header>
       ${items.length > 0 ? `<div class="catalog-grid" role="list">${items.map(renderProductCard).join("")}</div>` : renderEmptyState()}
     </section>
   `;
+  const sortSelect = document.getElementById("sort-select");
+  if (sortSelect) {
+    sortSelect.addEventListener("change", (event) => {
+      const value = event.target.value;
+      state.sort = value;
+      sortProducts();
+      render();
+    });
+  }
   focusMain();
   applyImageFallbacks(main);
 }
@@ -1269,4 +1282,31 @@ function chevronRightIcon() {
       <path d="M9.3 5.3a1 1 0 0 1 1.4 0l5 5a1 1 0 0 1 0 1.4l-5 5a1 1 0 0 1-1.4-1.4L13.6 12 9.3 7.7a1 1 0 0 1 0-1.4z" fill="currentColor" />
     </svg>
   `;
+}
+function sortProducts() {
+  const rateUSD = 1450; // USD to ARS conversion for sorting
+  const withWeight = state.products.map((product) => {
+    const price = Number(product.price) || 0;
+    const currency = product.currency === "USD" ? "USD" : "ARS";
+    const priceARS = currency === "USD" ? price * rateUSD : price;
+    return { ...product, _priceARS: priceARS };
+  });
+
+  withWeight.sort((a, b) => {
+    // sold last
+    const soldA = a.status === "sold";
+    const soldB = b.status === "sold";
+    if (soldA !== soldB) return soldA ? 1 : -1;
+
+    if (state.sort === "price-asc") {
+      return a._priceARS - b._priceARS;
+    }
+    if (state.sort === "price-desc") {
+      return b._priceARS - a._priceARS;
+    }
+    // alpha default
+    return a.title.localeCompare(b.title, "es", { sensitivity: "base" });
+  });
+
+  state.products = withWeight;
 }
