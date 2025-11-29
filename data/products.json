@@ -126,6 +126,21 @@
         "data/images/3-muebles-cubo/3-muebles-cubo-1764437293302-0.webp",
         "data/images/3-muebles-cubo/3-muebles-cubo-1764437294697-1.webp"
       ]
+    },
+    {
+      "id": "f208afd2-a934-4656-9c6c-edb70d7925c9",
+      "slug": "anafe-a-gas",
+      "title": "Anafe a gas",
+      "price": 20000,
+      "status": "available",
+      "description": "<p><p>Anafe Gas Envasado 2 Hornallas Reforzado Pintado Abra-sol usado en buen estado.</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T17:30:24.887Z",
+      "updatedAt": "2025-11-29T17:30:24.887Z",
+      "images": [
+        "data/images/anafe-a-gas/anafe-a-gas-1764437424967-0.webp",
+        "data/images/anafe-a-gas/anafe-a-gas-1764437426156-1.webp"
+      ]
     }
   ],
   "meta": {
