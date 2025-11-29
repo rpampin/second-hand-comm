@@ -471,6 +471,24 @@
       "images": [
         "data/images/shockmount-arana/shockmount-arana-1764444256634-0.webp"
       ]
+    },
+    {
+      "id": "a5d1fb0c-9aaf-4e3d-a20a-99e0667860d1",
+      "slug": "sillon-2-cuerpos",
+      "title": "Sillon 2 cuerpos",
+      "price": 99999,
+      "status": "available",
+      "description": "<p><p>Sillon de 2 cuerpos para reparar y retapizar 230 x 90 x 100. Los brazos se pueden desatornillar para reducir el espacio de translado (35 x 90 x 70 cada brazo) (LxHxA)</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T19:39:57.163Z",
+      "updatedAt": "2025-11-29T19:39:57.163Z",
+      "images": [
+        "data/images/sillon-2-cuerpos/sillon-2-cuerpos-1764445197221-0.webp",
+        "data/images/sillon-2-cuerpos/sillon-2-cuerpos-1764445198502-1.webp",
+        "data/images/sillon-2-cuerpos/sillon-2-cuerpos-1764445199820-2.webp",
+        "data/images/sillon-2-cuerpos/sillon-2-cuerpos-1764445200839-3.webp",
+        "data/images/sillon-2-cuerpos/sillon-2-cuerpos-1764445202059-4.webp"
+      ]
     }
   ],
   "meta": {
