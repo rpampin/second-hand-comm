@@ -1908,8 +1908,11 @@ function isSafeUrl(url = "") {
 function buildAssetUrl(path) {
   if (!path) return PLACEHOLDER_IMAGE;
   if (/^https?:\/\//i.test(path) || path.startsWith("//")) return path;
-  if (path.startsWith("/")) return path;
-  return `/${path.replace(/^\/+/, "")}`;
+  const normalized = path.replace(/^\/+/, "");
+  const adminIndex = window.location.pathname.indexOf("/admin/");
+  const base = adminIndex >= 0 ? window.location.pathname.slice(0, adminIndex) : "";
+  const prefix = base || "";
+  return `${prefix}/${normalized}`;
 }
 
 function debounce(fn, delay = 200) {
