@@ -916,7 +916,7 @@ function buildFormFromProduct(product) {
       price: formatPriceInputFromValue(product.price ?? 0),
       status: product.status === "sold" ? "sold" : "available",
       currency: product.currency === "USD" ? "USD" : "ARS",
-      description: product.description || "",
+      description: (product.description || "").trim(),
       images: Array.isArray(product.images)
         ? product.images.map((path, index) => ({
             id: `existing-${index}-${product.id}`,
@@ -984,13 +984,8 @@ function renderForm() {
         <textarea id="field-description" name="description" rows="10">${escapeHtml(
     extractPlainText(formState.values.description || "")
   )}</textarea>
-        <p class="form-helper">Editor enriquecido con tablas, listas y enlaces. La vista previa se actualiza en vivo.</p>
         ${errors.description ? `<p class="field-error">${escapeHtml(errors.description)}</p>` : ""}
       </div>
-      <section class="markdown-preview" aria-label="Previsualizacion">
-        <h3>Preview</h3>
-        <div id="description-preview" class="markdown-preview-body"></div>
-      </section>
       <section class="image-manager" aria-label="Imagenes">
         <div class="image-manager-header">
           <h3>Imagenes</h3>
@@ -1016,7 +1011,6 @@ function renderForm() {
   const form = document.getElementById("product-form");
   if (!form) return;
   bindFormEvents(form);
-  updateDescriptionPreview();
   renderImageList();
   initRichtextEditor(formState.values.description || "");
 }
@@ -1061,7 +1055,6 @@ function bindFormEvents(form) {
     "input",
     debounce((event) => {
       state.form.values.description = sanitizeRichText(event.target.value);
-      updateDescriptionPreview();
     }, 120)
   );
   dropzone.addEventListener("click", () => imageInput.click());
@@ -1157,12 +1150,6 @@ function validateForm(formState) {
   return { valid: Object.keys(errors).length === 0, errors };
 }
 
-function updateDescriptionPreview() {
-  const preview = document.getElementById("description-preview");
-  if (!preview) return;
-  preview.innerHTML = renderRichText(state.form.values.description || "");
-}
-
 function loadRichtextScript() {
   if (window.tinymce) return Promise.resolve();
   if (richtextLoader) return richtextLoader;
@@ -1213,7 +1200,7 @@ async function initRichtextEditor(initialValue = "") {
   destroyRichtextEditor();
   try {
     await loadRichtextScript();
-    const trimmed = (initialValue || "").trim();
+    const trimmed = extractPlainText(initialValue || "").trim();
     const safeInitial =
       trimmed.length === 0
         ? ""
@@ -1243,7 +1230,6 @@ async function initRichtextEditor(initialValue = "") {
         const handleChange = debounce(() => {
           const html = editor.getContent({ format: "html" }).trim();
           state.form.values.description = sanitizeRichText(html);
-          updateDescriptionPreview();
         }, 120);
         editor.on("init", () => {
           editor.setContent(safeInitial);
@@ -1259,7 +1245,6 @@ async function initRichtextEditor(initialValue = "") {
   } catch (error) {
     console.error("[admin] initRichtextEditor error", error);
     setStatus({ type: "error", text: error.message || "No se pudo iniciar el editor de texto" }, { duration: 4200 });
-    updateDescriptionPreview();
   }
 }
 
@@ -1267,12 +1252,10 @@ function syncDescriptionFromEditor() {
   if (!window.tinymce) return;
   const editor = window.tinymce.get("field-description");
   if (!editor) {
-    updateDescriptionPreview();
     return;
   }
   const html = editor.getContent({ format: "html" }).trim();
   state.form.values.description = sanitizeRichText(html);
-  updateDescriptionPreview();
 }
 
 function formatPriceInputFromValue(value) {
@@ -1358,7 +1341,8 @@ function extractPlainText(html = "") {
   if (!html) return "";
   const wrapper = document.createElement("div");
   wrapper.innerHTML = renderRichText(html);
-  return wrapper.textContent ? wrapper.textContent.trim() : "";
+  const text = wrapper.textContent || "";
+  return text.replace(/\s+/g, " ").trim();
 }
 
 function renderImageList() {
@@ -1749,7 +1733,7 @@ function sanitizeProducts(list, defaultCurrency = "ARS") {
             price: Number.isFinite(rawPrice) ? Math.max(0, Math.round(rawPrice)) : 0,
             status: item.status === "sold" ? "sold" : "available",
             images: Array.isArray(item.images) ? item.images.map((src) => String(src)) : [],
-            description: typeof item.description === "string" ? item.description : "",
+            description: typeof item.description === "string" ? item.description.trim() : "",
             currency: item.currency === "USD" ? "USD" : defaultCurrency,
             createdAt: item.createdAt || null,
             updatedAt: item.updatedAt || item.createdAt || null,

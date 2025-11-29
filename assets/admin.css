@@ -307,38 +307,7 @@
   color: #64748b;
 }
 
-.markdown-preview {
-  margin: 28px 0;
-  padding: 20px;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  border-radius: 16px;
-  background: #f5f7fb;
-}
-
-.markdown-preview-body {
-  display: grid;
-  gap: 10px;
-  color: #1f2933;
-  font-size: 0.98rem;
-  line-height: 1.6;
-}
-
-.markdown-preview-body ul,
-.markdown-preview-body ol {
-  padding-left: 20px;
-}
-
-.markdown-preview-body table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.markdown-preview-body th,
-.markdown-preview-body td {
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  padding: 8px 10px;
-  text-align: left;
-}
+/* preview removed */
 
 .image-manager {
   display: grid;

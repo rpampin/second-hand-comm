@@ -922,8 +922,10 @@ function handleRedirect(path = "") {
 }
 
 function createExcerpt(text, length = 120) {
+  const firstBlock = extractFirstBlockText(text);
+  if (firstBlock) return firstBlock;
   const plain = extractPlainText(text);
-  const sentences = plain.split(/(?<=[.!?])\s+/).filter(Boolean);
+  const sentences = plain.split(/(?<=[.!?])\s*/).filter(Boolean);
   const first = sentences.length ? sentences[0].trim() : "";
   if (first) return first;
   const clean = plain.replace(/\s+/g, " ").trim();
@@ -1072,6 +1074,18 @@ function renderRichText(value = "") {
   const html = hasHtml ? trimmed : markdownToHtml(trimmed);
   const clean = sanitizeRichText(html);
   return clean || "<p>Sin descripcion</p>";
+}
+
+function extractFirstBlockText(input = "") {
+  const sanitized = renderRichText(input);
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(`<div>${sanitized}</div>`, "text/html");
+  const target = doc.querySelector("p, li, blockquote, td, th, caption");
+  if (target && target.textContent) {
+    return target.textContent.replace(/\s+/g, " ").trim();
+  }
+  const fallback = doc.body.textContent || "";
+  return fallback.replace(/\s+/g, " ").trim();
 }
 
 function sanitizeRichText(input = "") {
