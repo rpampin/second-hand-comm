@@ -256,12 +256,13 @@
       "price": 12000,
       "status": "available",
       "images": [
+        "data/images/lampara-escritorio-velador-articulada-con-morza/lampara-escritorio-velador-articulada-con-morza-1764451513587-0.webp",
         "data/images/lampara-escritorio-velador-articulada-con-morza/lampara-escritorio-velador-articulada-con-morza-1764439791754-0.webp"
       ],
-      "description": "<div><p>Lampara Escritorio Velador Articulada Con Morza sin detalles funcionando.</p></div>",
+      "description": "<div><p>Lampara Escritorio Velador Articulada Con Morza sin detalles funcionando.</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T18:09:51.662Z",
-      "updatedAt": "2025-11-29T18:09:51.662Z"
+      "updatedAt": "2025-11-29T21:25:13.453Z"
     },
     {
       "id": "7ca0ec1d-1689-4b19-8aff-04ed70263e27",
