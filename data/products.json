@@ -489,6 +489,20 @@
         "data/images/sillon-2-cuerpos/sillon-2-cuerpos-1764445200839-3.webp",
         "data/images/sillon-2-cuerpos/sillon-2-cuerpos-1764445202059-4.webp"
       ]
+    },
+    {
+      "id": "44c249cf-532d-4df3-bbb0-2c066cd7d103",
+      "slug": "microfono-hyperx-solocast",
+      "title": "Micrófono HyperX SoloCast",
+      "price": 70000,
+      "status": "available",
+      "description": "<p><p>Micrófono HyperX SoloCast, usado en perfecto estado y funcionando. Ideal para streaming, videollamadas, grabación de voz, podcast o gaming.</p>\n<p>Características:</p>\n<ul>\n<li>\n<p>Micrófono de condensador con patrón cardioide (toma la voz de frente y reduce ruido de fondo).</p>\n</li>\n<li>\n<p>Conexión USB-C plug &amp; play, se usa sin instalar nada.</p>\n</li>\n<li>\n<p>Calidad de grabación 24 bit / 96 kHz.</p>\n</li>\n<li>\n<p>Botón táctil tap-to-mute con indicador LED.</p>\n</li>\n<li>\n<p>Base ajustable para escritorio y compatible con soportes/brasos con rosca estándar.</p>\n</li>\n</ul></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T19:42:28.574Z",
+      "updatedAt": "2025-11-29T19:42:28.574Z",
+      "images": [
+        "data/images/microfono-hyperx-solocast/microfono-hyperx-solocast-1764445348710-0.webp"
+      ]
     }
   ],
   "meta": {
