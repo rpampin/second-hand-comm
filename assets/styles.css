@@ -559,6 +559,19 @@ input[type="submit"] {
   flex-wrap: wrap;
 }
 
+.button--whatsapp {
+  background: #25d366;
+  color: #0b2b16;
+  border: 1px solid #1eb854;
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.25);
+}
+
+.button--whatsapp:hover,
+.button--whatsapp:focus-visible {
+  background: #1eb854;
+  color: #0b2b16;
+  box-shadow: 0 12px 26px rgba(37, 211, 102, 0.3);
+}
 .price-currency {
   display: inline-flex;
   align-items: center;

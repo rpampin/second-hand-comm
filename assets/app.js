@@ -387,9 +387,8 @@ function renderContactButton(product) {
 
 function renderWhatsappButton(product) {
   const phone = "+5491154981367";
-  const message = encodeURIComponent(`Hola, estoy interesado en ${product.title}. Sigue disponible?`);
-  const href = `https://wa.me/${phone.replace(/[^+\\d]/g, "")}?text=${message}`;
-  return `<a class="button" href="${escapeAttribute(href)}" target="_blank" rel="noopener">WhatsApp</a>`;
+  const href = `https://wa.me/${phone}`;
+  return `<a class="button button--whatsapp" href="${escapeAttribute(href)}" target="_blank" rel="noopener">Contacto</a>`;
 }
 
 function buildContactLink(product, contact) {
