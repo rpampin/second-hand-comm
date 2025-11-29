@@ -307,6 +307,20 @@
         "data/images/pistola-de-masaje-olsky-deep-tissue/pistola-de-masaje-olsky-deep-tissue-1764440934072-0.webp",
         "data/images/pistola-de-masaje-olsky-deep-tissue/pistola-de-masaje-olsky-deep-tissue-1764440935544-1.webp"
       ]
+    },
+    {
+      "id": "60bcff72-d954-4e24-8a42-ae976e7fc4b1",
+      "slug": "mesa-auxiliar-de-algarrobo",
+      "title": "Mesa auxiliar de algarrobo",
+      "price": 25000,
+      "status": "available",
+      "description": "<p><p>Mesa auxiliar de algarrobo de 78 x 43 x 72 (LxHxA) en estado buen estado.</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T18:34:22.984Z",
+      "updatedAt": "2025-11-29T18:34:22.984Z",
+      "images": [
+        "data/images/mesa-auxiliar-de-algarrobo/mesa-auxiliar-de-algarrobo-1764441263117-0.webp"
+      ]
     }
   ],
   "meta": {
