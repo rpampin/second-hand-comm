@@ -923,7 +923,11 @@ function handleRedirect(path = "") {
 
 function createExcerpt(text, length = 120) {
   const firstBlock = extractFirstBlockText(text);
-  if (firstBlock) return firstBlock;
+  if (firstBlock) {
+    const firstSentence = firstBlock.split(/(?<=\.)|\r?\n/).map((part) => part.trim()).filter(Boolean)[0];
+    if (firstSentence) return firstSentence;
+    return firstBlock;
+  }
   const plain = extractPlainText(text);
   const sentence = plain
     .split(/(?<=[.!?])(?:\s+|$)|\r?\n/)
