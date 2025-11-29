@@ -570,6 +570,7 @@ input[type="submit"] {
   align-items: center;
   justify-content: center;
   gap: 8px;
+   text-decoration: none;
 }
 
 .button--whatsapp:hover,
@@ -577,6 +578,12 @@ input[type="submit"] {
   background: #1eb854;
   color: #0b2b16;
   box-shadow: 0 12px 26px rgba(37, 211, 102, 0.3);
+}
+.button--whatsapp svg {
+  width: 18px;
+  height: 18px;
+  color: #0b2b16;
+  flex-shrink: 0;
 }
 .price-currency {
   display: inline-flex;
