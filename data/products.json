@@ -67,6 +67,20 @@
       "currency": "ARS",
       "createdAt": "2025-11-29T16:24:04.626Z",
       "updatedAt": "2025-11-29T16:30:03.277Z"
+    },
+    {
+      "id": "fbf017e1-f1fa-426e-aa83-642de4875b20",
+      "slug": "soporte-tv-2343",
+      "title": "Soporte Tv 23/43",
+      "price": 6000,
+      "status": "available",
+      "description": "<p><p>Soporte Tv Para 22 A 43 Negro</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T16:39:20.128Z",
+      "updatedAt": "2025-11-29T16:39:20.128Z",
+      "images": [
+        "data/images/soporte-tv-2343/soporte-tv-2343-1764434360219-0.webp"
+      ]
     }
   ],
   "meta": {
