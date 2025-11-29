@@ -35,6 +35,9 @@ const RICH_TEXT_SOURCES = [
     base: RICH_TEXT_BASE,
   },
 ];
+const EXPORT_QR_LINK = "https://tinyurl.com/sale-banfield";
+const EXPORT_QR_BASE64 =
+  "iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQAQMAAAC6caSPAAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACDElEQVR4nO3aPc7CMAwGYCMGRo7AUThaOVqPkiN8I8OnGuKfxFErJIaCkV4PKEryMLmR64bo/Zi4x43ozLMtHMN8GPMCArI/+fcEvejSfHj+lJC4Mv/X0hgEJCs515y+1yXyMen8TDKmSq4sfwUC8gPEkv+ueV7ndQQC8kVSl68LnViinsMyuIGA/AKxsCriSepYYg7zFiAgSQn3cHKqSd6qi8vLl0QQkBxkK07OZVw294CA7Eg8k+9+DrNlMmtFIfMxq0FAEpPFk/xVc1gzfwEByUikL0GHvrTVHI59DAIB2Z1oIyIUujx0erXS0K3tTAYByUc0LPnlTG7NYXpWF/GsHh8KEJBcxKoI22YPgoQ1h4vvkQ1aXYCAZCP9GGd9s+PWHI5vfNQ4gYDsTih8O54kYRdvqbE3HyRmIquZQUCykiGGlppXF6vkBwHJRXTJPqkdlVhYbdxC/2oBAUlJarFxtSJExnW1WHdu+I7sDwIIyAeItc7KutKYyetni96FAwFJSOIb36ql1kLHG40IEJDvkyHafR7jHK8HGwQB2Z9M3MOaD0TefLDsvYXb6UQgICnJWDm089lbavJXmvy+EQQkJ+nHdbydbi211YMAAvILhDdbau2DHffSGgTkg8QvT8YrDdxjK5NBQFIQCz+T2VtqsTncbkeAgCQlMbHtcvvYUithTyECAUlJ3o8HRoxxZuG0gJYAAAAASUVORK5CYII=";
 const RICH_TEXT_SELECTOR = "#field-description";
 const ALLOWED_RICH_TAGS = new Set([
   "p",
@@ -576,11 +579,11 @@ async function buildExportPage(products) {
   const cardWidth = 280;
   const imageHeight = Math.round(cardWidth * 0.75);
   const cardHeight = imageHeight + 90;
-  const headerHeight = 70;
+  const headerHeight = 110;
   const rows = Math.max(1, Math.min(3, Math.ceil(products.length / columns)));
   const gridTop = padding + headerHeight + 8;
   const width = padding * 2 + columns * cardWidth + gap * (columns - 1);
-  const height = gridTop + rows * cardHeight + gap * (rows - 1) + padding;
+  const height = gridTop + rows * cardHeight + gap * (rows - 1) + padding + 64;
 
   const canvas = document.createElement("canvas");
   canvas.width = width;
@@ -599,6 +602,9 @@ async function buildExportPage(products) {
   ctx.font = "400 15px 'Inter', Arial, sans-serif";
   ctx.fillStyle = "#475569";
   ctx.fillText("Se retira por Banfield, punto de encuentro, o envios", padding, padding + 40);
+  ctx.font = "600 13px 'Inter', Arial, sans-serif";
+  ctx.fillStyle = "#0f172a";
+  ctx.fillText(EXPORT_QR_LINK, padding, padding + 64);
 
   // Preload images
   const images = await Promise.all(
@@ -626,6 +632,12 @@ async function buildExportPage(products) {
       product,
     });
   }
+
+  await drawQrCode(ctx, {
+    x: width - padding - 92,
+    y: padding,
+    size: 92,
+  });
 
   return canvasToBlobPromise(canvas, "image/png");
 }
@@ -709,6 +721,15 @@ function drawRoundedImage(ctx, image, x, y, width, height, radius) {
     ctx.drawImage(image, x + offsetX, y + offsetY, drawWidth, drawHeight);
   }
   ctx.restore();
+}
+
+async function drawQrCode(ctx, { x, y, size }) {
+  const qr = await loadImageSafe(`data:image/png;base64,${EXPORT_QR_BASE64}`);
+  if (!qr) return;
+  const padding = 6;
+  const radius = 10;
+  drawRoundedRect(ctx, x - padding, y - padding, size + padding * 2, size + padding * 2, radius, "#ffffff");
+  ctx.drawImage(qr, x, y, size, size);
 }
 
 function getCoverSize(image, targetWidth, targetHeight) {

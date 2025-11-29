@@ -925,8 +925,8 @@ function createExcerpt(text, length = 120) {
   const firstBlock = extractFirstBlockText(text);
   if (firstBlock) return firstBlock;
   const plain = extractPlainText(text);
-  const sentences = plain.split(/(?<=[.!?])\s*(?=[A-ZÁÉÍÓÚÑ0-9]|$)/).filter(Boolean);
-  const first = sentences.length ? sentences[0].trim() : "";
+  const sentence = plain.split(/(?<=[.!?])\s*|\n/).filter(Boolean)[0] || "";
+  const first = sentence.trim();
   if (first) return first;
   const clean = plain.replace(/\s+/g, " ").trim();
   if (clean.length <= length) return clean;
@@ -1080,9 +1080,10 @@ function extractFirstBlockText(input = "") {
   const sanitized = renderRichText(input);
   const parser = new DOMParser();
   const doc = parser.parseFromString(`<div>${sanitized}</div>`, "text/html");
-  const target = doc.querySelector("p, li, blockquote, td, th, caption");
-  if (target && target.textContent) {
-    return target.textContent.replace(/\s+/g, " ").trim();
+  const paragraphs = Array.from(doc.querySelectorAll("p, li, blockquote, td, th, caption"));
+  for (const node of paragraphs) {
+    const content = (node.textContent || "").replace(/\s+/g, " ").trim();
+    if (content) return content;
   }
   const fallback = doc.body.textContent || "";
   return fallback.replace(/\s+/g, " ").trim();
