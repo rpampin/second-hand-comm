@@ -217,6 +217,20 @@
         "data/images/fuente-12v-5a/fuente-12v-5a-1764438822737-0.webp",
         "data/images/fuente-12v-5a/fuente-12v-5a-1764438824221-1.webp"
       ]
+    },
+    {
+      "id": "06f7ab68-17d4-421e-9829-405af4f249cf",
+      "slug": "hamaca-gota",
+      "title": "Hamaca gota",
+      "price": 90000,
+      "status": "available",
+      "description": "<p><p>Hamaca gota+soporte de pie+almohadon con alas, en muy buen estado y poco uso</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T17:57:52.774Z",
+      "updatedAt": "2025-11-29T17:57:52.774Z",
+      "images": [
+        "data/images/hamaca-gota/hamaca-gota-1764439072856-0.webp"
+      ]
     }
   ],
   "meta": {
