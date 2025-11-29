@@ -277,6 +277,21 @@
         "data/images/magnalum-9000-4/magnalum-9000-4-1764440307152-0.webp",
         "data/images/magnalum-9000-4/magnalum-9000-4-1764440308460-1.webp"
       ]
+    },
+    {
+      "id": "49874a13-9264-4dad-8a78-c362043eed65",
+      "slug": "lampara-colgante-rectangular-5-luces-hierro-oxido",
+      "title": "Lámpara Colgante Rectangular 5 Luces – Hierro Óxido",
+      "price": 80000,
+      "status": "available",
+      "description": "<p><p>mpara colgante de hierro con terminación óxido, formato rectangular, para 5 lámparas tipo E27. Funciona perfecto y está en buen estado. Es robusta, pesa bien y queda muy bien en cocinas, comedores, livings o sobre una barra.</p>\n<p><strong>Especificaciones:</strong></p>\n<ul>\n<li>\n<p>Material: <strong>Hierro</strong></p>\n</li>\n<li>\n<p>Terminación: <strong>Óxido</strong></p>\n</li>\n<li>\n<p>Cantidad de luces: <strong>5</strong></p>\n</li>\n<li>\n<p>Tipo de portalámparas: <strong>E27</strong></p>\n</li>\n<li>\n<p>Voltaje: <strong>220 V</strong></p>\n</li>\n</ul></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T18:23:06.493Z",
+      "updatedAt": "2025-11-29T18:23:06.493Z",
+      "images": [
+        "data/images/lampara-colgante-rectangular-5-luces-hierro-oxido/lampara-colgante-rectangular-5-luces-hierro-oxido-1764440586560-0.webp",
+        "data/images/lampara-colgante-rectangular-5-luces-hierro-oxido/lampara-colgante-rectangular-5-luces-hierro-oxido-1764440587880-1.webp"
+      ]
     }
   ],
   "meta": {
