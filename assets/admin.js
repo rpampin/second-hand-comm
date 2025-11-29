@@ -1204,7 +1204,7 @@ async function initRichtextEditor(initialValue = "") {
     const safeInitial =
       trimmed.length === 0
         ? ""
-        : sanitizeRichText(/<[a-z][\s\S]*>/i.test(trimmed) ? trimmed : markdownToHtml(trimmed));
+        : normalizeRichText(/<[a-z][\s\S]*>/i.test(trimmed) ? trimmed : markdownToHtml(trimmed));
     window.tinymce.init({
       selector: RICH_TEXT_SELECTOR,
       base_url: richtextBaseUrl,
@@ -1229,7 +1229,7 @@ async function initRichtextEditor(initialValue = "") {
       setup(editor) {
         const handleChange = debounce(() => {
           const html = editor.getContent({ format: "html" }).trim();
-          state.form.values.description = sanitizeRichText(html);
+          state.form.values.description = normalizeRichText(html);
         }, 120);
         editor.on("init", () => {
           editor.setContent(safeInitial);
@@ -1255,7 +1255,7 @@ function syncDescriptionFromEditor() {
     return;
   }
   const html = editor.getContent({ format: "html" }).trim();
-  state.form.values.description = sanitizeRichText(html);
+  state.form.values.description = normalizeRichText(html);
 }
 
 function formatPriceInputFromValue(value) {
@@ -1270,7 +1270,7 @@ function renderRichText(value = "") {
   const trimmed = value.trim();
   const hasHtml = /<[a-z][\s\S]*>/i.test(trimmed);
   const html = hasHtml ? trimmed : markdownToHtml(trimmed);
-  const clean = sanitizeRichText(html);
+  const clean = normalizeRichText(html);
   return clean || "<p>Sin descripcion</p>";
 }
 
@@ -1280,6 +1280,34 @@ function sanitizeRichText(input = "") {
   const doc = parser.parseFromString(`<div>${value}</div>`, "text/html");
   const root = doc.body;
   cleanRichNode(root);
+  return root.innerHTML.trim();
+}
+
+function normalizeRichText(input = "") {
+  const sanitized = sanitizeRichText(input);
+  if (!sanitized) return "";
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(`<div>${sanitized}</div>`, "text/html");
+  const root = doc.body;
+  // Unwrap nested single paragraphs like <p><p>text</p></p>
+  const onlyChild = root.children.length === 1 ? root.children[0] : null;
+  if (onlyChild && onlyChild.tagName.toLowerCase() === "p" && onlyChild.children.length === 1) {
+    const inner = onlyChild.children[0];
+    if (inner.tagName && inner.tagName.toLowerCase() === "p") {
+      root.innerHTML = "";
+      while (inner.firstChild) {
+        root.appendChild(inner.firstChild);
+      }
+    }
+  }
+  // Remove leading/trailing empty paragraphs
+  Array.from(root.querySelectorAll("p")).forEach((p) => {
+    const text = (p.textContent || "").replace(/\s+/g, "").trim();
+    const hasContent = text.length > 0 || p.querySelector("img,table,ul,ol,code,pre,blockquote");
+    if (!hasContent) {
+      p.remove();
+    }
+  });
   return root.innerHTML.trim();
 }
 
@@ -1733,7 +1761,7 @@ function sanitizeProducts(list, defaultCurrency = "ARS") {
             price: Number.isFinite(rawPrice) ? Math.max(0, Math.round(rawPrice)) : 0,
             status: item.status === "sold" ? "sold" : "available",
             images: Array.isArray(item.images) ? item.images.map((src) => String(src)) : [],
-            description: typeof item.description === "string" ? item.description.trim() : "",
+            description: typeof item.description === "string" ? normalizeRichText(item.description) : "",
             currency: item.currency === "USD" ? "USD" : defaultCurrency,
             createdAt: item.createdAt || null,
             updatedAt: item.updatedAt || item.createdAt || null,

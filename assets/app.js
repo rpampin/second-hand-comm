@@ -925,7 +925,7 @@ function createExcerpt(text, length = 120) {
   const firstBlock = extractFirstBlockText(text);
   if (firstBlock) return firstBlock;
   const plain = extractPlainText(text);
-  const sentences = plain.split(/(?<=[.!?])\s*/).filter(Boolean);
+  const sentences = plain.split(/(?<=[.!?])\s*(?=[A-ZÁÉÍÓÚÑ0-9]|$)/).filter(Boolean);
   const first = sentences.length ? sentences[0].trim() : "";
   if (first) return first;
   const clean = plain.replace(/\s+/g, " ").trim();
