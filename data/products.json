@@ -25,13 +25,28 @@
       "title": "Biblioteca de Pino",
       "price": 30000,
       "status": "available",
-      "description": "<p><p>Biblioteca de pino usada de 60 x 32 x 155 (LxHxA) pintada de verde con pintura a la tiza</p></p>",
-      "currency": "ARS",
-      "createdAt": "2025-11-29T15:56:47.672Z",
-      "updatedAt": "2025-11-29T15:56:47.672Z",
       "images": [
         "data/images/biblioteca-de-pino/biblioteca-de-pino-1764431807773-0.webp",
         "data/images/biblioteca-de-pino/biblioteca-de-pino-1764431809249-1.webp"
+      ],
+      "description": "<p><p>Biblioteca de pino usada de 60 x 32 x 155 (LxHxA) pintada de verde con pintura a la tiza</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T15:56:47.672Z",
+      "updatedAt": "2025-11-29T15:56:47.672Z"
+    },
+    {
+      "id": "829e7c25-0fdb-4ee1-afb2-6ce2c47a11d3",
+      "slug": "bordeadora-philco",
+      "title": "Bordeadora Philco",
+      "price": 20000,
+      "status": "available",
+      "description": "<p><p>Bordeadora Eléctrica Philco 500 w MJPBO126P con poco uso.</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T16:02:18.082Z",
+      "updatedAt": "2025-11-29T16:02:18.082Z",
+      "images": [
+        "data/images/bordeadora-philco/bordeadora-philco-1764432138159-0.webp",
+        "data/images/bordeadora-philco/bordeadora-philco-1764432139529-1.webp"
       ]
     }
   ],
