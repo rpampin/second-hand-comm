@@ -141,6 +141,21 @@
         "data/images/anafe-a-gas/anafe-a-gas-1764437424967-0.webp",
         "data/images/anafe-a-gas/anafe-a-gas-1764437426156-1.webp"
       ]
+    },
+    {
+      "id": "a6416237-828d-4e2e-a2fc-2da55233d096",
+      "slug": "stereo-sony-dsx-a100u",
+      "title": "Stereo Sony DSX-A100U",
+      "price": 100000,
+      "status": "available",
+      "description": "<p><p>Stereo Sony <strong>DSX-A100U</strong>, FM/AM y reproductor digital.<br>Está usado pero funciona perfecto, sin detalles raros. Se lo cambio por un android.</p>\n<p><strong>Características principales:</strong></p>\n<ul>\n<li>\n<p>Entrada <strong>USB frontal</strong> para pendrive.</p>\n</li>\n<li>\n<p>Entrada <strong>AUX</strong> para conectar el celu.</p>\n</li>\n<li>\n<p>Radio <strong>FM/AM</strong> con buena recepción.</p>\n</li>\n<li>\n<p>Alimentación 12V (estándar para auto)</p>\n</li>\n</ul></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T17:36:10.343Z",
+      "updatedAt": "2025-11-29T17:36:10.343Z",
+      "images": [
+        "data/images/stereo-sony-dsx-a100u/stereo-sony-dsx-a100u-1764437770439-0.webp",
+        "data/images/stereo-sony-dsx-a100u/stereo-sony-dsx-a100u-1764437771803-1.webp"
+      ]
     }
   ],
   "meta": {
