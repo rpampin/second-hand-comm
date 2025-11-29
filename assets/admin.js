@@ -28,16 +28,11 @@ const priceFormatters = new Map();
 const PLACEHOLDER_IMAGE =
   "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='240' viewBox='0 0 320 240'><rect width='320' height='240' fill='#e2e8f0'/><text x='50%' y='52%' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' fill='#94a3b8'>Vista</text></svg>";
 const TINYMCE_API_KEY = "fawd92qhl6l0vgyenrfghj3mw8j7z5dxq72k14xsjfmsypvg";
-const RICH_TEXT_BASE = "https://cdn.jsdelivr.net/npm/@tinymce/tinymce-dist@6.8.1";
+const RICH_TEXT_BASE = `https://cdn.tiny.cloud/1/${TINYMCE_API_KEY}/tinymce/6`;
 const RICH_TEXT_SOURCES = [
   {
-    src: `https://cdn.tiny.cloud/1/${TINYMCE_API_KEY}/tinymce/6/tinymce.min.js`,
-    base: `https://cdn.tiny.cloud/1/${TINYMCE_API_KEY}/tinymce/6`,
-  },
-  { src: `${RICH_TEXT_BASE}/tinymce.min.js`, base: RICH_TEXT_BASE },
-  {
-    src: "https://unpkg.com/@tinymce/tinymce-dist@6.8.1/tinymce.min.js",
-    base: "https://unpkg.com/@tinymce/tinymce-dist@6.8.1",
+    src: `${RICH_TEXT_BASE}/tinymce.min.js`,
+    base: RICH_TEXT_BASE,
   },
 ];
 const RICH_TEXT_SELECTOR = "#field-description";
