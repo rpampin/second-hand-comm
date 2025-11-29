@@ -248,6 +248,20 @@
         "data/images/heladera-whirlpool-wrm39x1/heladera-whirlpool-wrm39x1-1764439649998-2.webp",
         "data/images/heladera-whirlpool-wrm39x1/heladera-whirlpool-wrm39x1-1764439651365-3.webp"
       ]
+    },
+    {
+      "id": "5e270caf-bbb5-4958-ad9c-2d2e6ef043d4",
+      "slug": "lampara-escritorio-velador-articulada-con-morza",
+      "title": "Lampara Escritorio Velador Articulada Con Morza",
+      "price": 12000,
+      "status": "available",
+      "description": "<p><p>Lampara Escritorio Velador Articulada Con Morza sin detalles funcionando.</p></p>",
+      "currency": "ARS",
+      "createdAt": "2025-11-29T18:09:51.662Z",
+      "updatedAt": "2025-11-29T18:09:51.662Z",
+      "images": [
+        "data/images/lampara-escritorio-velador-articulada-con-morza/lampara-escritorio-velador-articulada-con-morza-1764439791754-0.webp"
+      ]
     }
   ],
   "meta": {
