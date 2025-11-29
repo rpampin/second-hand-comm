@@ -115,17 +115,17 @@
     {
       "id": "b29db4a0-e9f8-40a4-9ece-0319a357d07a",
       "slug": "3-muebles-cubo",
-      "title": "3 Muebles cubo",
+      "title": "Muebles Cubo X3",
       "price": 60000,
       "status": "available",
       "images": [
         "data/images/3-muebles-cubo/3-muebles-cubo-1764437293302-0.webp",
         "data/images/3-muebles-cubo/3-muebles-cubo-1764437294697-1.webp"
       ],
-      "description": "<div><p>3 Muebles cubo en buen estado</p>\n<p>Son 2 de 90 x 30 x 60 (LxHxA). Otro de 90 x 30 x 90.</p></div>",
+      "description": "<div><p>3 Muebles cubo en buen estado Son 2 de 90 x 30 x 60 (LxHxA). Otro de 90 x 30 x 90.</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T17:28:13.241Z",
-      "updatedAt": "2025-11-29T17:28:13.241Z"
+      "updatedAt": "2025-11-29T21:31:54.582Z"
     },
     {
       "id": "f208afd2-a934-4656-9c6c-edb70d7925c9",
@@ -348,7 +348,7 @@
         "data/images/mesa-plegable-8060/mesa-plegable-8060-1764442136805-0.webp",
         "data/images/mesa-plegable-8060/mesa-plegable-8060-1764442138009-1.webp"
       ],
-      "description": "<div>\n\n<p>Mesa plegable de 80 x 60 x 76 cm (LxHxA). Es de melamina con base de caño. Se pliega en segundos y la guardás donde sea.</p>\n\n</div>",
+      "description": "<div><p>Mesa plegable de 80 x 60 x 76 cm (LxHxA). Es de melamina con base de caño. Se pliega en segundos y la guardás donde sea.</p>\n\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T18:48:56.760Z",
       "updatedAt": "2025-11-29T21:11:17.592Z"
