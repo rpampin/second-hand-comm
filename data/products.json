@@ -566,6 +566,22 @@
         "data/images/carcassonne-jr/carcassonne-jr-1764541876509-1.webp",
         "data/images/carcassonne-jr/carcassonne-jr-1764541878005-2.webp"
       ]
+    },
+    {
+      "id": "3676e145-6292-46e1-8fa8-5f36a27e2c93",
+      "slug": "catan",
+      "title": "Catan",
+      "price": 50000,
+      "status": "available",
+      "description": "<div><p><strong>Catán</strong> en perfecto estado y con poco uso.</p>\n<p>Clásico de estrategia donde tenés que expandir tus asentamientos, negociar recursos y competir por dominar la isla. Es un juego súper entretenido, ideal para arrancar en el mundo de los juegos de mesa modernos.</p>\n<p><strong>Datos útiles:</strong></p>\n<ul>\n<li>\n<p>Jugadores: <strong>3 a 4</strong></p>\n</li>\n<li>\n<p>Edad recomendada: <strong>10+</strong></p>\n</li>\n<li>\n<p>Duración: <strong>60–75 min</strong></p>\n</li>\n<li>\n<p>Mecánicas: gestión de recursos, negociación y construcción</p>\n</li>\n</ul></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:34:31.053Z",
+      "updatedAt": "2025-11-30T22:34:31.053Z",
+      "images": [
+        "data/images/catan/catan-1764542071207-0.webp",
+        "data/images/catan/catan-1764542072943-1.webp",
+        "data/images/catan/catan-1764542074060-2.webp"
+      ]
     }
   ],
   "meta": {
