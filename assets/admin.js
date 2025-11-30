@@ -553,7 +553,7 @@ async function exportProductsAsImage(products) {
   try {
     const available = products
       .slice()
-      .sort((a, b) => a.title.localeCompare(b.title, "es", { sensitivity: "base" }));
+      .sort(compareProductsAlpha);
     const pageSize = 9;
     const pages = Math.max(1, Math.ceil(available.length / pageSize));
     const downloads = [];
@@ -575,6 +575,7 @@ async function exportProductsAsImage(products) {
 }
 
 async function buildExportPage(products) {
+  const sortedProducts = products.slice().sort(compareProductsAlpha);
   const columns = 3;
   const padding = 32;
   const gap = 16;
@@ -610,15 +611,15 @@ async function buildExportPage(products) {
 
   // Preload images
   const images = await Promise.all(
-    products.map((product) => {
+    sortedProducts.map((product) => {
       const cover = buildAssetUrl(product.images?.[0] || "");
       return loadImageWithFallback(encodeURI(cover));
     })
   );
 
   ctx.textBaseline = "top";
-  for (let index = 0; index < products.length; index += 1) {
-    const product = products[index];
+  for (let index = 0; index < sortedProducts.length; index += 1) {
+    const product = sortedProducts[index];
     const image = images[index];
     const row = Math.floor(index / columns);
     const col = index % columns;
@@ -642,6 +643,14 @@ async function buildExportPage(products) {
   });
 
   return canvasToBlobPromise(canvas, "image/png");
+}
+
+function compareProductsAlpha(a, b) {
+  const titleA = (a.title || "").toString();
+  const titleB = (b.title || "").toString();
+  const result = titleA.localeCompare(titleB, "es", { sensitivity: "base", numeric: true });
+  if (result !== 0) return result;
+  return (a.slug || a.id || "").localeCompare(b.slug || b.id || "", "es", { sensitivity: "base" });
 }
 
 function drawProductCard(ctx, { x, y, width, height, image, imageHeight, product }) {
