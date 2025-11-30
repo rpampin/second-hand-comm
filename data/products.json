@@ -534,6 +534,22 @@
       "currency": "USD",
       "createdAt": "2025-11-29T19:56:54.495Z",
       "updatedAt": "2025-11-29T19:56:54.495Z"
+    },
+    {
+      "id": "0793cb78-8ffe-4f66-bd81-d0d166293f05",
+      "slug": "carcassonne-la-torre",
+      "title": "Carcassonne + La Torre",
+      "price": 100000,
+      "status": "available",
+      "description": "<div><p><strong>Carcassonne 20th Anniversary Edition</strong> y la expansión <strong>La Torre</strong>, ambos en excelente estado, prácticamente sin uso.</p>\n<p>Carcassonne es un juego de construcción de territorios donde vas armando caminos, ciudades y campos mientras colocás tus meeples para sumar puntos. Es muy fácil de aprender y engancha al toque. Está pensado para 2 a 5 jugadores, dura más o menos 35–45 minutos por partida y es apto desde los 7 u 8 años para arriba.</p>\n<p>La expansión <strong>La Torre</strong> agrega una torre física que sirve tanto para guardar las losetas como para usarlas en el juego: podés “capturar” meeples de otros jugadores y recuperar los tuyos después, así que le suma un nivel extra de estrategia. La mecánica es simple, pero cambia bastante la manera de encarar cada turno.</p>\n<p>Ambos están completos, con todas las losetas, meeples e instructivos. Las cajas están impecables y las piezas no tienen desgaste.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:28:52.639Z",
+      "updatedAt": "2025-11-30T22:28:52.639Z",
+      "images": [
+        "data/images/carcassonne-la-torre/carcassonne-la-torre-1764541732816-0.webp",
+        "data/images/carcassonne-la-torre/carcassonne-la-torre-1764541734420-1.webp",
+        "data/images/carcassonne-la-torre/carcassonne-la-torre-1764541735877-2.webp"
+      ]
     }
   ],
   "meta": {
