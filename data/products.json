@@ -597,6 +597,21 @@
         "data/images/crazy-gorilla/crazy-gorilla-1764542242329-0.webp",
         "data/images/crazy-gorilla/crazy-gorilla-1764542243911-1.webp"
       ]
+    },
+    {
+      "id": "9abfcc39-945b-4000-92b8-67d360afefac",
+      "slug": "fantasma-blitz-menudo-susto",
+      "title": "Fantasma Blitz Menudo Susto",
+      "price": 15000,
+      "status": "available",
+      "description": "<div><p>Fantasma Flitz en excelentes condiciones. El único detalle es que el sombrero está dañado pero usable, y las cartas están enfundadas, así que se conservan impecables.</p>\n<p>Es un juego rápido y muy divertido para chicos, donde hay que reaccionar al instante y agarrar el objeto correcto según la carta que aparece.</p>\n<p>Datos útiles:</p>\n<ul>\n<li>\n<p>Jugadores: 2 a 4</p>\n</li>\n<li>\n<p>Edad recomendada: 5+</p>\n</li>\n<li>\n<p>Duración: 10–15 min</p>\n</li>\n</ul></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:41:52.292Z",
+      "updatedAt": "2025-11-30T22:41:52.292Z",
+      "images": [
+        "data/images/fantasma-blitz-menudo-susto/fantasma-blitz-menudo-susto-1764542512422-0.webp",
+        "data/images/fantasma-blitz-menudo-susto/fantasma-blitz-menudo-susto-1764542513912-1.webp"
+      ]
     }
   ],
   "meta": {
