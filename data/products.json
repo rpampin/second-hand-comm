@@ -582,6 +582,21 @@
         "data/images/catan/catan-1764542072943-1.webp",
         "data/images/catan/catan-1764542074060-2.webp"
       ]
+    },
+    {
+      "id": "b3dac753-6dc4-4bca-8636-3bf3436f2102",
+      "slug": "crazy-gorilla",
+      "title": "Crazy Gorilla",
+      "price": 10000,
+      "status": "available",
+      "description": "<div><p>Crazy Gorilla Completo y en muy buen estado. Ideal para chicos y partidas cortas.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:37:22.191Z",
+      "updatedAt": "2025-11-30T22:37:22.191Z",
+      "images": [
+        "data/images/crazy-gorilla/crazy-gorilla-1764542242329-0.webp",
+        "data/images/crazy-gorilla/crazy-gorilla-1764542243911-1.webp"
+      ]
     }
   ],
   "meta": {
