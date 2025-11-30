@@ -550,6 +550,22 @@
         "data/images/carcassonne-la-torre/carcassonne-la-torre-1764541734420-1.webp",
         "data/images/carcassonne-la-torre/carcassonne-la-torre-1764541735877-2.webp"
       ]
+    },
+    {
+      "id": "16f8798c-66f6-4ccb-94fb-f552f41d36d6",
+      "slug": "carcassonne-jr",
+      "title": "Carcassonne Jr",
+      "price": 30000,
+      "status": "available",
+      "description": "<div><p><strong>Carcassonne Junior</strong> en perfecto estado. Es la versión infantil del clásico Carcassonne, pensado para que los chicos puedan jugar sin complicarse pero manteniendo la idea del juego original.</p>\n<p>En esta versión no hay reglas difíciles ni conteos raros: las losetas encajan siempre y el objetivo es ir colocando tus peones a medida que completás caminos. Es muy intuitivo y enseguida lo entienden, incluso si nunca jugaron juegos de mesa.</p>\n<p><strong>Datos útiles:</strong></p>\n<ul>\n<li>\n<p>Edad recomendada: <strong>a partir de 4–5 años</strong></p>\n</li>\n<li>\n<p>Jugadores: <strong>2 a 4</strong></p>\n</li>\n<li>\n<p>Duración de partida: <strong>15–20 minutos</strong></p>\n</li>\n<li>\n<p>Ideal para que los chicos aprendan a planificar, reconocer patrones y tomar decisiones simples sin frustrarse</p>\n</li>\n</ul>\n<p>El juego es totalmente independiente del Carcassonne “de grandes”, pero mantiene la vibra de construir el mapa entre todos. Es perfecto para familias, porque los adultos lo pueden jugar sin aburrirse y los chicos lo disfrutan un montón.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:31:14.640Z",
+      "updatedAt": "2025-11-30T22:31:14.640Z",
+      "images": [
+        "data/images/carcassonne-jr/carcassonne-jr-1764541874825-0.webp",
+        "data/images/carcassonne-jr/carcassonne-jr-1764541876509-1.webp",
+        "data/images/carcassonne-jr/carcassonne-jr-1764541878005-2.webp"
+      ]
     }
   ],
   "meta": {
