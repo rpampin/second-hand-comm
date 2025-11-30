@@ -534,6 +534,116 @@
       "currency": "USD",
       "createdAt": "2025-11-29T19:56:54.495Z",
       "updatedAt": "2025-11-29T19:56:54.495Z"
+    },
+    {
+      "id": "0793cb78-8ffe-4f66-bd81-d0d166293f05",
+      "slug": "carcassonne-la-torre",
+      "title": "Carcassonne + La Torre",
+      "price": 100000,
+      "status": "available",
+      "description": "<div><p><strong>Carcassonne 20th Anniversary Edition</strong> y la expansión <strong>La Torre</strong>, ambos en excelente estado, prácticamente sin uso.</p>\n<p>Carcassonne es un juego de construcción de territorios donde vas armando caminos, ciudades y campos mientras colocás tus meeples para sumar puntos. Es muy fácil de aprender y engancha al toque. Está pensado para 2 a 5 jugadores, dura más o menos 35–45 minutos por partida y es apto desde los 7 u 8 años para arriba.</p>\n<p>La expansión <strong>La Torre</strong> agrega una torre física que sirve tanto para guardar las losetas como para usarlas en el juego: podés “capturar” meeples de otros jugadores y recuperar los tuyos después, así que le suma un nivel extra de estrategia. La mecánica es simple, pero cambia bastante la manera de encarar cada turno.</p>\n<p>Ambos están completos, con todas las losetas, meeples e instructivos. Las cajas están impecables y las piezas no tienen desgaste.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:28:52.639Z",
+      "updatedAt": "2025-11-30T22:28:52.639Z",
+      "images": [
+        "data/images/carcassonne-la-torre/carcassonne-la-torre-1764541732816-0.webp",
+        "data/images/carcassonne-la-torre/carcassonne-la-torre-1764541734420-1.webp",
+        "data/images/carcassonne-la-torre/carcassonne-la-torre-1764541735877-2.webp"
+      ]
+    },
+    {
+      "id": "16f8798c-66f6-4ccb-94fb-f552f41d36d6",
+      "slug": "carcassonne-jr",
+      "title": "Carcassonne Jr",
+      "price": 30000,
+      "status": "available",
+      "description": "<div><p><strong>Carcassonne Junior</strong> en perfecto estado. Es la versión infantil del clásico Carcassonne, pensado para que los chicos puedan jugar sin complicarse pero manteniendo la idea del juego original.</p>\n<p>En esta versión no hay reglas difíciles ni conteos raros: las losetas encajan siempre y el objetivo es ir colocando tus peones a medida que completás caminos. Es muy intuitivo y enseguida lo entienden, incluso si nunca jugaron juegos de mesa.</p>\n<p><strong>Datos útiles:</strong></p>\n<ul>\n<li>\n<p>Edad recomendada: <strong>a partir de 4–5 años</strong></p>\n</li>\n<li>\n<p>Jugadores: <strong>2 a 4</strong></p>\n</li>\n<li>\n<p>Duración de partida: <strong>15–20 minutos</strong></p>\n</li>\n<li>\n<p>Ideal para que los chicos aprendan a planificar, reconocer patrones y tomar decisiones simples sin frustrarse</p>\n</li>\n</ul>\n<p>El juego es totalmente independiente del Carcassonne “de grandes”, pero mantiene la vibra de construir el mapa entre todos. Es perfecto para familias, porque los adultos lo pueden jugar sin aburrirse y los chicos lo disfrutan un montón.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:31:14.640Z",
+      "updatedAt": "2025-11-30T22:31:14.640Z",
+      "images": [
+        "data/images/carcassonne-jr/carcassonne-jr-1764541874825-0.webp",
+        "data/images/carcassonne-jr/carcassonne-jr-1764541876509-1.webp",
+        "data/images/carcassonne-jr/carcassonne-jr-1764541878005-2.webp"
+      ]
+    },
+    {
+      "id": "3676e145-6292-46e1-8fa8-5f36a27e2c93",
+      "slug": "catan",
+      "title": "Catan",
+      "price": 50000,
+      "status": "available",
+      "description": "<div><p><strong>Catán</strong> en perfecto estado y con poco uso.</p>\n<p>Clásico de estrategia donde tenés que expandir tus asentamientos, negociar recursos y competir por dominar la isla. Es un juego súper entretenido, ideal para arrancar en el mundo de los juegos de mesa modernos.</p>\n<p><strong>Datos útiles:</strong></p>\n<ul>\n<li>\n<p>Jugadores: <strong>3 a 4</strong></p>\n</li>\n<li>\n<p>Edad recomendada: <strong>10+</strong></p>\n</li>\n<li>\n<p>Duración: <strong>60–75 min</strong></p>\n</li>\n<li>\n<p>Mecánicas: gestión de recursos, negociación y construcción</p>\n</li>\n</ul></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:34:31.053Z",
+      "updatedAt": "2025-11-30T22:34:31.053Z",
+      "images": [
+        "data/images/catan/catan-1764542071207-0.webp",
+        "data/images/catan/catan-1764542072943-1.webp",
+        "data/images/catan/catan-1764542074060-2.webp"
+      ]
+    },
+    {
+      "id": "b3dac753-6dc4-4bca-8636-3bf3436f2102",
+      "slug": "crazy-gorilla",
+      "title": "Crazy Gorilla",
+      "price": 10000,
+      "status": "available",
+      "description": "<div><p>Crazy Gorilla Completo y en muy buen estado. Ideal para chicos y partidas cortas.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:37:22.191Z",
+      "updatedAt": "2025-11-30T22:37:22.191Z",
+      "images": [
+        "data/images/crazy-gorilla/crazy-gorilla-1764542242329-0.webp",
+        "data/images/crazy-gorilla/crazy-gorilla-1764542243911-1.webp"
+      ]
+    },
+    {
+      "id": "9abfcc39-945b-4000-92b8-67d360afefac",
+      "slug": "fantasma-blitz-menudo-susto",
+      "title": "Fantasma Blitz Menudo Susto",
+      "price": 15000,
+      "status": "available",
+      "description": "<div><p>Fantasma Flitz en excelentes condiciones. El único detalle es que el sombrero está dañado pero usable, y las cartas están enfundadas, así que se conservan impecables.</p>\n<p>Es un juego rápido y muy divertido para chicos, donde hay que reaccionar al instante y agarrar el objeto correcto según la carta que aparece.</p>\n<p>Datos útiles:</p>\n<ul>\n<li>\n<p>Jugadores: 2 a 4</p>\n</li>\n<li>\n<p>Edad recomendada: 5+</p>\n</li>\n<li>\n<p>Duración: 10–15 min</p>\n</li>\n</ul></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:41:52.292Z",
+      "updatedAt": "2025-11-30T22:41:52.292Z",
+      "images": [
+        "data/images/fantasma-blitz-menudo-susto/fantasma-blitz-menudo-susto-1764542512422-0.webp",
+        "data/images/fantasma-blitz-menudo-susto/fantasma-blitz-menudo-susto-1764542513912-1.webp"
+      ]
+    },
+    {
+      "id": "15b07895-9bf2-424c-b55c-d86bbd70d676",
+      "slug": "ludomatic",
+      "title": "Ludomatic",
+      "price": 7000,
+      "status": "available",
+      "description": "<div><p>Ludomatic en muy buen estado. Todas las piezas están completas y el dado interno funciona perfecto dentro de la burbuja, así que el mecanismo hace el clásico “pop” sin problemas. Faltan las piezas de repuesto, pero estan las 4 de cada jugador.</p>\n<p>Es el juego ideal para chicos: simple, rápido y súper entretenido. Solo apretás la burbuja para tirar el dado y avanzás tus fichas hasta llegar a la meta. Perfecto para jugar en familia sin explicar reglas complicadas.</p>\n<p>Datos útiles:</p>\n<ul>\n<li>\n<p>Jugadores: 2 a 4</p>\n</li>\n<li>\n<p>Edad recomendada: 5+</p>\n</li>\n<li>\n<p>Partidas cortas, de 10–15 min</p>\n</li>\n</ul></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:43:34.268Z",
+      "updatedAt": "2025-11-30T22:43:34.268Z",
+      "images": [
+        "data/images/ludomatic/ludomatic-1764542614499-0.webp",
+        "data/images/ludomatic/ludomatic-1764542616413-1.webp",
+        "data/images/ludomatic/ludomatic-1764542617887-2.webp"
+      ]
+    },
+    {
+      "id": "ba5cd7aa-1b6d-4e6b-8ce7-3ed5b67ef6e9",
+      "slug": "masajeador-cervial",
+      "title": "Masajeador Cervial",
+      "price": 40000,
+      "status": "available",
+      "description": "<div><p>Masajeador de Cuello SK-NM550 en muy buen estado. Funciona perfecto, está limpio y viene con todo lo que trae originalmente.</p>\n<p>Es el típico masajeador shiatsu con 8 rodillos que hacen un masaje profundo y súper relajante. Tiene calor opcional, tres niveles de intensidad y cambia la dirección del masaje solo, así que no tenés que hacer nada más que ponértelo en el cuello y dejar que labure. Sirve tanto para cuello como para hombros, espalda baja o piernas.</p>\n<p>Ideal para aflojar tensiones después del día o para usar un rato mientras mirás algo o trabajás sentado. Es cómodo, práctico y no ocupa nada de espacio.</p>\n<p>Producto nuevo: https://smartkassel.com.ar/productos/salud-y-belleza/masajeadores/masajeador-de-cuello-sk-nm550/</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-11-30T22:48:05.619Z",
+      "updatedAt": "2025-11-30T22:48:05.619Z",
+      "images": [
+        "data/images/masajeador-cervial/masajeador-cervial-1764542885757-0.webp",
+        "data/images/masajeador-cervial/masajeador-cervial-1764542887052-1.webp",
+        "data/images/masajeador-cervial/masajeador-cervial-1764542888207-2.webp"
+      ]
     }
   ],
   "meta": {
