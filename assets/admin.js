@@ -582,11 +582,14 @@ async function buildExportPage(products) {
   const cardWidth = 280;
   const imageHeight = Math.round(cardWidth * 0.75);
   const cardHeight = imageHeight + 90;
-  const headerHeight = 110;
+  const headerHeight = 72;
+  const footerHeight = 150;
   const rows = Math.max(1, Math.min(3, Math.ceil(products.length / columns)));
-  const gridTop = padding + headerHeight + 8;
+  const gridTop = padding + headerHeight;
+  const gridHeight = rows * cardHeight + gap * (rows - 1);
+  const footerTop = gridTop + gridHeight + padding;
   const width = padding * 2 + columns * cardWidth + gap * (columns - 1);
-  const height = gridTop + rows * cardHeight + gap * (rows - 1) + padding + 64;
+  const height = footerTop + footerHeight + padding;
 
   const canvas = document.createElement("canvas");
   canvas.width = width;
@@ -601,13 +604,9 @@ async function buildExportPage(products) {
   // Header
   ctx.fillStyle = "#0f172a";
   ctx.font = "700 22px 'Inter', Arial, sans-serif";
-  ctx.fillText("Venta de Garage", padding, padding + 18);
-  ctx.font = "400 15px 'Inter', Arial, sans-serif";
-  ctx.fillStyle = "#475569";
-  ctx.fillText("Se retira por Banfield, punto de encuentro, o envios", padding, padding + 40);
-  ctx.font = "600 13px 'Inter', Arial, sans-serif";
-  ctx.fillStyle = "#0f172a";
-  ctx.fillText(EXPORT_QR_LINK, padding, padding + 64);
+  ctx.fillText("Venta de Garage", padding, padding + 20);
+  ctx.fillStyle = "#cbd5e1";
+  ctx.fillRect(padding, padding + headerHeight - 18, width - padding * 2, 1.25);
 
   // Preload images
   const images = await Promise.all(
@@ -636,10 +635,23 @@ async function buildExportPage(products) {
     });
   }
 
+  const footerPadding = 20;
+  const footerWidth = width - padding * 2;
+  drawRoundedRect(ctx, padding, footerTop, footerWidth, footerHeight, 14, "#0f172a");
+  ctx.fillStyle = "#e2e8f0";
+  ctx.font = "700 18px 'Inter', Arial, sans-serif";
+  ctx.fillText("Se retira por Banfield, punto de encuentro o envios", padding + footerPadding, footerTop + footerPadding);
+  ctx.font = "600 15px 'Inter', Arial, sans-serif";
+  ctx.fillStyle = "#cbd5e1";
+  ctx.fillText(EXPORT_QR_LINK, padding + footerPadding, footerTop + footerPadding + 32);
+
+  const qrSize = 98;
+  const qrX = padding + footerWidth - qrSize - footerPadding;
+  const qrY = footerTop + (footerHeight - qrSize) / 2;
   await drawQrCode(ctx, {
-    x: width - padding - 92,
-    y: padding,
-    size: 92,
+    x: qrX,
+    y: qrY,
+    size: qrSize,
   });
 
   return canvasToBlobPromise(canvas, "image/png");
