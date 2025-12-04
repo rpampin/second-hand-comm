@@ -477,7 +477,7 @@
       "id": "a5d1fb0c-9aaf-4e3d-a20a-99e0667860d1",
       "slug": "sillon-2-cuerpos",
       "title": "Sillon 2 cuerpos",
-      "price": 99999,
+      "price": 59999,
       "status": "available",
       "images": [
         "data/images/sillon-2-cuerpos/sillon-2-cuerpos-1764445197221-0.webp",
@@ -486,10 +486,10 @@
         "data/images/sillon-2-cuerpos/sillon-2-cuerpos-1764445200839-3.webp",
         "data/images/sillon-2-cuerpos/sillon-2-cuerpos-1764445202059-4.webp"
       ],
-      "description": "<div><p>Sillon de 2 cuerpos para reparar y retapizar 230 x 90 x 100. Los brazos se pueden desatornillar para reducir el espacio de translado (35 x 90 x 70 cada brazo) (LxHxA)</p></div>",
+      "description": "<div><p>Sillon de 2 cuerpos para reparar y retapizar 230 x 90 x 100. Los brazos se pueden desatornillar para reducir el espacio de translado (35 x 90 x 70 cada brazo) (LxHxA)</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T19:39:57.163Z",
-      "updatedAt": "2025-11-29T19:39:57.163Z"
+      "updatedAt": "2025-12-04T15:41:25.708Z"
     },
     {
       "id": "44c249cf-532d-4df3-bbb0-2c066cd7d103",
