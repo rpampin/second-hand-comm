@@ -390,14 +390,14 @@
       "slug": "cocina-electrica-liliana",
       "title": "Cocina electrica Liliana",
       "price": 70000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/cocina-electrica-liliana/cocina-electrica-liliana-1764442985713-0.webp"
       ],
       "description": "<div><p>cocina eléctrica Kitchinet Max AK200, en muy buen estado. Es el modelo grande, 7 en 1, súper práctica porque sirve para un montón de cosas: parrilla, sartén, horno, paellera, vaporera, fondue y cocina eléctrica común.</p>\n<p>Tiene tapa de vidrio templado, termostato con 5 niveles de temperatura, base antiadherente, y viene con parrilla metálica.<br>Medidas: 27 × 34 cm, profundidad 7,7 cm.<br>Potencia: 1500 W.</p></div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T19:03:05.586Z",
-      "updatedAt": "2025-11-29T19:03:05.586Z"
+      "updatedAt": "2025-12-04T15:40:35.424Z"
     },
     {
       "id": "2f52d132-1a85-4744-a266-981e76e5c125",
