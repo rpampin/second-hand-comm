@@ -699,10 +699,10 @@
       "title": "Anafe Eléctrico",
       "price": 10000,
       "status": "available",
-      "description": "<div><p>Anafe Eléctrico Marca Ultracomb Modelo An-2200 Negro. Funciona bien.</p></div>",
+      "description": "<div><p>Anafe Eléctrico Marca Ultracomb Modelo An-2200 Negro. Funciona bien.<br><br></p>\n<p>Hornalla grande: 1500W (diám: 18 cm)<br>Ideal para casas u oficinas<br>Óptimo rendimiento<br>Fácil de usar<br>No requiere instalación<br>Temperatura regulable mediante termostato<br>Perilla al frente con 5 potencias seleccionables<br>Luz indicadora de encendido<br>Apoyos antideslizantes</p>\n<p>Dimensiones<br>Alto: 296mm<br>Ancho: 290mm<br>Profundidad: 89mm<br>Peso: 2,40kg</p>\n<p>Funciones: Cocción<br>Temporizador: No<br>Potencia: 1500W</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-12-10T11:20:16.585Z",
-      "updatedAt": "2025-12-10T11:20:16.585Z",
+      "updatedAt": "2025-12-10T11:23:30.520Z",
       "images": [
         "data/images/anafe-electrico/anafe-electrico-1765365616689-0.webp"
       ]
