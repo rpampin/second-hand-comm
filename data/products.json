@@ -692,6 +692,20 @@
         "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365432644-16.webp",
         "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365433727-17.webp"
       ]
+    },
+    {
+      "id": "8cd3ad51-8b0c-426e-ba35-e54dfdeb4735",
+      "slug": "anafe-electrico",
+      "title": "Anafe Eléctrico",
+      "price": 10000,
+      "status": "available",
+      "description": "<div><p>Anafe Eléctrico Marca Ultracomb Modelo An-2200 Negro. Funciona bien.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-12-10T11:20:16.585Z",
+      "updatedAt": "2025-12-10T11:20:16.585Z",
+      "images": [
+        "data/images/anafe-electrico/anafe-electrico-1765365616689-0.webp"
+      ]
     }
   ],
   "meta": {
