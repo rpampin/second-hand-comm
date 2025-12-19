@@ -721,6 +721,20 @@
         "data/images/cepillo-de-pelo-alisador-electrico/cepillo-de-pelo-alisador-electrico-1766153818118-0.webp",
         "data/images/cepillo-de-pelo-alisador-electrico/cepillo-de-pelo-alisador-electrico-1766153820001-1.webp"
       ]
+    },
+    {
+      "id": "4e09f49c-ee33-433e-b131-05b13760a2a8",
+      "slug": "rizador-buclera",
+      "title": "Rizador Buclera",
+      "price": 20000,
+      "status": "available",
+      "description": "<div><p>Rizador Rulos Gama Ceramic Nano Turmalina 19mm</p>\n<blockquote>\n<p>El Rizador Rulos Gama Ceramic Nano Turmalina 19mm es un rizador profesional equipado con tecnología Tourmaline. Este rizador de pelo es extremadamente fácil de usar y es capaz de crear una variedad de estilos, desde tirabuzones suaves hasta ondas naturales y beach waves. Además, deja el pelo suave y sin efecto encrespado. Este rizador cuenta con un diámetro de cabezal de 19mm, lo que lo hace ideal para crear rizos de tamaño medio. Es una rizadora de barril, un diseño clásico y versátil que permite una amplia gama de estilos. Puede alcanzar una temperatura máxima de 190°C, lo que garantiza un rizado rápido y efectivo, incluso en cabellos gruesos y rebeldes. A pesar de su alta temperatura máxima, también puede funcionar a temperatura ambiente, con una temperatura mínima de 0°C, lo que lo hace seguro para todo tipo de cabello. Este modelo de rizador no cuenta con control de temperatura, lo que simplifica su uso y lo hace ideal para aquellos que prefieren un enfoque sin complicaciones para el peinado.</p>\n</blockquote></div>",
+      "currency": "ARS",
+      "createdAt": "2025-12-19T14:33:36.800Z",
+      "updatedAt": "2025-12-19T14:33:36.800Z",
+      "images": [
+        "data/images/rizador-buclera/rizador-buclera-1766154816932-0.webp"
+      ]
     }
   ],
   "meta": {
