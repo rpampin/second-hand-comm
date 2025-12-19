@@ -375,7 +375,7 @@
       "slug": "despensero-organizador",
       "title": "Despensero Organizador",
       "price": 80000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/despensero-organizador/despensero-organizador-1764442608599-0.webp",
         "data/images/despensero-organizador/despensero-organizador-1764442609986-1.webp"
@@ -383,7 +383,7 @@
       "description": "<div><p>Despensero organizador de 4 estantes. Medida 60 x 30 x 140 (LxHxA) en perfectas condiciones.&nbsp;</p></div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T18:56:48.482Z",
-      "updatedAt": "2025-11-29T18:56:48.482Z"
+      "updatedAt": "2025-12-19T13:57:54.182Z"
     },
     {
       "id": "3ea150da-eabb-4b4e-bd6a-bc56781e3ea9",
@@ -651,16 +651,16 @@
       "title": "Zapatilla Montagne N34",
       "price": 50000,
       "status": "available",
-      "description": "<div><p>Zapatilla Kids Teder De Niños Senderismo Montaña Montagne Negro/Aqua con 1 solo uso.</p></div>",
-      "currency": "ARS",
-      "createdAt": "2025-12-10T11:10:26.226Z",
-      "updatedAt": "2025-12-10T11:10:26.226Z",
       "images": [
         "data/images/zapatilla-montagne-n34/zapatilla-montagne-n34-1765365026450-0.webp",
         "data/images/zapatilla-montagne-n34/zapatilla-montagne-n34-1765365028254-1.webp",
         "data/images/zapatilla-montagne-n34/zapatilla-montagne-n34-1765365029884-2.webp",
         "data/images/zapatilla-montagne-n34/zapatilla-montagne-n34-1765365031343-3.webp"
-      ]
+      ],
+      "description": "<div><p>Zapatilla Kids Teder De Niños Senderismo Montaña Montagne Negro/Aqua con 1 solo uso.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-12-10T11:10:26.226Z",
+      "updatedAt": "2025-12-10T11:10:26.226Z"
     },
     {
       "id": "d113d78f-a80d-42f6-89a4-8b4d05700e63",
@@ -668,10 +668,6 @@
       "title": "PH en Banfield Este",
       "price": 80000,
       "status": "available",
-      "description": "<div><p>La propiedad se encuentra ubicada a aproximadamente 10 cuadras de Av. Alsina y a 15 cuadras de la estación de trenes de Banfield, en una zona tranquila y de buen acceso.<br>Amplio PH interno desarrollado en dos plantas, con acceso por pasillo. Al ingresar se encuentra un luminoso living comedor con piso porcelanato y una cocina semi integrada equipada con muebles altos y bajos de excelente calidad, anafe y horno empotrado. Un distribuidor conduce a los dos dormitorios: uno de ellos con piso flotante y placard, y el segundo con piso de parquet (sin placard). Baño completo con ducha y ventiluz.<br>Patio con escalera de hierro que conecta con un amplio quincho o dependencia de servicio, donde se ubican el lavadero y un segundo baño. Desde este sector se accede a un espacio de terraza.</p></div>",
-      "currency": "USD",
-      "createdAt": "2025-12-10T11:16:50.710Z",
-      "updatedAt": "2025-12-10T11:16:50.710Z",
       "images": [
         "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365410822-0.webp",
         "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365412278-1.webp",
@@ -691,7 +687,11 @@
         "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365431130-15.webp",
         "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365432644-16.webp",
         "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365433727-17.webp"
-      ]
+      ],
+      "description": "<div><p>La propiedad se encuentra ubicada a aproximadamente 10 cuadras de Av. Alsina y a 15 cuadras de la estación de trenes de Banfield, en una zona tranquila y de buen acceso.<br>Amplio PH interno desarrollado en dos plantas, con acceso por pasillo. Al ingresar se encuentra un luminoso living comedor con piso porcelanato y una cocina semi integrada equipada con muebles altos y bajos de excelente calidad, anafe y horno empotrado. Un distribuidor conduce a los dos dormitorios: uno de ellos con piso flotante y placard, y el segundo con piso de parquet (sin placard). Baño completo con ducha y ventiluz.<br>Patio con escalera de hierro que conecta con un amplio quincho o dependencia de servicio, donde se ubican el lavadero y un segundo baño. Desde este sector se accede a un espacio de terraza.</p></div>",
+      "currency": "USD",
+      "createdAt": "2025-12-10T11:16:50.710Z",
+      "updatedAt": "2025-12-10T11:16:50.710Z"
     },
     {
       "id": "8cd3ad51-8b0c-426e-ba35-e54dfdeb4735",
@@ -699,13 +699,13 @@
       "title": "Anafe Eléctrico",
       "price": 10000,
       "status": "available",
+      "images": [
+        "data/images/anafe-electrico/anafe-electrico-1765365616689-0.webp"
+      ],
       "description": "<div><p>Anafe Eléctrico Marca Ultracomb Modelo An-2200 Negro. Funciona bien.<br><br></p>\n<p>Hornalla grande: 1500W (diám: 18 cm)<br>Ideal para casas u oficinas<br>Óptimo rendimiento<br>Fácil de usar<br>No requiere instalación<br>Temperatura regulable mediante termostato<br>Perilla al frente con 5 potencias seleccionables<br>Luz indicadora de encendido<br>Apoyos antideslizantes</p>\n<p>Dimensiones<br>Alto: 296mm<br>Ancho: 290mm<br>Profundidad: 89mm<br>Peso: 2,40kg</p>\n<p>Funciones: Cocción<br>Temporizador: No<br>Potencia: 1500W</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-12-10T11:20:16.585Z",
-      "updatedAt": "2025-12-10T11:23:30.520Z",
-      "images": [
-        "data/images/anafe-electrico/anafe-electrico-1765365616689-0.webp"
-      ]
+      "updatedAt": "2025-12-10T11:23:30.520Z"
     }
   ],
   "meta": {
