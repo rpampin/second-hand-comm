@@ -24,7 +24,7 @@
       "slug": "biblioteca-de-pino",
       "title": "Biblioteca de Pino",
       "price": 30000,
-      "status": "sold",
+      "status": "available",
       "images": [
         "data/images/biblioteca-de-pino/biblioteca-de-pino-1764431807773-0.webp",
         "data/images/biblioteca-de-pino/biblioteca-de-pino-1764431809249-1.webp"
@@ -32,7 +32,7 @@
       "description": "<div><p>Biblioteca de pino usada de 60 x 32 x 155 (LxHxA) pintada de verde con pintura a la tiza</p></div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T15:56:47.672Z",
-      "updatedAt": "2025-12-19T14:17:06.660Z"
+      "updatedAt": "2025-12-19T14:17:23.290Z"
     },
     {
       "id": "829e7c25-0fdb-4ee1-afb2-6ce2c47a11d3",
