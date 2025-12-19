@@ -706,6 +706,18 @@
       "currency": "ARS",
       "createdAt": "2025-12-10T11:20:16.585Z",
       "updatedAt": "2025-12-10T11:23:30.520Z"
+    },
+    {
+      "id": "2e0cdb7c-0259-48bc-b1ee-a52e0600f091",
+      "slug": "cepillo-de-pelo-alisador-electrico",
+      "title": "Cepillo De Pelo Alisador Electrico",
+      "price": 10000,
+      "status": "available",
+      "description": "<div><p>Cepillo De Pelo Alisador Electrico Calor</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-12-19T14:14:36.513Z",
+      "updatedAt": "2025-12-19T14:14:36.513Z",
+      "images": []
     }
   ],
   "meta": {
