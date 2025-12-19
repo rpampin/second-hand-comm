@@ -713,11 +713,14 @@
       "title": "Cepillo De Pelo Alisador Electrico",
       "price": 10000,
       "status": "available",
-      "description": "<div><p>Cepillo De Pelo Alisador Electrico Calor</p></div>",
+      "description": "<div><p>Cepillo de pelo alisador electrico calor 50w Westinghouse color negro funcionando perfectamente</p></div>",
       "currency": "ARS",
       "createdAt": "2025-12-19T14:14:36.513Z",
-      "updatedAt": "2025-12-19T14:14:36.513Z",
-      "images": []
+      "updatedAt": "2025-12-19T14:16:58.016Z",
+      "images": [
+        "data/images/cepillo-de-pelo-alisador-electrico/cepillo-de-pelo-alisador-electrico-1766153818118-0.webp",
+        "data/images/cepillo-de-pelo-alisador-electrico/cepillo-de-pelo-alisador-electrico-1766153820001-1.webp"
+      ]
     }
   ],
   "meta": {
