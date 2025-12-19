@@ -749,6 +749,22 @@
       "images": [
         "data/images/secador-de-philips/secador-de-philips-1766155922648-0.webp"
       ]
+    },
+    {
+      "id": "9266a111-f84d-4a30-829c-230d93f453b5",
+      "slug": "nintendo-3ds-xl",
+      "title": "Nintendo 3ds XL",
+      "price": 300000,
+      "status": "available",
+      "description": "<div><p>Nintendo 3ds XL en muy buen estado funcionando correctamente. Tiene mod para jugar copias y viene con una micro sd de 32gb con algunos juegos.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-12-19T15:56:55.094Z",
+      "updatedAt": "2025-12-19T15:56:55.094Z",
+      "images": [
+        "data/images/nintendo-3ds-xl/nintendo-3ds-xl-1766159815299-0.webp",
+        "data/images/nintendo-3ds-xl/nintendo-3ds-xl-1766159829580-1.webp",
+        "data/images/nintendo-3ds-xl/nintendo-3ds-xl-1766159832060-2.webp"
+      ]
     }
   ],
   "meta": {
