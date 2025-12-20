@@ -404,7 +404,7 @@
       "slug": "organizador-de-bano",
       "title": "Organizador De Baño",
       "price": 20000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/organizador-de-bano/organizador-de-bano-1764443233507-0.webp",
         "data/images/organizador-de-bano/organizador-de-bano-1764443235121-1.webp"
@@ -412,7 +412,7 @@
       "description": "<div><p>Organizador de baño estante rack sobre inodoro 3 niveles. En muy buen estado.</p></div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T19:07:13.356Z",
-      "updatedAt": "2025-11-29T19:07:13.356Z"
+      "updatedAt": "2025-12-20T20:55:51.546Z"
     },
     {
       "id": "bcfbe152-bcec-40c3-a0b7-233d7f2ea589",
@@ -713,14 +713,14 @@
       "title": "Cepillo De Pelo Alisador Electrico",
       "price": 10000,
       "status": "available",
-      "description": "<div><p>Cepillo de pelo alisador electrico calor 50w Westinghouse color negro funcionando perfectamente</p></div>",
-      "currency": "ARS",
-      "createdAt": "2025-12-19T14:14:36.513Z",
-      "updatedAt": "2025-12-19T14:16:58.016Z",
       "images": [
         "data/images/cepillo-de-pelo-alisador-electrico/cepillo-de-pelo-alisador-electrico-1766153818118-0.webp",
         "data/images/cepillo-de-pelo-alisador-electrico/cepillo-de-pelo-alisador-electrico-1766153820001-1.webp"
-      ]
+      ],
+      "description": "<div><p>Cepillo de pelo alisador electrico calor 50w Westinghouse color negro funcionando perfectamente</p></div>",
+      "currency": "ARS",
+      "createdAt": "2025-12-19T14:14:36.513Z",
+      "updatedAt": "2025-12-19T14:16:58.016Z"
     },
     {
       "id": "4e09f49c-ee33-433e-b131-05b13760a2a8",
@@ -728,13 +728,13 @@
       "title": "Rizador Buclera",
       "price": 20000,
       "status": "available",
+      "images": [
+        "data/images/rizador-buclera/rizador-buclera-1766154816932-0.webp"
+      ],
       "description": "<div><p>Rizador Rulos Gama Ceramic Nano Turmalina 19mm El Rizador Rulos Gama Ceramic Nano Turmalina 19mm es un rizador profesional equipado con tecnología Tourmaline. Este rizador de pelo es extremadamente fácil de usar y es capaz de crear una variedad de estilos, desde tirabuzones suaves hasta ondas naturales y beach waves. Además, deja el pelo suave y sin efecto encrespado. Este rizador cuenta con un diámetro de cabezal de 19mm, lo que lo hace ideal para crear rizos de tamaño medio. Es una rizadora de barril, un diseño clásico y versátil que permite una amplia gama de estilos. Puede alcanzar una temperatura máxima de 190°C, lo que garantiza un rizado rápido y efectivo, incluso en cabellos gruesos y rebeldes. A pesar de su alta temperatura máxima, también puede funcionar a temperatura ambiente, con una temperatura mínima de 0°C, lo que lo hace seguro para todo tipo de cabello. Este modelo de rizador no cuenta con control de temperatura, lo que simplifica su uso y lo hace ideal para aquellos que prefieren un enfoque sin complicaciones para el peinado.</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-12-19T14:33:36.800Z",
-      "updatedAt": "2025-12-19T14:47:11.240Z",
-      "images": [
-        "data/images/rizador-buclera/rizador-buclera-1766154816932-0.webp"
-      ]
+      "updatedAt": "2025-12-19T14:47:11.240Z"
     },
     {
       "id": "a1af7086-2a17-44a7-9a46-fdba8d8bb52c",
@@ -742,13 +742,13 @@
       "title": "Secador de Philips",
       "price": 40000,
       "status": "available",
+      "images": [
+        "data/images/secador-de-philips/secador-de-philips-1766155922648-0.webp"
+      ],
       "description": "<div><p>SalonDry Control&nbsp;Secador de cabello&nbsp;HP8182/00 2000W</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-12-19T14:52:02.519Z",
-      "updatedAt": "2025-12-19T14:52:02.519Z",
-      "images": [
-        "data/images/secador-de-philips/secador-de-philips-1766155922648-0.webp"
-      ]
+      "updatedAt": "2025-12-19T14:52:02.519Z"
     },
     {
       "id": "9266a111-f84d-4a30-829c-230d93f453b5",
@@ -756,15 +756,15 @@
       "title": "Nintendo 3ds XL",
       "price": 300000,
       "status": "available",
-      "description": "<div><p>Nintendo 3ds XL en muy buen estado funcionando correctamente con softmod. Viene con una micro sd de 32gb con algunos juegos.</p>\n</div>",
-      "currency": "ARS",
-      "createdAt": "2025-12-19T15:56:55.094Z",
-      "updatedAt": "2025-12-19T16:00:21.698Z",
       "images": [
         "data/images/nintendo-3ds-xl/nintendo-3ds-xl-1766159815299-0.webp",
         "data/images/nintendo-3ds-xl/nintendo-3ds-xl-1766159829580-1.webp",
         "data/images/nintendo-3ds-xl/nintendo-3ds-xl-1766159832060-2.webp"
-      ]
+      ],
+      "description": "<div><p>Nintendo 3ds XL en muy buen estado funcionando correctamente con softmod. Viene con una micro sd de 32gb con algunos juegos.</p>\n</div>",
+      "currency": "ARS",
+      "createdAt": "2025-12-19T15:56:55.094Z",
+      "updatedAt": "2025-12-19T16:00:21.698Z"
     }
   ],
   "meta": {
