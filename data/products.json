@@ -117,7 +117,7 @@
       "slug": "3-muebles-cubo",
       "title": "Muebles Cubo X3",
       "price": 60000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/3-muebles-cubo/3-muebles-cubo-1764437293302-0.webp",
         "data/images/3-muebles-cubo/3-muebles-cubo-1764437294697-1.webp"
@@ -125,7 +125,7 @@
       "description": "<div><p>3 Muebles cubo en buen estado Son 2 de 90 x 30 x 60 (LxHxA). Otro de 90 x 30 x 90.</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T17:28:13.241Z",
-      "updatedAt": "2025-11-29T21:31:54.582Z"
+      "updatedAt": "2025-12-30T01:52:19.482Z"
     },
     {
       "id": "f208afd2-a934-4656-9c6c-edb70d7925c9",
