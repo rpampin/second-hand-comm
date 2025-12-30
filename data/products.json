@@ -572,7 +572,7 @@
       "slug": "catan",
       "title": "Catan",
       "price": 50000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/catan/catan-1764542071207-0.webp",
         "data/images/catan/catan-1764542072943-1.webp",
@@ -581,7 +581,7 @@
       "description": "<div><p><strong>Catán</strong> en perfecto estado y con poco uso.</p>\n<p>Clásico de estrategia donde tenés que expandir tus asentamientos, negociar recursos y competir por dominar la isla. Es un juego súper entretenido, ideal para arrancar en el mundo de los juegos de mesa modernos.</p>\n<p><strong>Datos útiles:</strong></p>\n<ul>\n<li>\n<p>Jugadores: <strong>3 a 4</strong></p>\n</li>\n<li>\n<p>Edad recomendada: <strong>10+</strong></p>\n</li>\n<li>\n<p>Duración: <strong>60–75 min</strong></p>\n</li>\n<li>\n<p>Mecánicas: gestión de recursos, negociación y construcción</p>\n</li>\n</ul></div>",
       "currency": "ARS",
       "createdAt": "2025-11-30T22:34:31.053Z",
-      "updatedAt": "2025-11-30T22:34:31.053Z"
+      "updatedAt": "2025-12-30T01:52:13.570Z"
     },
     {
       "id": "b3dac753-6dc4-4bca-8636-3bf3436f2102",
