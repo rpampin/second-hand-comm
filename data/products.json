@@ -755,7 +755,7 @@
       "slug": "nintendo-3ds-xl",
       "title": "Nintendo 3ds XL",
       "price": 300000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/nintendo-3ds-xl/nintendo-3ds-xl-1766159815299-0.webp",
         "data/images/nintendo-3ds-xl/nintendo-3ds-xl-1766159829580-1.webp",
@@ -764,7 +764,7 @@
       "description": "<div><p>Nintendo 3ds XL en muy buen estado funcionando correctamente con softmod. Viene con una micro sd de 32gb con algunos juegos.</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-12-19T15:56:55.094Z",
-      "updatedAt": "2025-12-19T16:00:21.698Z"
+      "updatedAt": "2026-01-02T00:34:45.180Z"
     }
   ],
   "meta": {
