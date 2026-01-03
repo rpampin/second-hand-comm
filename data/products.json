@@ -464,14 +464,14 @@
       "slug": "shockmount-arana",
       "title": "Shockmount Araña",
       "price": 10000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/shockmount-arana/shockmount-arana-1764444256634-0.webp"
       ],
       "description": "<div><p>Shockmount Araña + Brazo articulado con morza</p>\n<p>Especifiaciones</p>\n<ul>\n<li>Suspensión elástica para amortiguar movimientos y roces</li>\n<li>Garantiza una excelente reducción de ruido</li>\n<li>Diámetro mínimo 4 cm</li>\n<li>Diámetro máximo 4.9 cm</li>\n</ul></div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T19:24:16.495Z",
-      "updatedAt": "2025-11-29T19:24:16.495Z"
+      "updatedAt": "2026-01-03T15:40:53.071Z"
     },
     {
       "id": "a5d1fb0c-9aaf-4e3d-a20a-99e0667860d1",
