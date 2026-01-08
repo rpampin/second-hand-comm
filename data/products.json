@@ -796,6 +796,21 @@
         "data/images/miyoo-mini-plus/miyoo-mini-plus-1767906852996-2.webp",
         "data/images/miyoo-mini-plus/miyoo-mini-plus-1767906854198-3.webp"
       ]
+    },
+    {
+      "id": "3600ed4a-959a-482b-92cd-2f56a1396a1d",
+      "slug": "monopatin-infantil",
+      "title": "Monopatin infantil",
+      "price": 20000,
+      "status": "available",
+      "description": "<div><p>Monopatin newtek 2095 monopatin infantil 3 ruedas con luces en muy buen estado.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-08T21:17:06.340Z",
+      "updatedAt": "2026-01-08T21:17:06.340Z",
+      "images": [
+        "data/images/monopatin-infantil/monopatin-infantil-1767907026477-0.webp",
+        "data/images/monopatin-infantil/monopatin-infantil-1767907028450-1.webp"
+      ]
     }
   ],
   "meta": {
