@@ -826,6 +826,22 @@
         "data/images/monopatin-adulto-100kg/monopatin-adulto-100kg-1767907163399-0.webp",
         "data/images/monopatin-adulto-100kg/monopatin-adulto-100kg-1767907165377-1.webp"
       ]
+    },
+    {
+      "id": "c5d39002-baf5-4ce3-a4be-f3bb3c2f05e7",
+      "slug": "valija-zenit-naranja",
+      "title": "Valija ZENIT Naranja",
+      "price": 50000,
+      "status": "available",
+      "description": "<div><p>Valija ZENIT Naranja en muy buen estado Alto 68cm x Ancho 45 x Profundidad 26cm</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-08T21:54:13.094Z",
+      "updatedAt": "2026-01-08T21:54:13.094Z",
+      "images": [
+        "data/images/valija-zenit-naranja/valija-zenit-naranja-1767909253229-0.webp",
+        "data/images/valija-zenit-naranja/valija-zenit-naranja-1767909255101-1.webp",
+        "data/images/valija-zenit-naranja/valija-zenit-naranja-1767909256338-2.webp"
+      ]
     }
   ],
   "meta": {
