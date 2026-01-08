@@ -811,6 +811,21 @@
         "data/images/monopatin-infantil/monopatin-infantil-1767907026477-0.webp",
         "data/images/monopatin-infantil/monopatin-infantil-1767907028450-1.webp"
       ]
+    },
+    {
+      "id": "dcfcabb6-e4e9-428b-bd89-17b28dfd810b",
+      "slug": "monopatin-adulto-100kg",
+      "title": "Monopatin adulto 100kg",
+      "price": 40000,
+      "status": "available",
+      "description": "<div><p>Monopatin Plegable Urbano Reforzado Hasta 100 Kilos</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-08T21:19:23.232Z",
+      "updatedAt": "2026-01-08T21:19:23.232Z",
+      "images": [
+        "data/images/monopatin-adulto-100kg/monopatin-adulto-100kg-1767907163399-0.webp",
+        "data/images/monopatin-adulto-100kg/monopatin-adulto-100kg-1767907165377-1.webp"
+      ]
     }
   ],
   "meta": {
