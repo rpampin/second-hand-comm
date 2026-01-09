@@ -663,37 +663,6 @@
       "updatedAt": "2026-01-09T12:39:32.335Z"
     },
     {
-      "id": "d113d78f-a80d-42f6-89a4-8b4d05700e63",
-      "slug": "ph-en-banfield-este",
-      "title": "PH en Banfield Este",
-      "price": 80000,
-      "status": "available",
-      "images": [
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365410822-0.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365412278-1.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365413600-2.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365414926-3.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365416067-4.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365417305-5.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365418633-6.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365419768-7.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365421204-8.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365422532-9.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365423660-10.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365425262-11.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365426799-12.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365428378-13.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365429923-14.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365431130-15.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365432644-16.webp",
-        "data/images/ph-en-banfield-este/ph-en-banfield-este-1765365433727-17.webp"
-      ],
-      "description": "<div><p>La propiedad se encuentra ubicada a aproximadamente 10 cuadras de Av. Alsina y a 15 cuadras de la estación de trenes de Banfield, en una zona tranquila y de buen acceso.<br>Amplio PH interno desarrollado en dos plantas, con acceso por pasillo. Al ingresar se encuentra un luminoso living comedor con piso porcelanato y una cocina semi integrada equipada con muebles altos y bajos de excelente calidad, anafe y horno empotrado. Un distribuidor conduce a los dos dormitorios: uno de ellos con piso flotante y placard, y el segundo con piso de parquet (sin placard). Baño completo con ducha y ventiluz.<br>Patio con escalera de hierro que conecta con un amplio quincho o dependencia de servicio, donde se ubican el lavadero y un segundo baño. Desde este sector se accede a un espacio de terraza.</p></div>",
-      "currency": "USD",
-      "createdAt": "2025-12-10T11:16:50.710Z",
-      "updatedAt": "2025-12-10T11:16:50.710Z"
-    },
-    {
       "id": "8cd3ad51-8b0c-426e-ba35-e54dfdeb4735",
       "slug": "anafe-electrico",
       "title": "Anafe Eléctrico",
