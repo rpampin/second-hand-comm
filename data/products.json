@@ -649,7 +649,7 @@
       "id": "1a957c50-4c75-4029-9ec8-f3a1e04b4938",
       "slug": "zapatilla-montagne-n34",
       "title": "Zapatilla Montagne N34",
-      "price": 50000,
+      "price": 45000,
       "status": "available",
       "images": [
         "data/images/zapatilla-montagne-n34/zapatilla-montagne-n34-1765365026450-0.webp",
@@ -657,10 +657,10 @@
         "data/images/zapatilla-montagne-n34/zapatilla-montagne-n34-1765365029884-2.webp",
         "data/images/zapatilla-montagne-n34/zapatilla-montagne-n34-1765365031343-3.webp"
       ],
-      "description": "<div><p>Zapatilla Kids Teder De Niños Senderismo Montaña Montagne Negro/Aqua con 1 solo uso.</p></div>",
+      "description": "<div><p>Zapatilla Kids Teder De Niños Senderismo Montaña Montagne Negro/Aqua con 1 solo uso.</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-12-10T11:10:26.226Z",
-      "updatedAt": "2025-12-10T11:10:26.226Z"
+      "updatedAt": "2026-01-09T12:39:32.335Z"
     },
     {
       "id": "d113d78f-a80d-42f6-89a4-8b4d05700e63",
