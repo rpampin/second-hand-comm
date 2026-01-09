@@ -313,15 +313,15 @@
       "id": "60bcff72-d954-4e24-8a42-ae976e7fc4b1",
       "slug": "mesa-auxiliar-de-algarrobo",
       "title": "Mesa auxiliar de algarrobo",
-      "price": 25000,
+      "price": 20000,
       "status": "available",
       "images": [
         "data/images/mesa-auxiliar-de-algarrobo/mesa-auxiliar-de-algarrobo-1764441263117-0.webp"
       ],
-      "description": "<div><p>Mesa auxiliar de algarrobo de 78 x 43 x 72 (LxHxA) en estado buen estado.</p></div>",
+      "description": "<div><p>Mesa auxiliar de algarrobo de 78 x 43 x 72 (LxHxA) en estado buen estado.</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T18:34:22.984Z",
-      "updatedAt": "2025-11-29T18:34:22.984Z"
+      "updatedAt": "2026-01-09T12:37:25.593Z"
     },
     {
       "id": "b0c9d059-bc7a-47b9-8445-94e8618b26a4",
