@@ -4,7 +4,7 @@
       "id": "ad3f7311-5fb7-4a65-a194-6a20223a99e2",
       "slug": "zotac-gaming-geforce-rtx-3080-trinity10gb",
       "title": "RTX 3080",
-      "price": 350,
+      "price": 300,
       "status": "available",
       "images": [
         "data/images/zotac-gaming-geforce-rtx-3080-trinity10gb/zotac-gaming-geforce-rtx-3080-trinity10gb-1764430477152-0.webp",
@@ -17,7 +17,7 @@
       "description": "<div><p>ZOTAC GAMING GeForce RTX 3080 Trinity 10GBSe encuentra en perfectas condiciones usado unicamente para Gaming con undervolt Características:2nd Gen Ray Tracing Cores3rd Gen Tensor CoresHoloBlack DesignSPECTRA 2.0 RGB LightingIceStorm 2.0 Advanced CoolingActive Fan Control with FREEZE Fan StopMetal Frontplate and RGB LED BackplateFireStorm UtilityVR ReadyLHR 43 MH/s ETH hash rate (est.) Especificaciones:GPU GeForce RTX 3080CUDA cores 8704Memoria Video 10GB GDDR6XBus Memoria 320-bitReloj del motor Boost: 1770 MHzReloj de memoria 19 GbpsPCI Express 4.0 16xSalida de Video3 x DisplayPort 1.4a (up to 7680x4320@60Hz)HDMI 2.1 (up to 7680x4320@60Hz) Ultra High Speed HDMI Cable is required to support 8K/60FPS or 4K/120FPSSoporta HDCP 2.3Capacidad Multi Pantalla Quad DisplayRecomendad fuente de poder 750WConsumo de Energia 340W MaximumEntrada de Poder 2 x 8-pinDirectX 12 UltimateOpenGL 4.6Enfriamiento IceStorm 2.0Tamaño de Slot 2.5 slotSLI Not SupportedApoyado OS Windows 10 64-bit (build 2004 or later)Largo de Tarjeta 317.8mm x 131.8mm x 59.6mm / 12.5\" x 5.2\" x 2.3\"Accesorios 2 x Dual 6-pin to 8-pin cableManual</p>\n</div>",
       "currency": "USD",
       "createdAt": "2025-11-29T15:34:37.004Z",
-      "updatedAt": "2025-12-22T13:33:22.386Z"
+      "updatedAt": "2026-01-09T12:34:05.711Z"
     },
     {
       "id": "b94719b1-cf9a-4eeb-a64e-c7fa7e0965cf",
@@ -772,13 +772,13 @@
       "title": "Arbol de navidad completo",
       "price": 50000,
       "status": "available",
+      "images": [
+        "data/images/arbol-de-navidad-completo/arbol-de-navidad-completo-1767904394885-0.webp"
+      ],
       "description": "<div><p>Arbol de navidad con todos los adornos de 130cm</p></div>",
       "currency": "ARS",
       "createdAt": "2026-01-08T20:33:14.697Z",
-      "updatedAt": "2026-01-08T20:33:14.697Z",
-      "images": [
-        "data/images/arbol-de-navidad-completo/arbol-de-navidad-completo-1767904394885-0.webp"
-      ]
+      "updatedAt": "2026-01-08T20:33:14.697Z"
     },
     {
       "id": "d8e92680-df67-446b-8650-e0c32c797ae0",
@@ -786,16 +786,16 @@
       "title": "Miyoo Mini Plus+",
       "price": 100000,
       "status": "available",
-      "description": "<div><p>Miyoo Mini Plus+ $100.000 cada uno. Ambos en perfecto estado, y con emuladores y juegos cargados.</p>\n<ul>\n<li>Pantalla HD de 3.5 pulgadas: equipada con una pantalla de alta resolución de 3.5 pulgadas para imágenes nítidas y detalladas, sumergiéndote en el mundo de los juegos retro con una experiencia de visualización mejorada.</li>\n<li>Batería de gran capacidad de 3000 mAh - Batería integrada de 3000 mAh para un tiempo de juego prolongado, permitiéndote disfrutar de juegos durante viajes o actividades al aire libre sin preocuparte por quedarte sin batería.</li>\n<li>Almacenamiento grande de 128 GB - Con 128 GB de almacenamiento interno, guarda fácilmente una gran colección de juegos clásicos sin preocuparte por el espacio, y disfruta de una amplia gama de títulos de juegos retro.</li>\n<li>Soporta múltiples formatos de emulador: compatible con múltiples emuladores, lo que te permite jugar juegos clásicos en varios formatos, reviviendo la alegría de los juegos retro en cualquier lugar, en cualquier momento.</li>\n</ul></div>",
-      "currency": "ARS",
-      "createdAt": "2026-01-08T21:14:09.458Z",
-      "updatedAt": "2026-01-08T21:14:09.458Z",
       "images": [
         "data/images/miyoo-mini-plus/miyoo-mini-plus-1767906849615-0.webp",
         "data/images/miyoo-mini-plus/miyoo-mini-plus-1767906851871-1.webp",
         "data/images/miyoo-mini-plus/miyoo-mini-plus-1767906852996-2.webp",
         "data/images/miyoo-mini-plus/miyoo-mini-plus-1767906854198-3.webp"
-      ]
+      ],
+      "description": "<div><p>Miyoo Mini Plus+ $100.000 cada uno. Ambos en perfecto estado, y con emuladores y juegos cargados.</p>\n<ul>\n<li>Pantalla HD de 3.5 pulgadas: equipada con una pantalla de alta resolución de 3.5 pulgadas para imágenes nítidas y detalladas, sumergiéndote en el mundo de los juegos retro con una experiencia de visualización mejorada.</li>\n<li>Batería de gran capacidad de 3000 mAh - Batería integrada de 3000 mAh para un tiempo de juego prolongado, permitiéndote disfrutar de juegos durante viajes o actividades al aire libre sin preocuparte por quedarte sin batería.</li>\n<li>Almacenamiento grande de 128 GB - Con 128 GB de almacenamiento interno, guarda fácilmente una gran colección de juegos clásicos sin preocuparte por el espacio, y disfruta de una amplia gama de títulos de juegos retro.</li>\n<li>Soporta múltiples formatos de emulador: compatible con múltiples emuladores, lo que te permite jugar juegos clásicos en varios formatos, reviviendo la alegría de los juegos retro en cualquier lugar, en cualquier momento.</li>\n</ul></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-08T21:14:09.458Z",
+      "updatedAt": "2026-01-08T21:14:09.458Z"
     },
     {
       "id": "3600ed4a-959a-482b-92cd-2f56a1396a1d",
@@ -803,14 +803,14 @@
       "title": "Monopatin infantil",
       "price": 20000,
       "status": "available",
-      "description": "<div><p>Monopatin newtek 2095 monopatin infantil 3 ruedas con luces en muy buen estado.</p></div>",
-      "currency": "ARS",
-      "createdAt": "2026-01-08T21:17:06.340Z",
-      "updatedAt": "2026-01-08T21:17:06.340Z",
       "images": [
         "data/images/monopatin-infantil/monopatin-infantil-1767907026477-0.webp",
         "data/images/monopatin-infantil/monopatin-infantil-1767907028450-1.webp"
-      ]
+      ],
+      "description": "<div><p>Monopatin newtek 2095 monopatin infantil 3 ruedas con luces en muy buen estado.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-08T21:17:06.340Z",
+      "updatedAt": "2026-01-08T21:17:06.340Z"
     },
     {
       "id": "dcfcabb6-e4e9-428b-bd89-17b28dfd810b",
@@ -818,14 +818,14 @@
       "title": "Monopatin adulto 100kg",
       "price": 40000,
       "status": "available",
-      "description": "<div><p>Monopatin Plegable Urbano Reforzado Hasta 100 Kilos</p></div>",
-      "currency": "ARS",
-      "createdAt": "2026-01-08T21:19:23.232Z",
-      "updatedAt": "2026-01-08T21:19:23.232Z",
       "images": [
         "data/images/monopatin-adulto-100kg/monopatin-adulto-100kg-1767907163399-0.webp",
         "data/images/monopatin-adulto-100kg/monopatin-adulto-100kg-1767907165377-1.webp"
-      ]
+      ],
+      "description": "<div><p>Monopatin Plegable Urbano Reforzado Hasta 100 Kilos</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-08T21:19:23.232Z",
+      "updatedAt": "2026-01-08T21:19:23.232Z"
     },
     {
       "id": "c5d39002-baf5-4ce3-a4be-f3bb3c2f05e7",
@@ -833,15 +833,15 @@
       "title": "Valija ZENIT Naranja",
       "price": 40000,
       "status": "available",
-      "description": "<div><p>Valija ZENIT Naranja en muy buen estado Alto 68cm x Ancho 45 x Profundidad 26cm</p>\n</div>",
-      "currency": "ARS",
-      "createdAt": "2026-01-08T21:54:13.094Z",
-      "updatedAt": "2026-01-08T21:56:18.575Z",
       "images": [
         "data/images/valija-zenit-naranja/valija-zenit-naranja-1767909253229-0.webp",
         "data/images/valija-zenit-naranja/valija-zenit-naranja-1767909255101-1.webp",
         "data/images/valija-zenit-naranja/valija-zenit-naranja-1767909256338-2.webp"
-      ]
+      ],
+      "description": "<div><p>Valija ZENIT Naranja en muy buen estado Alto 68cm x Ancho 45 x Profundidad 26cm</p>\n</div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-08T21:54:13.094Z",
+      "updatedAt": "2026-01-08T21:56:18.575Z"
     },
     {
       "id": "1343e272-5169-450e-aa7e-7a4d781c6fb7",
@@ -849,15 +849,15 @@
       "title": "Valija ZENIT Azul",
       "price": 40000,
       "status": "available",
-      "description": "<div><p>Valija ZENIT Azul en muy buen estado Alto 65cm x Ancho 42 x Profundidad 26cm</p>\n</div>",
-      "currency": "ARS",
-      "createdAt": "2026-01-08T21:55:46.856Z",
-      "updatedAt": "2026-01-08T21:56:21.839Z",
       "images": [
         "data/images/valija-zenit-azul/valija-zenit-azul-1767909346989-0.webp",
         "data/images/valija-zenit-azul/valija-zenit-azul-1767909348889-1.webp",
         "data/images/valija-zenit-azul/valija-zenit-azul-1767909349963-2.webp"
-      ]
+      ],
+      "description": "<div><p>Valija ZENIT Azul en muy buen estado Alto 65cm x Ancho 42 x Profundidad 26cm</p>\n</div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-08T21:55:46.856Z",
+      "updatedAt": "2026-01-08T21:56:21.839Z"
     }
   ],
   "meta": {
