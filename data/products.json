@@ -207,16 +207,16 @@
       "id": "32bb54c0-1890-4d47-8fa2-a47afd7db5c7",
       "slug": "fuente-12v-5a",
       "title": "Fuente 12V 5A",
-      "price": 9000,
+      "price": 8000,
       "status": "available",
       "images": [
         "data/images/fuente-12v-5a/fuente-12v-5a-1764438822737-0.webp",
         "data/images/fuente-12v-5a/fuente-12v-5a-1764438824221-1.webp"
       ],
-      "description": "<div><p>Fuente Pronext Power 12V 5A, con muy poco uso y funcionando perfecto. Ideal para cámaras, tiras LED o cualquier equipo que necesite 12V estables.</p>\n<p>Características:</p>\n<ul>\n<li>\n<p>Salida: 12V DC – 5A</p>\n</li>\n<li>\n<p>Entrada: 110–220V automática</p>\n</li>\n<li>\n<p>Voltaje estable con regulación del 5%</p>\n</li>\n<li>\n<p>Uso interno, ventilada por convección</p>\n</li>\n<li>\n<p>Medidas: 159 × 97 × 38 mm</p>\n</li>\n</ul></div>",
+      "description": "<div><p>Fuente Pronext Power 12V 5A, con muy poco uso y funcionando perfecto. Ideal para cámaras, tiras LED o cualquier equipo que necesite 12V estables. Características: Salida: 12V DC – 5A Entrada: 110–220V automática Voltaje estable con regulación del 5% Uso interno, ventilada por convección Medidas: 159 × 97 × 38 mm</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T17:53:42.555Z",
-      "updatedAt": "2025-11-29T17:53:42.555Z"
+      "updatedAt": "2026-01-09T12:35:13.661Z"
     },
     {
       "id": "06f7ab68-17d4-421e-9829-405af4f249cf",
