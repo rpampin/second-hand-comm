@@ -858,6 +858,23 @@
       "currency": "ARS",
       "createdAt": "2026-01-08T21:55:46.856Z",
       "updatedAt": "2026-01-08T21:56:21.839Z"
+    },
+    {
+      "id": "a517e36b-4d4f-4c1e-b6a9-1054055c09d3",
+      "slug": "carrier-xpower-inverter-6400w-5500f",
+      "title": "Carrier XPower Inverter 6400W 5500F",
+      "price": 800000,
+      "status": "available",
+      "description": "<div><p>Aire Acondicionado Split Frío/Calor Carrier XPower Inverter 6400W&nbsp;5500F 53HVG2201E</p>\n<p>Tiene una pequeña perdida en la unidad exterior. Le cargo una sola garrafa de 600g y funciona todo el verano. Ya luego pierde lo suficiente para no enfriar y no encender el compresor correctamente.</p>\n<p>Actualmente colocado en un living/comedor/cocina y enfria muy bien en 24. Al ser Inverter gasta menos luz.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-09T22:02:32.712Z",
+      "updatedAt": "2026-01-09T22:02:32.712Z",
+      "images": [
+        "data/images/carrier-xpower-inverter-6400w-5500f/carrier-xpower-inverter-6400w-5500f-1767996152814-0.webp",
+        "data/images/carrier-xpower-inverter-6400w-5500f/carrier-xpower-inverter-6400w-5500f-1767996154078-1.webp",
+        "data/images/carrier-xpower-inverter-6400w-5500f/carrier-xpower-inverter-6400w-5500f-1767996155609-2.webp",
+        "data/images/carrier-xpower-inverter-6400w-5500f/carrier-xpower-inverter-6400w-5500f-1767996157069-3.webp"
+      ]
     }
   ],
   "meta": {
