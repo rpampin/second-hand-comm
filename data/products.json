@@ -357,7 +357,7 @@
       "id": "fa4b4a5b-b3f7-4331-b682-2ba099bdcbf6",
       "slug": "microondas-sanyo-emgx2015",
       "title": "Microondas Sanyo EMGX2015",
-      "price": 50000,
+      "price": 45000,
       "status": "available",
       "images": [
         "data/images/microondas-sanyo-emgx2015/microondas-sanyo-emgx2015-1764442350298-0.webp",
@@ -365,10 +365,10 @@
         "data/images/microondas-sanyo-emgx2015/microondas-sanyo-emgx2015-1764442352946-2.webp",
         "data/images/microondas-sanyo-emgx2015/microondas-sanyo-emgx2015-1764442354081-3.webp"
       ],
-      "description": "<div><p>Microondas Sanyo EMGX2015, funcionando bien en todas sus funciones de cocción.<br>Está usado y tiene un detalle: el botón de apertura de la puerta a veces falla, pero la puerta abre sin problema dándole un toque más firme. El resto funciona perfecto.</p>\n<p>Especificaciones:</p>\n<ul>\n<li>\n<p>Alimentación: 220V – 50Hz</p>\n</li>\n<li>\n<p>Consumo: 1350W (microondas) / 1000W (grill)</p>\n</li>\n<li>\n<p>Frecuencia: 2450 MHz</p>\n</li>\n<li>\n<p>Potencia de microondas: 800W</p>\n</li>\n<li>\n<p>Industria Argentina</p>\n</li>\n</ul></div>",
+      "description": "<div><p>Microondas Sanyo EMGX2015, funcionando bien en todas sus funciones de cocción.Está usado y tiene un detalle: el botón de apertura de la puerta a veces falla, pero la puerta abre sin problema dándole un toque más firme. El resto funciona perfecto. Especificaciones: Alimentación: 220V – 50Hz Consumo: 1350W (microondas) / 1000W (grill) Frecuencia: 2450 MHz Potencia de microondas: 800W Industria Argentina</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T18:52:30.206Z",
-      "updatedAt": "2025-11-29T18:52:30.206Z"
+      "updatedAt": "2026-01-09T12:37:38.226Z"
     },
     {
       "id": "960be909-99f2-416e-b3dd-1076bb020881",
