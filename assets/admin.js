@@ -13,6 +13,7 @@ const LOCAL_PRODUCTS_PATH = "data/products.local.json";
 const LOCAL_TOKEN = "__local__";
 // Evita spinners infinitos devolviendo control si la red se cuelga.
 const REQUEST_TIMEOUT_MS = 15000;
+const IMAGE_DOWNLOAD_TIMEOUT_MS = 30000;
 
 const LOCAL_MODE = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 const ACTIVE_PRODUCTS_PATH = LOCAL_MODE ? LOCAL_PRODUCTS_PATH : PRODUCTS_PATH;
@@ -35,6 +36,7 @@ const RICH_TEXT_SOURCES = [
     base: RICH_TEXT_BASE,
   },
 ];
+const ZIP_SCRIPT_SOURCE = "https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js";
 const EXPORT_QR_LINK = "https://tinyurl.com/sale-banfield";
 const EXPORT_QR_BASE64 =
   "iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQAQMAAAC6caSPAAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACDElEQVR4nO3aPc7CMAwGYCMGRo7AUThaOVqPkiN8I8OnGuKfxFErJIaCkV4PKEryMLmR64bo/Zi4x43ozLMtHMN8GPMCArI/+fcEvejSfHj+lJC4Mv/X0hgEJCs515y+1yXyMen8TDKmSq4sfwUC8gPEkv+ueV7ndQQC8kVSl68LnViinsMyuIGA/AKxsCriSepYYg7zFiAgSQn3cHKqSd6qi8vLl0QQkBxkK07OZVw294CA7Eg8k+9+DrNlMmtFIfMxq0FAEpPFk/xVc1gzfwEByUikL0GHvrTVHI59DAIB2Z1oIyIUujx0erXS0K3tTAYByUc0LPnlTG7NYXpWF/GsHh8KEJBcxKoI22YPgoQ1h4vvkQ1aXYCAZCP9GGd9s+PWHI5vfNQ4gYDsTih8O54kYRdvqbE3HyRmIquZQUCykiGGlppXF6vkBwHJRXTJPqkdlVhYbdxC/2oBAUlJarFxtSJExnW1WHdu+I7sDwIIyAeItc7KutKYyetni96FAwFJSOIb36ql1kLHG40IEJDvkyHafR7jHK8HGwQB2Z9M3MOaD0TefLDsvYXb6UQgICnJWDm089lbavJXmvy+EQQkJ+nHdbydbi211YMAAvILhDdbau2DHffSGgTkg8QvT8YrDdxjK5NBQFIQCz+T2VtqsTncbkeAgCQlMbHtcvvYUithTyECAUlJ3o8HRoxxZuG0gJYAAAAASUVORK5CYII=";
@@ -65,6 +67,7 @@ const ALLOWED_RICH_TAGS = new Set([
 ]);
 let richtextLoader = null;
 let richtextBaseUrl = RICH_TEXT_BASE;
+let zipLoader = null;
 const DEFAULT_META = {
   currency: "ARS",
   locale: "es-AR",
@@ -352,6 +355,7 @@ function buildDashboardView() {
         </div>
         <div class="admin-header-actions">
           <button type="button" class="ghost-button" id="export-button">Exportar</button>
+          <button type="button" class="ghost-button" id="export-images-button">Exportar imagenes</button>
           <button type="button" class="ghost-button" id="refresh-button">Refrescar</button>
           <button type="button" class="ghost-button" id="logout-button">Cerrar sesion</button>
         </div>
@@ -392,6 +396,7 @@ function buildDashboardView() {
     searchInput: document.getElementById("sidebar-search-input"),
     newButton: document.getElementById("new-product"),
     exportButton: document.getElementById("export-button"),
+    exportImagesButton: document.getElementById("export-images-button"),
     refreshButton: document.getElementById("refresh-button"),
     logoutButton: document.getElementById("logout-button"),
     overlay: document.getElementById("admin-overlay"),
@@ -413,6 +418,9 @@ function buildDashboardView() {
   });
   if (refs.dashboard.exportButton) {
     refs.dashboard.exportButton.addEventListener("click", handleExportGrid);
+  }
+  if (refs.dashboard.exportImagesButton) {
+    refs.dashboard.exportImagesButton.addEventListener("click", handleExportImagesZip);
   }
   refs.dashboard.refreshButton.addEventListener("click", () => loadProducts(true));
   refs.dashboard.logoutButton.addEventListener("click", handleLogout);
@@ -548,6 +556,19 @@ function handleExportGrid() {
   });
 }
 
+function handleExportImagesZip() {
+  const items = state.products.filter((product) => product.status !== "sold");
+  const totalImages = items.reduce((total, product) => total + (product.images?.length || 0), 0);
+  if (!items.length || totalImages === 0) {
+    setStatus({ type: "info", text: "No hay imagenes disponibles para exportar" }, { duration: 3200 });
+    return;
+  }
+  exportActiveImagesAsZip(items).catch((error) => {
+    console.error("handleExportImagesZip error", error);
+    setStatus({ type: "error", text: error.message || "No se pudo exportar las imagenes" }, { autoClear: false });
+  });
+}
+
 async function exportProductsAsImage(products) {
   setOverlay("Generando imagen...");
   try {
@@ -572,6 +593,105 @@ async function exportProductsAsImage(products) {
   } finally {
     setOverlay(null);
   }
+}
+
+async function exportActiveImagesAsZip(products) {
+  await loadZipScript();
+  if (!window.JSZip) {
+    throw new Error("No se pudo cargar el compresor");
+  }
+  setOverlay("Preparando exportacion...");
+  try {
+    const entries = buildImageEntries(products);
+    if (!entries.length) {
+      throw new Error("No hay imagenes disponibles para exportar");
+    }
+    const zip = new window.JSZip();
+    const failures = [];
+    for (let index = 0; index < entries.length; index += 1) {
+      const entry = entries[index];
+      setOverlay(`Descargando imagenes... ${index + 1}/${entries.length}`);
+      try {
+        const response = await fetchWithTimeout(
+          entry.url,
+          { timeoutMessage: "La descarga de imagenes tardo demasiado." },
+          IMAGE_DOWNLOAD_TIMEOUT_MS
+        );
+        if (!response.ok) {
+          throw new Error(`Error ${response.status}`);
+        }
+        const blob = await response.blob();
+        zip.file(entry.zipPath, blob);
+      } catch (error) {
+        failures.push(entry.zipPath);
+        console.warn("exportActiveImagesAsZip: download failed", entry.url, error);
+      }
+    }
+    if (zip.file(/./).length === 0) {
+      throw new Error("No se pudieron descargar las imagenes");
+    }
+    setOverlay("Comprimiendo imagenes...");
+    const blob = await zip.generateAsync(
+      {
+        type: "blob",
+        compression: "DEFLATE",
+        compressionOptions: { level: 6 },
+      },
+      (metadata) => {
+        if (metadata && Number.isFinite(metadata.percent)) {
+          setOverlay(`Comprimiendo imagenes... ${Math.round(metadata.percent)}%`);
+        }
+      }
+    );
+    const filename = `mercadito-imagenes-${new Date().toISOString().slice(0, 10)}.zip`;
+    downloadBlob(blob, filename);
+    if (failures.length) {
+      setStatus(
+        {
+          type: "info",
+          text: `Zip generado con ${failures.length} imagen(es) omitida(s).`,
+        },
+        { duration: 5200 }
+      );
+    } else {
+      setStatus({ type: "success", text: "Imagenes exportadas correctamente" }, { duration: 3600 });
+    }
+  } finally {
+    setOverlay(null);
+  }
+}
+
+function buildImageEntries(products) {
+  const entries = [];
+  products.forEach((product, productIndex) => {
+    const folderName = getProductFolderName(product, productIndex);
+    const images = Array.isArray(product.images) ? product.images : [];
+    images.forEach((imagePath, imageIndex) => {
+      if (!imagePath) return;
+      const filename = extractImageFilename(imagePath, imageIndex);
+      const url = buildCacheBustedUrl(buildAssetUrl(imagePath));
+      entries.push({
+        url,
+        zipPath: `${folderName}/${filename}`,
+      });
+    });
+  });
+  return entries;
+}
+
+function getProductFolderName(product, index) {
+  const slug = slugify(product.slug || product.title || "");
+  if (slug) return slug;
+  if (product.id) return `producto-${product.id}`;
+  return `producto-${index + 1}`;
+}
+
+function extractImageFilename(path, index) {
+  const cleaned = String(path || "").split("?")[0].split("#")[0];
+  const parts = cleaned.split("/");
+  const name = parts[parts.length - 1];
+  if (name) return name;
+  return `imagen-${index + 1}.jpg`;
 }
 
 async function buildExportPage(products) {
@@ -1215,6 +1335,16 @@ function loadRichtextScript() {
     richtextLoader = null;
   });
   return richtextLoader;
+}
+
+function loadZipScript() {
+  if (window.JSZip) return Promise.resolve();
+  if (zipLoader) return zipLoader;
+  zipLoader = loadScript(ZIP_SCRIPT_SOURCE);
+  zipLoader.catch(() => {
+    zipLoader = null;
+  });
+  return zipLoader;
 }
 
 function loadScript(src) {
@@ -1982,6 +2112,16 @@ function buildAssetUrl(path) {
   const base = adminIndex >= 0 ? window.location.pathname.slice(0, adminIndex) : "";
   const prefix = base || "";
   return `${prefix}/${normalized}`;
+}
+
+function buildCacheBustedUrl(resource) {
+  try {
+    const url = new URL(resource, window.location.href);
+    url.searchParams.set("_cb", Math.floor(Date.now() / 1000).toString(36));
+    return url.toString();
+  } catch (error) {
+    return resource;
+  }
 }
 
 function debounce(fn, delay = 200) {
