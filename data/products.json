@@ -834,16 +834,16 @@
       "title": "Carrier XPower Inverter 6400W 5500F",
       "price": 800000,
       "status": "available",
-      "description": "<div><p>Aire Acondicionado Split Frío/Calor Carrier XPower Inverter 6400W&nbsp;5500F 53HVG2201E</p>\n<p>Tiene una pequeña perdida en la unidad exterior. Le cargo una sola garrafa de 600g y funciona todo el verano. Ya luego pierde lo suficiente para no enfriar y no encender el compresor correctamente.</p>\n<p>Actualmente colocado en un living/comedor/cocina y enfria muy bien en 24. Al ser Inverter gasta menos luz.</p></div>",
-      "currency": "ARS",
-      "createdAt": "2026-01-09T22:02:32.712Z",
-      "updatedAt": "2026-01-09T22:02:32.712Z",
       "images": [
         "data/images/carrier-xpower-inverter-6400w-5500f/carrier-xpower-inverter-6400w-5500f-1767996152814-0.webp",
         "data/images/carrier-xpower-inverter-6400w-5500f/carrier-xpower-inverter-6400w-5500f-1767996154078-1.webp",
         "data/images/carrier-xpower-inverter-6400w-5500f/carrier-xpower-inverter-6400w-5500f-1767996155609-2.webp",
         "data/images/carrier-xpower-inverter-6400w-5500f/carrier-xpower-inverter-6400w-5500f-1767996157069-3.webp"
-      ]
+      ],
+      "description": "<div><p>Aire Acondicionado Split Frío/Calor Carrier XPower Inverter 6400W&nbsp;5500F 53HVG2201E</p>\n<p>Tiene una pequeña perdida en la unidad exterior. Le cargo una sola garrafa de 600g y funciona todo el verano. Ya luego pierde lo suficiente para no enfriar y no encender el compresor correctamente.</p>\n<p>Actualmente colocado en un living/comedor/cocina y enfria muy bien en 24. Al ser Inverter gasta menos luz.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-09T22:02:32.712Z",
+      "updatedAt": "2026-01-09T22:02:32.712Z"
     },
     {
       "id": "58ebb100-2ab4-4010-93cc-e861ff491b10",
@@ -851,13 +851,29 @@
       "title": "Mueble TV + Columna",
       "price": 450000,
       "status": "available",
-      "description": "<div><p>Mueble en hierro y madera Mueble de TV - Ancho 120cm, Alto 80cm, Profundo 40cmColumna - Ancho 40cm, Alto 160cm, Profundo 40cm</p>\n</div>",
-      "currency": "ARS",
-      "createdAt": "2026-01-09T22:49:41.959Z",
-      "updatedAt": "2026-01-09T22:51:34.215Z",
       "images": [
         "data/images/mueble-tv-columna/mueble-tv-columna-1767999094325-0.webp",
         "data/images/mueble-tv-columna/mueble-tv-columna-1767999095804-1.webp"
+      ],
+      "description": "<div><p>Mueble en hierro y madera Mueble de TV - Ancho 120cm, Alto 80cm, Profundo 40cmColumna - Ancho 40cm, Alto 160cm, Profundo 40cm</p>\n</div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-09T22:49:41.959Z",
+      "updatedAt": "2026-01-09T22:51:34.215Z"
+    },
+    {
+      "id": "4315d271-e74e-4d03-899c-e8549d0b39b1",
+      "slug": "psp-2000",
+      "title": "PSP 2000",
+      "price": 100000,
+      "status": "available",
+      "description": "<div><p>PSP 2000 con hack, con bateria nueva y cargador nuevo. Viene con una memoria de PSP de 4GB. Falta el cable usb.</p>\n<p>Esta en buen estado, con un poco de la pintura saltada, y tiene unas manchas en el LCD que no molestan al usar, pero estan ahi.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-11T16:13:15.115Z",
+      "updatedAt": "2026-01-11T16:13:15.115Z",
+      "images": [
+        "data/images/psp-2000/psp-2000-1768147995192-0.webp",
+        "data/images/psp-2000/psp-2000-1768147996560-1.webp",
+        "data/images/psp-2000/psp-2000-1768147997561-2.webp"
       ]
     }
   ],
