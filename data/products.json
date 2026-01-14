@@ -817,7 +817,7 @@
       "slug": "valija-zenit-azul",
       "title": "Valija ZENIT Azul",
       "price": 40000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/valija-zenit-azul/valija-zenit-azul-1767909346989-0.webp",
         "data/images/valija-zenit-azul/valija-zenit-azul-1767909348889-1.webp",
@@ -826,7 +826,7 @@
       "description": "<div><p>Valija ZENIT Azul en muy buen estado Alto 65cm x Ancho 42 x Profundidad 26cm</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2026-01-08T21:55:46.856Z",
-      "updatedAt": "2026-01-08T21:56:21.839Z"
+      "updatedAt": "2026-01-14T15:45:05.319Z"
     },
     {
       "id": "a517e36b-4d4f-4c1e-b6a9-1054055c09d3",
