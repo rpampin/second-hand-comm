@@ -801,7 +801,7 @@
       "slug": "valija-zenit-naranja",
       "title": "Valija ZENIT Naranja",
       "price": 40000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/valija-zenit-naranja/valija-zenit-naranja-1767909253229-0.webp",
         "data/images/valija-zenit-naranja/valija-zenit-naranja-1767909255101-1.webp",
@@ -810,7 +810,7 @@
       "description": "<div><p>Valija ZENIT Naranja en muy buen estado Alto 68cm x Ancho 45 x Profundidad 26cm</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2026-01-08T21:54:13.094Z",
-      "updatedAt": "2026-01-08T21:56:18.575Z"
+      "updatedAt": "2026-01-14T15:45:02.470Z"
     },
     {
       "id": "1343e272-5169-450e-aa7e-7a4d781c6fb7",
