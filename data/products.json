@@ -236,7 +236,7 @@
       "id": "c8a21075-3716-47cf-afa6-28587db4bc24",
       "slug": "heladera-whirlpool-wrm39x1",
       "title": "Heladera Whirlpool WRM39X1",
-      "price": 90000,
+      "price": 50000,
       "status": "available",
       "images": [
         "data/images/heladera-whirlpool-wrm39x1/heladera-whirlpool-wrm39x1-1764439647111-0.webp",
@@ -244,10 +244,10 @@
         "data/images/heladera-whirlpool-wrm39x1/heladera-whirlpool-wrm39x1-1764439649998-2.webp",
         "data/images/heladera-whirlpool-wrm39x1/heladera-whirlpool-wrm39x1-1764439651365-3.webp"
       ],
-      "description": "<div><p>Heladera Whirlpool WRM39X1 con freezer no frost.</p>\n<p>A partir de un golpe de tension dejo de enfriar y congelar. Esta para revisar.</p></div>",
+      "description": "<div><p>Heladera Whirlpool WRM39X1 con freezer no frost. A partir de un golpe de tension dejo de enfriar y congelar. Esta para revisar.</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T18:07:27.042Z",
-      "updatedAt": "2026-01-09T22:54:10.116Z"
+      "updatedAt": "2026-01-14T00:27:25.079Z"
     },
     {
       "id": "5e270caf-bbb5-4958-ad9c-2d2e6ef043d4",
