@@ -709,15 +709,15 @@
       "id": "a1af7086-2a17-44a7-9a46-fdba8d8bb52c",
       "slug": "secador-de-philips",
       "title": "Secador de Philips",
-      "price": 40000,
+      "price": 35000,
       "status": "available",
       "images": [
         "data/images/secador-de-philips/secador-de-philips-1766155922648-0.webp"
       ],
-      "description": "<div><p>SalonDry Control&nbsp;Secador de cabello&nbsp;HP8182/00 2000W</p>\n</div>",
+      "description": "<div><p>SalonDry Control Secador de cabello HP8182/00 2000W</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-12-19T14:52:02.519Z",
-      "updatedAt": "2025-12-19T14:52:02.519Z"
+      "updatedAt": "2026-01-14T00:25:23.618Z"
     },
     {
       "id": "9266a111-f84d-4a30-829c-230d93f453b5",
