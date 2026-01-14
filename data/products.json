@@ -865,7 +865,7 @@
       "slug": "psp-2000",
       "title": "PSP 2000",
       "price": 100000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/psp-2000/psp-2000-1768147995192-0.webp",
         "data/images/psp-2000/psp-2000-1768147996560-1.webp",
@@ -874,7 +874,7 @@
       "description": "<div><p>PSP 2000 con hack, con bateria nueva y cargador nuevo. Viene con una memoria de PSP de 4GB. Falta el cable usb.</p>\n<p>Esta en buen estado, con un poco de la pintura saltada, y tiene unas manchas en el LCD que no molestan al usar, pero estan ahi.</p></div>",
       "currency": "ARS",
       "createdAt": "2026-01-11T16:13:15.115Z",
-      "updatedAt": "2026-01-11T16:13:15.115Z"
+      "updatedAt": "2026-01-14T14:15:53.720Z"
     }
   ],
   "meta": {
