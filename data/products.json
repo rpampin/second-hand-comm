@@ -875,6 +875,27 @@
       "currency": "ARS",
       "createdAt": "2026-01-11T16:13:15.115Z",
       "updatedAt": "2026-01-14T14:15:53.720Z"
+    },
+    {
+      "id": "db2d6c08-6b01-4997-b7b7-fb446557cd34",
+      "slug": "pc-ryzen-9500-rtx-3080-completa",
+      "title": "Pc Ryzen 9500 RTX 3080 Completa",
+      "price": 1800,
+      "status": "available",
+      "description": "<div><p>PC Completa</p>\n<table><colgroup><col style=\"width: 49.9346%;\"><col style=\"width: 49.9346%;\">\n</colgroup><tbody>\n<tr>\n<td>PROCESADOR</td>\n<td>Ryzen 9 5900X – 12 núcleos / 24 hilos, 3.7 GHz base / hasta 4.9 GHz boost</td>\n</tr>\n<tr>\n<td>COOLER</td>\n<td>be quiet! Dark Rock Pro 4 – doble torre, muy silencioso</td>\n</tr>\n<tr>\n<td>MOTHERBOARD</td>\n<td>MSI B450M Mortar</td>\n</tr>\n<tr>\n<td>MEMORIA</td>\n<td>32 GB DDR4 3200 MHz CL16 (G.Skill)</td>\n</tr>\n<tr>\n<td>GPU</td>\n<td>MSI GeForce RTX 3080 Gaming Z Trio LHR – 10 GB GDDR6X</td>\n</tr>\n<tr>\n<td>FUENTE</td>\n<td>Corsair RM850x – 850W, 80 Plus Gold, totalmente modular</td>\n</tr>\n<tr>\n<td>GABINETE</td>\n<td>Fractal Design Meshify C</td>\n</tr>\n<tr>\n<td>MONITOR 1</td>\n<td>ViewSonic XG270QG – 27\", QHD (2560×1440), 165 Hz, IPS, G-SYNC</td>\n</tr>\n<tr>\n<td>MONITOR 2</td>\n<td>Dell S2318HN / NX – 23\", Full HD (1920×1080), IPS, 60 Hz</td>\n</tr>\n<tr>\n<td>MOUSE</td>\n<td>\n<p>Logitech G305 – inalámbrico, sensor HERO</p>\n</td>\n</tr>\n<tr>\n<td>TECLADO</td>\n<td>\n<p>Keychron K6 Pro (K6P) – mecánico 65%, hot-swap</p>\n</td>\n</tr>\n</tbody>\n</table></div>",
+      "currency": "USD",
+      "createdAt": "2026-01-16T13:14:32.731Z",
+      "updatedAt": "2026-01-16T13:14:32.731Z",
+      "images": [
+        "data/images/pc-ryzen-9500-rtx-3080-completa/pc-ryzen-9500-rtx-3080-completa-1768569272920-0.webp",
+        "data/images/pc-ryzen-9500-rtx-3080-completa/pc-ryzen-9500-rtx-3080-completa-1768569274307-1.webp",
+        "data/images/pc-ryzen-9500-rtx-3080-completa/pc-ryzen-9500-rtx-3080-completa-1768569275824-2.webp",
+        "data/images/pc-ryzen-9500-rtx-3080-completa/pc-ryzen-9500-rtx-3080-completa-1768569277663-3.webp",
+        "data/images/pc-ryzen-9500-rtx-3080-completa/pc-ryzen-9500-rtx-3080-completa-1768569279062-4.webp",
+        "data/images/pc-ryzen-9500-rtx-3080-completa/pc-ryzen-9500-rtx-3080-completa-1768569280406-5.webp",
+        "data/images/pc-ryzen-9500-rtx-3080-completa/pc-ryzen-9500-rtx-3080-completa-1768569282022-6.webp",
+        "data/images/pc-ryzen-9500-rtx-3080-completa/pc-ryzen-9500-rtx-3080-completa-1768569283539-7.webp"
+      ]
     }
   ],
   "meta": {
