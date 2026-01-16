@@ -136,7 +136,7 @@
       "slug": "anafe-a-gas",
       "title": "Anafe a gas",
       "price": 20000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/anafe-a-gas/anafe-a-gas-1764437424967-0.webp",
         "data/images/anafe-a-gas/anafe-a-gas-1764437426156-1.webp"
@@ -144,7 +144,7 @@
       "description": "<div><p>Anafe Gas Envasado 2 Hornallas Reforzado Pintado Abra-sol usado en buen estado.</p></div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T17:30:24.887Z",
-      "updatedAt": "2025-11-29T17:30:24.887Z"
+      "updatedAt": "2026-01-16T15:51:26.748Z"
     },
     {
       "id": "a6416237-828d-4e2e-a2fc-2da55233d096",
