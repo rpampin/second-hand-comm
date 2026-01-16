@@ -1374,7 +1374,7 @@ async function initRichtextEditor(initialValue = "") {
   destroyRichtextEditor();
   try {
     await loadRichtextScript();
-    const trimmed = extractPlainText(initialValue || "").trim();
+    const trimmed = typeof initialValue === "string" ? initialValue.trim() : "";
     const safeInitial =
       trimmed.length === 0
         ? ""
