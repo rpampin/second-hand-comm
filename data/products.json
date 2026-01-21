@@ -853,7 +853,7 @@
       "id": "58ebb100-2ab4-4010-93cc-e861ff491b10",
       "slug": "mueble-tv-columna",
       "title": "Mueble TV + Columna",
-      "price": 450000,
+      "price": 400000,
       "status": "available",
       "images": [
         "data/images/mueble-tv-columna/mueble-tv-columna-1767999094325-0.webp",
@@ -862,7 +862,7 @@
       "description": "<div><p>Mueble en hierro y madera Mueble de TV - Ancho 120cm, Alto 80cm, Profundo 40cmColumna - Ancho 40cm, Alto 160cm, Profundo 40cm</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2026-01-09T22:49:41.959Z",
-      "updatedAt": "2026-01-09T22:51:34.215Z"
+      "updatedAt": "2026-01-21T16:43:00.794Z"
     },
     {
       "id": "4315d271-e74e-4d03-899c-e8549d0b39b1",
