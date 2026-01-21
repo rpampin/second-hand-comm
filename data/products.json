@@ -272,16 +272,16 @@
       "id": "7ca0ec1d-1689-4b19-8aff-04ed70263e27",
       "slug": "magnalum-9000-4",
       "title": "Magnalum 9000-4",
-      "price": 150000,
+      "price": 130000,
       "status": "available",
       "images": [
         "data/images/magnalum-9000-4/magnalum-9000-4-1764440307152-0.webp",
         "data/images/magnalum-9000-4/magnalum-9000-4-1764440308460-1.webp"
       ],
-      "description": "<div><p>Magnalum 9000-4 Cuadrado Recto 4 X G9 Base Cuadrada 30 X 30 X 20 Cm</p>\n<p>Incluye las lamparas G9</p></div>",
+      "description": "<div><p>Magnalum 9000-4 Cuadrado Recto 4 X G9 Base Cuadrada 30 X 30 X 20 Cm</p>\n<p>Incluye las lamparas G9</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T18:18:27.060Z",
-      "updatedAt": "2025-11-29T18:18:27.060Z"
+      "updatedAt": "2026-01-21T16:46:48.802Z"
     },
     {
       "id": "49874a13-9264-4dad-8a78-c362043eed65",
