@@ -438,7 +438,7 @@
       "slug": "placard-nordico-escandinavo",
       "title": "Placard Nórdico Escandinavo",
       "price": 150000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/placard-nordico-escandinavo/placard-nordico-escandinavo-1764443928391-0.webp",
         "data/images/placard-nordico-escandinavo/placard-nordico-escandinavo-1764443929549-1.webp"
@@ -446,7 +446,7 @@
       "description": "<div><p>Ropero estilo escandinavo/nórdico en color blanco con detalles en roble miel, en estado como nuevo. Muy poco uso, impecable por dentro y por fuera.</p>\n<p>Características:</p>\n<ul>\n<li>\n<p>4 puertas batientes</p>\n</li>\n<li>\n<p>2 cajones con guías metálicas</p>\n</li>\n<li>\n<p>Varios estantes internos</p>\n</li>\n<li>\n<p>Barral para colgar</p>\n</li>\n<li>\n<p>Diseño moderno y funcional</p>\n</li>\n<li>\n<p>Estructura sólida</p>\n</li>\n</ul>\n<p>Medidas aproximadas:</p>\n<ul>\n<li>\n<p>Alto: 180 cm</p>\n</li>\n<li>\n<p>Ancho: 117 cm</p>\n</li>\n<li>\n<p>Profundidad: 46 cm</p>\n</li>\n</ul></div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T19:18:48.330Z",
-      "updatedAt": "2025-11-29T19:18:48.330Z"
+      "updatedAt": "2026-01-26T13:57:49.313Z"
     },
     {
       "id": "00f1f1ef-b552-4bbd-a9ba-19edb20d30c3",
