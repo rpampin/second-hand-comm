@@ -940,6 +940,24 @@
         "data/images/mesa-6-sillas/mesa-6-sillas-1769437852723-9.webp",
         "data/images/mesa-6-sillas/mesa-6-sillas-1769437853799-10.webp"
       ]
+    },
+    {
+      "id": "e6999ad2-b214-4655-8576-5e5dd07735a9",
+      "slug": "tabla-de-planchar",
+      "title": "Tabla de planchar",
+      "price": 10000,
+      "status": "available",
+      "description": "<div><p>Tabla de planchar usada</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-26T14:34:58.963Z",
+      "updatedAt": "2026-01-26T14:34:58.963Z",
+      "images": [
+        "data/images/tabla-de-planchar/tabla-de-planchar-1769438099106-0.webp",
+        "data/images/tabla-de-planchar/tabla-de-planchar-1769438101246-1.webp",
+        "data/images/tabla-de-planchar/tabla-de-planchar-1769438102402-2.webp",
+        "data/images/tabla-de-planchar/tabla-de-planchar-1769438103540-3.webp",
+        "data/images/tabla-de-planchar/tabla-de-planchar-1769438104720-4.webp"
+      ]
     }
   ],
   "meta": {
