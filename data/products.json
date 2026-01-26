@@ -916,6 +916,30 @@
       "currency": "ARS",
       "createdAt": "2026-01-16T13:25:40.547Z",
       "updatedAt": "2026-01-21T16:43:39.889Z"
+    },
+    {
+      "id": "1ad17e9d-0692-4b03-a445-51871c3959b2",
+      "slug": "mesa-6-sillas",
+      "title": "Mesa + 6 Sillas",
+      "price": 150000,
+      "status": "available",
+      "description": "<div><p>Mesa estilo escandinavo con 6 sillas. Son de uso diario. Pueden ver en la parte de abajo de la mesa como esta sujetada una de las patas.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-26T14:30:41.590Z",
+      "updatedAt": "2026-01-26T14:30:41.590Z",
+      "images": [
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437841701-0.webp",
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437843993-1.webp",
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437845220-2.webp",
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437846443-3.webp",
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437847421-4.webp",
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437848506-5.webp",
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437849455-6.webp",
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437850561-7.webp",
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437851606-8.webp",
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437852723-9.webp",
+        "data/images/mesa-6-sillas/mesa-6-sillas-1769437853799-10.webp"
+      ]
     }
   ],
   "meta": {
