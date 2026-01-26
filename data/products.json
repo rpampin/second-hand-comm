@@ -91,7 +91,7 @@
       "slug": "casita-rotoys-2048-soleada",
       "title": "Casita Rotoys 2048 Soleada",
       "price": 250000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/casita-rotoys-2048-soleada/casita-rotoys-2048-soleada-1764434639952-0.webp",
         "data/images/casita-rotoys-2048-soleada/casita-rotoys-2048-soleada-1764434641156-1.webp",
@@ -100,7 +100,7 @@
       "description": "<div><p>Usada, en muy buen estado, casita de juego Rotoys color beige, ideal para peques de 9 meses a 5 años. Está usada pero súper cuidada, sin golpes ni partes rotas. Es resistente, liviana y hecha con plásticos de buena calidad, así que aguanta perfecto al aire libre. El armado es re fácil y queda firme en pocos minutos.</p>\n</div>",
       "currency": "ARS",
       "createdAt": "2025-11-29T16:43:59.882Z",
-      "updatedAt": "2026-01-14T00:27:57.615Z"
+      "updatedAt": "2026-01-26T18:53:42.044Z"
     },
     {
       "id": "c092f382-d070-4406-8922-0b912e1c8d35",
@@ -923,10 +923,6 @@
       "title": "Mesa + 6 Sillas",
       "price": 150000,
       "status": "available",
-      "description": "<div><p>Mesa estilo escandinavo con 6 sillas. Son de uso diario. Pueden ver en la parte de abajo de la mesa como esta sujetada una de las patas.</p></div>",
-      "currency": "ARS",
-      "createdAt": "2026-01-26T14:30:41.590Z",
-      "updatedAt": "2026-01-26T14:30:41.590Z",
       "images": [
         "data/images/mesa-6-sillas/mesa-6-sillas-1769437841701-0.webp",
         "data/images/mesa-6-sillas/mesa-6-sillas-1769437843993-1.webp",
@@ -939,7 +935,11 @@
         "data/images/mesa-6-sillas/mesa-6-sillas-1769437851606-8.webp",
         "data/images/mesa-6-sillas/mesa-6-sillas-1769437852723-9.webp",
         "data/images/mesa-6-sillas/mesa-6-sillas-1769437853799-10.webp"
-      ]
+      ],
+      "description": "<div><p>Mesa estilo escandinavo con 6 sillas. Son de uso diario. Pueden ver en la parte de abajo de la mesa como esta sujetada una de las patas.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-26T14:30:41.590Z",
+      "updatedAt": "2026-01-26T14:30:41.590Z"
     },
     {
       "id": "e6999ad2-b214-4655-8576-5e5dd07735a9",
@@ -947,17 +947,17 @@
       "title": "Tabla de planchar",
       "price": 10000,
       "status": "available",
-      "description": "<div><p>Tabla de planchar usada</p></div>",
-      "currency": "ARS",
-      "createdAt": "2026-01-26T14:34:58.963Z",
-      "updatedAt": "2026-01-26T14:34:58.963Z",
       "images": [
         "data/images/tabla-de-planchar/tabla-de-planchar-1769438099106-0.webp",
         "data/images/tabla-de-planchar/tabla-de-planchar-1769438101246-1.webp",
         "data/images/tabla-de-planchar/tabla-de-planchar-1769438102402-2.webp",
         "data/images/tabla-de-planchar/tabla-de-planchar-1769438103540-3.webp",
         "data/images/tabla-de-planchar/tabla-de-planchar-1769438104720-4.webp"
-      ]
+      ],
+      "description": "<div><p>Tabla de planchar usada</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-26T14:34:58.963Z",
+      "updatedAt": "2026-01-26T14:34:58.963Z"
     },
     {
       "id": "f8e10458-5a0d-421d-8bfa-a0fbca5b4319",
@@ -965,15 +965,15 @@
       "title": "Ukelele",
       "price": 15000,
       "status": "available",
-      "description": "<div><p>Ukelele usado. Detalle en foto.</p></div>",
-      "currency": "ARS",
-      "createdAt": "2026-01-26T14:37:06.979Z",
-      "updatedAt": "2026-01-26T14:37:06.979Z",
       "images": [
         "data/images/ukelele/ukelele-1769438227092-0.webp",
         "data/images/ukelele/ukelele-1769438229255-1.webp",
         "data/images/ukelele/ukelele-1769438230266-2.webp"
-      ]
+      ],
+      "description": "<div><p>Ukelele usado. Detalle en foto.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-26T14:37:06.979Z",
+      "updatedAt": "2026-01-26T14:37:06.979Z"
     }
   ],
   "meta": {
