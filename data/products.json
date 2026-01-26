@@ -958,6 +958,22 @@
         "data/images/tabla-de-planchar/tabla-de-planchar-1769438103540-3.webp",
         "data/images/tabla-de-planchar/tabla-de-planchar-1769438104720-4.webp"
       ]
+    },
+    {
+      "id": "f8e10458-5a0d-421d-8bfa-a0fbca5b4319",
+      "slug": "ukelele",
+      "title": "Ukelele",
+      "price": 15000,
+      "status": "available",
+      "description": "<div><p>Ukelele usado. Detalle en foto.</p></div>",
+      "currency": "ARS",
+      "createdAt": "2026-01-26T14:37:06.979Z",
+      "updatedAt": "2026-01-26T14:37:06.979Z",
+      "images": [
+        "data/images/ukelele/ukelele-1769438227092-0.webp",
+        "data/images/ukelele/ukelele-1769438229255-1.webp",
+        "data/images/ukelele/ukelele-1769438230266-2.webp"
+      ]
     }
   ],
   "meta": {
