@@ -964,7 +964,7 @@
       "slug": "ukelele",
       "title": "Ukelele",
       "price": 15000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/ukelele/ukelele-1769438227092-0.webp",
         "data/images/ukelele/ukelele-1769438229255-1.webp",
@@ -973,7 +973,7 @@
       "description": "<div><p>Ukelele usado. Detalle en foto.</p></div>",
       "currency": "ARS",
       "createdAt": "2026-01-26T14:37:06.979Z",
-      "updatedAt": "2026-01-26T14:37:06.979Z"
+      "updatedAt": "2026-01-27T14:44:49.321Z"
     }
   ],
   "meta": {
