@@ -946,7 +946,7 @@
       "slug": "tabla-de-planchar",
       "title": "Tabla de planchar",
       "price": 10000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/tabla-de-planchar/tabla-de-planchar-1769438099106-0.webp",
         "data/images/tabla-de-planchar/tabla-de-planchar-1769438101246-1.webp",
@@ -957,7 +957,7 @@
       "description": "<div><p>Tabla de planchar usada</p></div>",
       "currency": "ARS",
       "createdAt": "2026-01-26T14:34:58.963Z",
-      "updatedAt": "2026-01-26T14:34:58.963Z"
+      "updatedAt": "2026-01-28T13:56:37.843Z"
     },
     {
       "id": "f8e10458-5a0d-421d-8bfa-a0fbca5b4319",
