@@ -790,7 +790,7 @@
       "slug": "monopatin-adulto-100kg",
       "title": "Monopatin adulto 100kg",
       "price": 40000,
-      "status": "available",
+      "status": "sold",
       "images": [
         "data/images/monopatin-adulto-100kg/monopatin-adulto-100kg-1767907163399-0.webp",
         "data/images/monopatin-adulto-100kg/monopatin-adulto-100kg-1767907165377-1.webp"
@@ -798,7 +798,7 @@
       "description": "<div><p>Monopatin Plegable Urbano Reforzado Hasta 100 Kilos</p></div>",
       "currency": "ARS",
       "createdAt": "2026-01-08T21:19:23.232Z",
-      "updatedAt": "2026-01-08T21:19:23.232Z"
+      "updatedAt": "2026-01-28T13:38:32.627Z"
     },
     {
       "id": "c5d39002-baf5-4ce3-a4be-f3bb3c2f05e7",
